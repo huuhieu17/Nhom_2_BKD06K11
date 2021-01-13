@@ -238,7 +238,7 @@
 		<!-- Header -->
 		<div id="header">
 			<div id="left">
-				<div id="llogo">
+				<div id="llogo" onclick="window.location.replace('?s=home')">
 					
 				</div>
 				<div id="lcontent">
