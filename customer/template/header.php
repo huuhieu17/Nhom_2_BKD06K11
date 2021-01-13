@@ -218,7 +218,7 @@
 
 		}
 		.content{
-			padding: 5%;
+			padding: 5% 8%;
 		}
 		/*Mobile	*/
 		/*@media screen and (max-width: 600px) {
