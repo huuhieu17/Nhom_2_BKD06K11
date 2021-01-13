@@ -16,6 +16,7 @@
 			$admin = mysqli_fetch_assoc($query);
 			// save info admin.
 			$_SESSION['admin']['name'] = $admin['name'];
+			$_SESSION['admin']['name'] = $admin['username'];
 			$_SESSION['admin']['level'] = $admin['admin'];
 			$_SESSION['admin']['id'] = $admin['id'];
 			mysqli_close($connection);

@@ -142,7 +142,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 				<div id="left"> </div>
 				<div id="right">
 					<ul>
-					<li>Welcome <b><?php echo $_SESSION['admin']['name'];?></b>
+					<li>Welcome <b><?php echo $_SESSION['admin']['username'];?></b>
 						<ul>
 							<li><a href=""><i class="fa fa-user-circle-o"></i> Edit Infomation</a></li>
 							<li><a href="index.php?modules=common&action=logout"><i class="fa fa-power-off"></i> Logout</a> </li>
