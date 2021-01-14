@@ -55,6 +55,7 @@
 		#llogo{
 			box-sizing: border-box;
 			background-position: center;
+			background-attachment: fixed;
 			cursor: pointer;
 			border: 1px solid black;
 			background: #FED101 url('public/img/template/logo.png');
@@ -244,7 +245,7 @@
 				<div id="lcontent">
 					<a href="#" class="link">News </a>
 				<div class="drop">
-					<button class="dropbtn">Brands◣</button>
+					<button class="dropbtn">Brands</button>
 					<div class="drop-content">
 						<?php foreach ($query_brand as $key): ?>
 							<a href="?s=products&act=brand&id=<?php echo $key['id']?>" class="dropdown"><?php echo $key['name'];?></a>
@@ -253,7 +254,7 @@
 				</div>
 				
 				<div class="drop">
-					<button class="dropbtn">Clothes◣</button>
+					<button class="dropbtn">Clothes</button>
 					<div class="drop-content">
 						<a href="#" class="dropdown">Thương Hiệu</a>
 						<a href="#" class="dropdown">Thương Hiệu</a>
