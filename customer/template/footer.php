@@ -65,5 +65,17 @@
 		</div>
 
 	</div>
+	<script>
+		// navbar3
+		function drop(){
+  var x = document.getElementById("header");
+  if(x.className === "nav"){
+    x.className+= " temp";
+  } else {
+    x.className = "nav";
+  }
+  
+}
+	</script>
 </body>
 </html>

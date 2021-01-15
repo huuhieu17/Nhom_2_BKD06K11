@@ -217,27 +217,56 @@
 		ul li ul li a:hover{
 
 		}
+		#menuicon{
+			display: none;
+		}
 		.content{
 			padding: 4% 8%;
 			height: 100%;
 		}
 		/*Mobile	*/
-		/*@media screen and (max-width: 600px) {
-			#header a:not(:first-child), #header .drop .dropbtn{
+		@media screen and (max-width: 320px) {
+			#header{
+				
+			}
+			#llogo{
+				display: block;
+			}
+			#menuicon{
+			 display: block;
+			 float: right;
+			 padding: 1%;
+			 }
+			#left #lcontent{
+				position: relative;
+				display: none;
+				float: right;
+				background:white;
+			}
+			#right{
 				display: none;
 			}
-			a.icon {
-			    float: right;
-			    display: block;
-			 }
-		}*/
+			#lcontent a{
+				display: block;
+				background:white;
+			}
+			#lcontent .drop{
+				background:white;
+				width: 100%;
+			}
+			.temp{
+  			display: block;
+			}
+		}
 
 	</style>
+
 </head>
 <body>
 	<div id="container">
 		<!-- Header -->
-		<div id="header">
+		<div id="header" class="nav">
+			<a id="menuicon" href="#" onclick="drop();"><i class="fa fa-bars"></i></a>
 			<div id="left">
 				<div id="llogo" onclick="window.location.replace('?s=home')">
 					
