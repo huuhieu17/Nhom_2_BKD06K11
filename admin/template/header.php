@@ -9,13 +9,15 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="../public/img/template/favicon.ico" type="image/gif" sizes="16x16">
-
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Admin Panel | HStore</title>
 	<style>
 		*{
 			margin: 0;
 			padding: 0;
+			font-family: 'Open Sans', sans-serif;
 		}
 		#container{
 			width: 100%;
@@ -172,10 +174,10 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 					<a href="#"><i class="fa fa-archive"></i> All Product</a>
 				</div>
 				<div class="link">
-					<a href="#"><i class="fa fa-th-list"></i> Add Brand</a>
+					<a href="#"><i class="fa fa-th-list"></i> Manage Brand</a>
 				</div>
 				<div class="link">
-					<a href="#"><i class="fa fa-th-list"></i> Add Product</a>
+					<a href="#"><i class="fa fa-th-list"></i> Manage Product</a>
 				</div>
 				<?php if ($_SESSION['admin']['level'] == 2): ?>
 					<div class="link">
