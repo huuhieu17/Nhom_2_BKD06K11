@@ -91,12 +91,74 @@
 			color: white;
 			padding: 20px;
 		}
+		#menu{
+			background: none;
+			outline: none;
+			display: none;
+			box-sizing: border-box;
+		}
+		#logout{
+			display: none;
+		}
+		@media only screen and (max-width: 768px) {
+		 ul{
+		  	display: none;
+		  	margin: 0;
+		  	padding: 0;
+		 }
+		 ul li ul li{
+		 	display: none;
+		 }
+		 ul li{
+		 	padding: 20px;
+		 	background: gray;
+		 	
+		 }
+		 ul li a{
+		 	padding: 20px;
+		 	background: gray;
+		 	color: white;
+		 }
+		}
+
+		@media only screen and (max-width: 768px) {
+		  #menu{
+		  	padding: 15px;
+		  	float: right;
+		  	display: block;
+		  }
+		  #left{
+		  	width: 100%;
+		  }
+		  #right{
+		  }
+		 
+		  #left img{
+		  	float: left;
+		  }
+		 .responsive {position: relative;}
+		   .topnav.responsive ul {
+		    display: block;
+		    text-align: right;
+		    float: right;
+		    width: 125%;
+		  	}
+		  	.topnav.responsive ul li ul{
+		  		display: none;
+		  	}
+		  	#logout{
+			display: block;
+		}
+		}
+
+
 	</style>
 </head>
 <body>
 	<div id="container">
-		<div id="header">
+		<div id="header" class="topnav">
 			<div id="left">
+				<button id="menu" onclick="menu()"><i class="fa fa-bars"></i></button>
 				<img src="public/img/template/logo.png" alt="">
 			</div>
 			<div id="right">
@@ -130,8 +192,9 @@
 						</li>";
 					}
 					?>
-					
 					<li><a href="Login"><i class="fa fa-shopping-cart"></i></a></li>
+					<li id="logout"><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
+					
 				</ul>
 			</div>
 			
