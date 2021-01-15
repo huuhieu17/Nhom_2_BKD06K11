@@ -6,29 +6,18 @@
 
 /* Position the image container (needed to position the left and right arrows) */
 .slideshow {
-  position: relative;
-  margin-bottom: 5% 0;
   padding: 1% 0;
   width: 100%;
+  margin-top: 60px;
   z-index: 0;
-  height: 60%;
+  height: 100%;
 }
 .slideshow #sleft{
-  height: 100%;
+  height: 90%;
 	position: relative;
-	width: 69%;
-	float: left;
-}
-.slideshow #sright{
-	overflow: auto;
-/*  height: 100%;*/
-	width: 30%;
-	float: right;
-}
-#sright img{
-	margin-bottom: 2%;
 	width: 100%;
 }
+
 /* Hide the images by default */
 .mySlides {
   height: 100%;
@@ -150,11 +139,6 @@
 
 
 	</div>
-  	<div id="sright">
-  		<img src="public/img/template/1.png" alt="">
-  		<img src="public/img/template/2.png" alt="">
-  		<img src="public/img/template/1.png" alt="">
-  	</div>
 </div>
 
 <script>
