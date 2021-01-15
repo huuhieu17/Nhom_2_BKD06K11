@@ -25,7 +25,7 @@
 <style>
 	#login{
 		
-		padding: 7% 0;
+		padding: 10% 0;
 		width: 100%;
 		text-align: center;
 	}
@@ -33,11 +33,11 @@
 		margin: auto;
 		padding: 2%;
 		background: white;
-		width: 25%;
+		width: 30vw;
 		border: 1px solid #f9f9f9;
 		border-radius: 3px;
 	}
-	input{
+	input.input{
 		padding: 3%;
 		margin: 2%;
 		width: 90%;
@@ -70,8 +70,8 @@
 			<span style="color:red;font-size: 13px;"> <?php
 			echo $error;
 			?></span>	
-			<input type="text" name="username" placeholder="Username"><br>
-			<input type="password" name="password" placeholder="Password"><br>
+			<input class="input" type="text" name="username" placeholder="Username"><br>
+			<input class="input" type="password" name="password" placeholder="Password"><br>
 			<button name="btn" id="btn">Login</button>
 			<br>
 			<span>Bạn chưa có tài khoản ? <a href="?s=home&act=register">Đăng ký ngay</a></span>

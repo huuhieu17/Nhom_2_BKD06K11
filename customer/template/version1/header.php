@@ -32,6 +32,7 @@
 			border-bottom: 1px solid #eee;
 		}
 		#left{
+			cursor: pointer;
 			vertical-align: middle;
 		    width: 20%;
 		    box-sizing: border-box;
@@ -134,6 +135,7 @@
 		  }
 		 
 		  #left img{
+
 		  	float: left;
 		  }
 		 .responsive {position: relative;}
@@ -159,7 +161,7 @@
 		<div id="header" class="topnav">
 			<div id="left">
 				<button id="menu" onclick="menu()"><i class="fa fa-bars"></i></button>
-				<img src="public/img/template/logo.png" alt="">
+				<img onclick="window.location.replace('?s=home')" src="public/img/template/logo.png" alt="">
 			</div>
 			<div id="right">
 				<ul>
