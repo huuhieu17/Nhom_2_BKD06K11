@@ -235,7 +235,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 					<a href="#"><i class="fa fa-newspaper-o"></i> News</a>
 				</div>
 				<div class="link" id="logout">
-					<a href="#"><i class="fa fa-power-off"></i> Log Out</a>
+					<a href="?modules=common&action=logout"><i class="fa fa-power-off"></i> Log Out</a>
 				</div>
 				
 			</div>
