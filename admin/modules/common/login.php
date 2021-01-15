@@ -1,7 +1,8 @@
 <?php 
 	error_reporting(0);
 	if (isset($_SESSION['admin']) || $_SESSION['admin'] != "") {
-		header('Location:?modules=common&action=home');
+		// header('Location:?modules=common&action=home');
+		echo "<script>window.location.replace('?modules=common&action=home');</script>";
 	}
 	$error = "";
 	if (isset($_POST['btn'])) {
