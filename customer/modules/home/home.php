@@ -11,7 +11,7 @@ img {
 }
 .slideshow #sleft{
 	position: relative;
-	width: 70%;
+	width: 69%;
 	float: left;
 }
 .slideshow #sright{
@@ -20,7 +20,7 @@ img {
 	float: right;
 }
 #sright img{
-	margin-bottom: 4%;
+	margin-bottom: 2%;
 	width: 100%;
 }
 /* Hide the images by default */

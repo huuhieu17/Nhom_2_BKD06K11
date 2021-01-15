@@ -54,12 +54,12 @@
 		}
 		#llogo{
 			box-sizing: border-box;
+			background: #FED101 url(public/img/template/logo.png);
 			background-position: center;
-			background-attachment: fixed;
+			background-size:contain;
+			background-repeat: no-repeat;
 			cursor: pointer;
 			border: 1px solid black;
-			background: #FED101 url('public/img/template/logo.png');
-			background-repeat: no-repeat;
 			width: 30%;
 			height: 100%;
 			float: left;
@@ -71,8 +71,9 @@
 		}
 		.drop{
 			height: 100%;
-			margin: 0 1%;
-			float: left;
+		    padding: 3%;
+		    /* margin: 0 1%; */
+		    float: left;
 		}
 		.drop:hover{
 			background: #f5f5f5;
@@ -112,9 +113,10 @@
 			background: #f5f5f5;
 		}
 		.drop .drop-content{
-			display: none;
-			min-width: 20%;
-			position: absolute;
+			    display: none;
+			    margin: 1% -0.9%;
+			    min-width: 20%;
+			    position: absolute;
 		}
 		.drop .drop-content a.dropdown{
 			transition: 0.7s;
@@ -138,29 +140,23 @@
 			width: 50%;
 		}
 		#right #search input{
-			padding: 7px;
+			padding: 2%;
 			border:1px solid gray;
 			width: 70%;
 		}
 		#right #search button{
 			color: white;
-			padding: 7px;
+			padding: 2%;
 			border:1px solid gray;
 			background: black;
 			
 		}
-		#right #action{
-			padding: 13px 7px;
-			box-sizing: border-box;
-			text-align: left;
-			width: 45%;
-			float: left;
-		}
+
 		#right #action{
 			height: 100%;
-			padding: 13px 7px;
+			padding: 3%;
 			box-sizing: border-box;
-			text-align: left;
+			text-align: right;
 			width: 45%;
 			float: right;
 		}
@@ -205,11 +201,14 @@
 			padding: 10px 0;
 			background: white;
 		}
-		ul li:hover ul{
-			box-sizing: border-box;
-			overflow: hidden;
-			text-align: left;
-			display: block;
+		ul li:hover ul {
+		    width: 17.5%;
+		    box-sizing: border-box;
+		    overflow: hidden;
+		    text-align: left;
+		    display: block;
+		    /* padding: 0% 0; */
+		    padding: 2% 0;
 		}
 		ul li ul li a{
 			display: block;
