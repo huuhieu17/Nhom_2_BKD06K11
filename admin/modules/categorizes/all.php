@@ -1,7 +1,7 @@
 
-<h1>Manage Brand</h1>
-<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a><br><br>
-<a id="add" href="?modules=brands&action=add">Add new brand</a>
+<h1>Manage Product Type</h1>
+<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a><br><br>
+<a id="add" href="?modules=categorizes&action=add">Add new product type</a>
 <style>
 	a.nav{
 		color: gray;
@@ -43,24 +43,27 @@ td a{
 <table id="customers">
 	<tr>
 		<th>ID</th>
-		<th>Brand name</th>
+		<th>Product Type</th>
 		<th colspan="2">Action</th>
 	</tr>
 	<?php 
-	$sql = "SELECT * FROM brands";
+	$sql = "SELECT * FROM categorizes";
 	$query = mysqli_query($connection,$sql);
 	if (!$query) {
 		echo "Error",mysqli_connect_error();
 	}else if (mysqli_num_rows($query) == 0) {
 		$result = "No record!";
+		echo "<tr>";
+		echo "<td colspan='3'> <b>No record!</b> </td>";
+		echo "</tr>";
 	}else{
 		foreach ($query as $key) {
 			$id = $key['id'];
 			echo "<tr>";
 			echo "<td>".$id."</td>";
 			echo "<td>".$key['name']."</td>";
-			echo "<td class='action'><a href='?modules=brands&action=edit&id=$id'><i class='fa fa-pencil'></i>Edit</a></td>";
-			echo "<td class='action'><a href='?modules=brands&action=delete&id=$id'><i class='fa fa-times-circle'></i>Delete</a></td>";
+			echo "<td class='action'><a href='?modules=categorizes&action=edit&id=$id'><i class='fa fa-pencil'></i>Edit</a></td>";
+			echo "<td class='action'><a href='?modules=categorizes&action=delete&id=$id'><i class='fa fa-times-circle'></i>Delete</a></td>";
 			echo "</tr>";
 		}
 	}

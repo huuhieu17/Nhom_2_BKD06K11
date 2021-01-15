@@ -17,7 +17,7 @@
 			// save info admin.
 			$_SESSION['admin']['name'] = $admin['name'];
 			$_SESSION['admin']['username'] = $admin['username'];
-			$_SESSION['admin']['level'] = $admin['admin'];
+			$_SESSION['admin']['level'] = $admin['level'];
 			$_SESSION['admin']['id'] = $admin['id'];
 			mysqli_close($connection);
 			header('Location:?modules=common&action=home');
@@ -42,7 +42,7 @@
 			padding: 15% 0;
 		}
 		#form{
-			width: 30%;
+			width: 60vw;
 			background: white;
 			margin: auto;
 			border-radius: 3px;

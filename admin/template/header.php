@@ -100,7 +100,6 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			box-sizing: border-box;
 		}
 		#right{
-			padding: 1%;
 			position: absolute;
 			width: 15%;
 			right: 0;
@@ -132,19 +131,59 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		ul:hover li ul li:hover a{
 			width: 100%;
 		}
+		.menu{
+			border: 0;
+			background: none;
+			font-size: 24px;
+			display: none;
+		}
+		#logout{
+			display: none;
+		}
+		@media only screen and (max-width: 768px) {
+		 .topnav{
+		 	display: none;
+		 }
+		 ul{
+		 	display: none;
+		 }
+
+		@media only screen and (max-width: 768px) {
+		  .menu{
+		  	float: right;
+		  	display: block;
+		  }
+		   .responsive {position: relative;}
+		   .responsive {
+		    display: block;
+		    text-align: right;
+		    float: right;
+		  	}
+		  	#sidebar{
+		  		width: 100%;
+		  	}
+		  	.link{
+		  		text-align: left;
+		  		padding: 2% 0;
+		  	}
+		  	#logout{
+		  		display: block;	
+			}
+	  	}
 	</style>
 </head>
 <body>
 	<div id="container">
 		<div id="nav">
-			<div id="logo">
+			<div id="logo" onclick="window.location.replace('?modules=common&action=home')">
 				<img src="../public/img/template/logo.png" alt="">
 			</div>
 			<div id="action">
 				<div id="left"> </div>
 				<div id="right">
+					<button class="menu" onclick="menu()"><i class="fa fa-bars"></i></button>
 					<ul>
-					<li>Welcome <b><?php echo $_SESSION['admin']['username'];?></b>
+					<li><a href="#">Welcome <b><?php echo $_SESSION['admin']['username'];?></a></b>
 						<ul>
 							<li><a href=""><i class="fa fa-user-circle-o"></i> Edit Infomation</a></li>
 							<li><a href="index.php?modules=common&action=logout"><i class="fa fa-power-off"></i> Logout</a> </li>
@@ -157,7 +196,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			</div>
 		</div>
 		<div id="contents">
-			<div id="sidebar">
+			<div id="sidebar" class="topnav">
 				<div id="info">
 					<b><?php echo $_SESSION['admin']['name']?></b>
 					<p><?php 
@@ -174,10 +213,13 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 					<a href="#"><i class="fa fa-archive"></i> All Product</a>
 				</div>
 				<div class="link">
-					<a href="#"><i class="fa fa-th-list"></i> Manage Brand</a>
+					<a href="?modules=brands&action=all"><i class="fa fa-th-list"></i> Manage Brand</a>
 				</div>
 				<div class="link">
 					<a href="#"><i class="fa fa-th-list"></i> Manage Product</a>
+				</div>
+				<div class="link">
+					<a href="?modules=categorizes&action=all"><i class="fa fa-newspaper-o"></i> Manage Categorizes</a>
 				</div>
 				<?php if ($_SESSION['admin']['level'] == 2): ?>
 					<div class="link">
@@ -192,10 +234,20 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 				<div class="link">
 					<a href="#"><i class="fa fa-newspaper-o"></i> News</a>
 				</div>
-				<div class="link">
-					<a href="#"><i class="fa fa-user-circle-o"></i> Edit Information</a>
+				<div class="link" id="logout">
+					<a href="#"><i class="fa fa-power-off"></i> Log Out</a>
 				</div>
 				
 			</div>
+			<script>
+				function menu() {
+				  var x = document.getElementById("sidebar");
+				  if (x.className === "topnav") {
+				    x.className += " responsive";
+				  } else {
+				    x.className = "topnav";
+				  }		
+				}
+			</script>
 			<div id="content">
 			

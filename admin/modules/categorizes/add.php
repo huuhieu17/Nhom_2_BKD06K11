@@ -1,7 +1,7 @@
 <?php 
 	if (isset($_POST['btn'])) {
 		$name = $_POST['name'];
-		$sql = "INSERT INTO brands VALUES(null,'$name')";
+		$sql = "INSERT INTO categorizes VALUES(null,'$name')";
 		$query= mysqli_query($connection,$sql);
 	}
 ?>
@@ -33,11 +33,11 @@
 		font-weight: bold;
 	}
 </style>
-<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a>/<a class="nav"href="?modules=brands&action=add">add</a>
+<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a>/<a class="nav"href="?modules=categorizes&action=add">Add</a>
 <div id="addbrand">
 	<form method="POST">
-		<span>Brand Name:</span><br>
-	<input type="text" name="name" placeholder="Brand Name"><br>
+		<span>Product Type:</span><br>
+	<input type="text" name="name" placeholder="Product Type"><br>
 	<button name="btn">Add</button>
 	</form>
 </div>

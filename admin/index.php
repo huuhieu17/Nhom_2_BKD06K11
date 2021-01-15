@@ -22,13 +22,12 @@ if (file_exists($path)) {
 	require_once("config/config.php");
 	require_once("config/session.php");
 	if (isset($_SESSION['admin']) || $_SESSION['admin'] != "") {
-		require_once 'template/header.php';
+		require_once('template/header.php');
 		require_once($path);
-		require_once 'template/footer.php';
+		require_once('template/footer.php');
 	}else{
 		require_once($path);
 	}
-	
 }else{
 	$path = "modules/common/404.php";
 	require_once($path);
