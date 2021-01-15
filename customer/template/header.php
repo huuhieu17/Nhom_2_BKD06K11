@@ -20,7 +20,7 @@
 		body{
 			width: 100%;
 			height: 100%;
-			background: #ffe7ab url(public/img/template/bg-v3.png) center top;
+			background: #f1f1f1 url(public/img/template/bg-v3.png) center top;
 		}
 		#container{
 			position: relative;
@@ -35,18 +35,19 @@
 			padding: 0 8%;
 			box-sizing: border-box;
 			width: 100%;
-			background: #FED101;
+			background: white;
 			height: 8%;
 		}
+		#header:hover{
+			border-bottom: 1px solid black;
+		}
 		#left{
-			border: 1px solid black;
 			height: 100%;
 			width: 50%;
 			float: left;
 			box-sizing: border-box;
 		}
 		#right{
-			border: 1px solid black;
 			height: 100%;
 			width: 50%;
 			float: left;
@@ -54,12 +55,11 @@
 		}
 		#llogo{
 			box-sizing: border-box;
-			background: #FED101 url(public/img/template/logo.png);
-			background-position: center;
+			background: url(public/img/template/logo.png);
+			background-position: left;
 			background-size:contain;
 			background-repeat: no-repeat;
 			cursor: pointer;
-			border: 1px solid black;
 			width: 30%;
 			height: 100%;
 			float: left;
@@ -219,6 +219,7 @@
 		}
 		.content{
 			padding: 4% 8%;
+			height: 100%;
 		}
 		/*Mobile	*/
 		/*@media screen and (max-width: 600px) {

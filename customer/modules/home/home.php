@@ -1,21 +1,27 @@
 <style>
-img {
+.mySlides img {
+  height: 100%;
   vertical-align: middle;
 }
 
 /* Position the image container (needed to position the left and right arrows) */
 .slideshow {
-  padding: 10px 0;
+  position: relative;
+  margin-bottom: 5% 0;
+  padding: 1% 0;
   width: 100%;
   z-index: 0;
+  height: 60%;
 }
 .slideshow #sleft{
+  height: 100%;
 	position: relative;
 	width: 69%;
 	float: left;
 }
 .slideshow #sright{
 	overflow: auto;
+/*  height: 100%;*/
 	width: 30%;
 	float: right;
 }
@@ -25,6 +31,7 @@ img {
 }
 /* Hide the images by default */
 .mySlides {
+  height: 100%;
 	position: relative;
 	width: 100%;
  	display: none;
@@ -75,11 +82,7 @@ img {
 
 
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+
 
 /* Six columns side by side */
 .column {
@@ -104,7 +107,8 @@ img {
     display:block;
     clear: both;
 }
-.content123{
+.new{
+  margin-top: 0%;
 	background: white;
 	border:2px solid #feafb7;
 }
@@ -117,7 +121,7 @@ img {
 	<div id="sleft">
 		<div class="mySlides">
     <div class="numbertext">1 / 6</div>
-    <img src="public/img/template/img_snow_wide.jpg" style="width:100%">
+    <img src="public/img/template/banner.jpg" style="width:100%">
   </div>
 
   <div class="mySlides">
@@ -133,6 +137,10 @@ img {
     <div class="numbertext">3 / 6</div>
     <img src="public/img/template/img_mountains_wide.jpg" style="width:100%">
   </div>
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="public/img/template/img_mountains_wide.jpg" style="width:100%">
+  </div>
   <a class="prev" onclick="plusSlides(-1)">❮</a>
   <a class="next" onclick="plusSlides(1)">❯</a>
 
@@ -140,21 +148,7 @@ img {
     <p id="caption"></p>
   </div>
 
-  <div class="row">
-    <div class="column" onclick="currentSlide(1)">
-      <p class = "demo cursor"> Hello </p>
-    </div>
-    <div class="column" onclick="currentSlide(2)">
-      <p class = "demo cursor"> Hello </p>
-    </div>
-    <div class="column" onclick="currentSlide(3)">
-     <p class = "demo cursor"> Hello </p>
-    </div>
-    <div class="column" onclick="currentSlide(4)">
-     <p class = "demo cursor"> Hello </p>
-    </div>
-   
-  </div>
+
 	</div>
   	<div id="sright">
   		<img src="public/img/template/1.png" alt="">
@@ -193,45 +187,7 @@ function showSlides(n) {
 }
 </script>
     
-<div class="content123">
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
-	1231321222222
+<div class="new">
+	<h1>Sản phẩm mới</h1>
+  Dưới đấy sẽ in sản phẩm
 </div>
