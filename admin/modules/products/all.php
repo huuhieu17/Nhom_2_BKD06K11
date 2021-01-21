@@ -1,0 +1,9 @@
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Status</th>
+		<th>Action</th>
+	</tr>
+</table>

@@ -93,6 +93,7 @@
 			padding: 20px;
 		}
 		#menu{
+			border: none;
 			background: none;
 			outline: none;
 			display: none;
@@ -100,6 +101,9 @@
 		}
 		#logout{
 			display: none;
+		}
+		#content{
+			margin-top: 5%;
 		}
 		@media only screen and (max-width: 768px) {
 		 ul{
@@ -111,6 +115,7 @@
 		 	display: none;
 		 }
 		 ul li{
+		 	border-bottom: 1px solid white;
 		 	padding: 20px;
 		 	background: gray;
 		 	
@@ -123,8 +128,11 @@
 		}
 
 		@media only screen and (max-width: 768px) {
+			#content{
+			margin-top: 10%;
+			}
 		  #menu{
-		  	padding: 15px;
+		  	font-size: 23px;
 		  	float: right;
 		  	display: block;
 		  }
@@ -174,7 +182,7 @@
 					<li><a href="#">Brand</a>
 						<ul>
 							<?php foreach ($query_brand as $key): ?>
-								<li><a href="?s=product&act=brand&id=$key['id']"><?php echo $key['name']; ?></a></li>
+								<li><a href="?s=products&act=brand&id=$key['id']"><?php echo $key['name']; ?></a></li>
 							<?php endforeach?>
 						</ul>
 					</li>
@@ -195,10 +203,17 @@
 					}
 					?>
 					<li><a href="Login"><i class="fa fa-shopping-cart"></i></a></li>
-					<li id="logout"><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
+					<?php 
+						if (isset($_SESSION['user'])) {
+							echo "<li id='logout'><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>";
+						}
+					?>
+					
 					
 				</ul>
 			</div>
-			
 		</div>
+		<div id="content">
+			
+		
 	
