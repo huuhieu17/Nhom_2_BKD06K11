@@ -33,11 +33,15 @@
 		}
 		#left{
 			cursor: pointer;
-			vertical-align: middle;
 		    width: 20%;
 		    box-sizing: border-box;
 		    float: left;
-		    padding: 10px 30px;
+		    position: relative;
+		    top: 0;
+		    bottom: 0;
+		}
+		#left img{
+			padding: 10px;
 		}
 		#right{
 			box-sizing: border-box;
@@ -57,25 +61,42 @@
 			display: list-item;
 		}
 		ul li a{
+			display: block;
+			width: 100%;
 			font-size: 13px;
 			/*padding: 10px;*/
-			color: #999;
+			color: black;
 			text-decoration: none;
 			text-transform: uppercase;
 		}
 		ul li:hover{
-			background: #f5f5f5;
+			position: relative;
+			background: #f1f1f1;
 		}
 		ul li ul{
+			width: 300%;
 			text-align: left;
-			margin: 35px -25px;
+			top: 101%;
+			left: 0;
 			background: white;
 			position: absolute;
 			display: none;
 		}
 		ul li ul li{
-			padding-right: 130px;
+			background: #f1f1f1;
 		}
+		ul li ul li:hover{
+			background: white;
+		}
+		ul li ul li a:hover{
+			font-weight: bold;
+			transition: 0.1s;
+			background: white;
+		}
+		ul li ul li a{
+			width: 100%;
+		}
+
 		ul li:hover ul{
 			display: block;
 		}
@@ -93,6 +114,7 @@
 			padding: 20px;
 		}
 		#menu{
+			padding: 20px;
 			border: none;
 			background: none;
 			outline: none;
@@ -158,6 +180,14 @@
 		  	}
 		  	#logout{
 			display: block;
+		}
+		#search form input{
+			width: 80%;
+			padding: 15px;
+		}
+		#search form button{
+			/*width: 90%;*/
+			padding: 15px;
 		}
 		}
 

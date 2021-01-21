@@ -27,7 +27,7 @@ if (isset($_POST['btn'])) {
 <style>
 	#login{
 		
-		padding: 7% 0;
+		padding: 10% 0;
 		width: 100%;
 		text-align: center;
 	}
@@ -64,6 +64,16 @@ if (isset($_POST['btn'])) {
 		box-shadow: 1px;
 		transition: 0.7s;
 	}
+	@media only screen and (max-width: 768px) {
+		#form{
+		margin: auto;
+		padding: 2%;
+		background: white;
+		width: 60vw;
+		border: 1px solid #f9f9f9;
+		border-radius: 3px;
+		}
+	}
 </style>
 <div id="login">
 	<div id="form">	
@@ -80,7 +90,7 @@ if (isset($_POST['btn'])) {
 			<input type="text" name="username" placeholder="Username" id="username" required=""><br>
 			<input type="text" name="name" placeholder="Full Name" id="name" required=""><br>
 			<input type="email" name="email" placeholder="Email" id="email" required=""><br>
-			<input type="password" name="password" placeholder="Password" id="password" required=""><br>
+			<input type="text" name="password" placeholder="Password" id="password" required=""><br>
 			<button name="btn" id="btn">Register</button>
 			<br>
 			<span>Bạn đã có tài khoản ? <a href="?s=home&act=login">Đăng nhập</a></span>

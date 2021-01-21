@@ -62,6 +62,16 @@
 		box-shadow: 1px;
 		transition: 0.7s;
 	}
+	@media only screen and (max-width: 768px) {
+		#form{
+		margin: auto;
+		padding: 2%;
+		background: white;
+		width: 60vw;
+		border: 1px solid #f9f9f9;
+		border-radius: 3px;
+		}
+	}
 </style>
 <div id="login">
 	<div id="form">	
