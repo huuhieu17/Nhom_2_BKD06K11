@@ -18,7 +18,7 @@
 			font-family: 'Open Sans', sans-serif;
 		}
 		#container{
-			width: 100%;
+			width: 100vw;
 			height: 100vh;
 		}
 		#header{
@@ -104,6 +104,7 @@
 			display: inline;
 			padding: 5px;
 		}
+
 		#search form button{
 			display: inline;
 			padding: 5px;
@@ -126,6 +127,7 @@
 		}
 		#content{
 			margin-top: 5%;
+			width: 100vw;
 		}
 		@media only screen and (max-width: 768px) {
 		 ul{
@@ -190,12 +192,31 @@
 			padding: 15px;
 		}
 		}
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 0px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #19b5acc7; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 15px; /* Increase font size */
+}
 
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
 
 	</style>
 </head>
 <body>
 	<div id="container">
+		<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
 		<div id="header" class="topnav">
 			<div id="left">
 				<button id="menu" onclick="menu()"><i class="fa fa-bars"></i></button>

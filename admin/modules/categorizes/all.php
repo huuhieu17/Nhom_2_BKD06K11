@@ -1,6 +1,5 @@
-
-<h1>Manage Product Type</h1>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a><br><br>
+<h1>Manage Product Type</h1>
 <a id="add" href="?modules=categorizes&action=add">Add new product type</a>
 <style>
 	a.nav{
@@ -29,7 +28,7 @@ a#add{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: gray;
   color: white;
 }
 td a{

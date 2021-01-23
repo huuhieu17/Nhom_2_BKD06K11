@@ -5,6 +5,7 @@
 }
 
 /* Position the image container (needed to position the left and right arrows) */
+
 .slideshow {
   padding: 1% 0;
   width: 100%;
@@ -97,9 +98,54 @@
     clear: both;
 }
 .new{
+  padding: 10px;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
   margin-top: 0%;
-	background: white;
-	border:2px solid #feafb7;
+}
+.item{
+  text-transform: uppercase;
+  margin:10px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  text-align: center;
+  flex: 20%;
+  width: 25%;
+}
+.item:hover{
+  transition: 0.1s;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 2px solid gray;
+  border-radius: 2px;
+}
+.item img{
+  width: 100%;
+  height: 500px;
+}
+
+
+h1{
+  text-align: center;
+}
+@media only screen and (max-width: 768px) {
+  .slideshow {
+    padding: 3% 0;
+  }
+  td .item img{
+    height: 200px;
+    width: 100%;
+  }
+  .item{
+    flex: 40%;
+  }
+}
+@media only screen and (max-width: 420px) {
+.item{
+    flex: 50%;
+  }
 }
 
 </style>
@@ -171,8 +217,24 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-    
+    <h1>New Product</h1>
 <div class="new">
-	<h1>Sản phẩm mới</h1>
-  Dưới đấy sẽ in sản phẩm
+     <?php 
+        $sql = "SELECT * FROM products LIMIT 12";
+        $query = mysqli_query($connection,$sql);
+        if (!$query) {
+          echo "Error: ". mysql_connect_error();
+        }else if (mysqli_num_rows($query) == 0) {
+          echo "No products";
+        }else{
+          foreach ($query as $key) {
+            echo "<div class='item'>";
+              echo "<img src='./public/img/product/".$key['product_images']."'>";
+              echo "<b>".$key['product_name']."</b><br><br>";
+                  echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
+            echo "</div>";
+          }
+        }
+      ?>
+ 
 </div>

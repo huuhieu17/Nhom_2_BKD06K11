@@ -53,6 +53,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		}
 		#sidebar{
 			width: 15%;
+			height: 100vh;
 			float: left;
 			border: 1px solid #d2d6de;
 			border-top: 0;
@@ -107,16 +108,20 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			box-sizing: border-box;
 		}
 		ul{
+			padding: 10px;
 			text-align: right;
 			width: 100%;
 			list-style-type: none;
 		}
 		ul li{
+
+			position: relative;
 			text-align: left;
 			padding: 1%;
 			overflow: auto;
 		}
 		ul li ul{
+			
 			text-align: left;
 			background: white;
 			padding: 7% 0;
@@ -210,13 +215,10 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 				</div>
 				<center><span>Function</span></center>
 				<div class="link">
-					<a href="#"><i class="fa fa-archive"></i> All Product</a>
-				</div>
-				<div class="link">
 					<a href="?modules=brands&action=all"><i class="fa fa-th-list"></i> Manage Brand</a>
 				</div>
 				<div class="link">
-					<a href="#"><i class="fa fa-th-list"></i> Manage Product</a>
+					<a href="?modules=products&action=all"><i class="fa fa-th-list"></i> Manage Product</a>
 				</div>
 				<div class="link">
 					<a href="?modules=categorizes&action=all"><i class="fa fa-newspaper-o"></i> Manage Categorizes</a>

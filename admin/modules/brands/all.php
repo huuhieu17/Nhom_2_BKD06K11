@@ -1,7 +1,9 @@
 
-<h1>Manage Brand</h1>
+
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a><br><br>
+<h1>Manage Brands</h1>
 <a id="add" href="?modules=brands&action=add">Add new brand</a>
+
 <style>
 	a.nav{
 		color: gray;
@@ -29,7 +31,7 @@ a#add{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: gray;
   color: white;
 }
 td a{

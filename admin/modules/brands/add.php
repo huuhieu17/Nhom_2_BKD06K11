@@ -33,7 +33,9 @@
 		font-weight: bold;
 	}
 </style>
-<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a>/<a class="nav"href="?modules=brands&action=add">add</a>
+
+<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a>/<a class="nav"href="?modules=brands&action=add">Add</a>
+<h1>Add Brands</h1>
 <div id="addbrand">
 	<form method="POST">
 		<span>Brand Name:</span><br>
