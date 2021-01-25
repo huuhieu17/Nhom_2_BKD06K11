@@ -225,13 +225,16 @@
 				<ul>
 					<li id="search">
 
-							<input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
+							<!-- <input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
 							<script type="text/javascript">
 								function search(){
 									var svalue = document.getElementById('svalue').value;
 									window.location.replace('?s=products&act=search&keyword='+ svalue) ;
 								}
-							</script>
+							</script> -->
+							<form action="">
+								<input type="text" name="keyword"> <button>Search</button>
+							</form>
 						
 					</li>
 					<li><a href="#">Brand</a>
@@ -250,10 +253,10 @@
 						echo "<li><a href='index.php?s=home&act=register'>Sign Up</a></li>";
 					}else{
 						echo "<li><a href='#' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
-						<ul>
-										<li><a class='act' href='#'><i class='fa fa-user-o'></i>  Account Information</a></li>
-										<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
-									</ul>
+							<ul>
+											<li><a class='act' href='#'><i class='fa fa-user-o'></i>  Account Information</a></li>
+											<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
+							</ul>
 						</li>";
 					}
 					?>
