@@ -100,12 +100,12 @@
 		ul li:hover ul{
 			display: block;
 		}
-		#search form input{
+		#search input{
 			display: inline;
 			padding: 5px;
 		}
 
-		#search form button{
+		#search button{
 			display: inline;
 			padding: 5px;
 		}
@@ -224,9 +224,14 @@
 			<div id="right">
 				<ul>
 					<li id="search">
-						<form>
-							<input type="text" placeholder="Search" name="keyword"><button><i class="fa fa-search"></i></button>
-						</form>
+
+							<input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
+							<script type="text/javascript">
+								function search(){
+									var svalue = document.getElementById('svalue').value;
+									window.location.replace('?s=products&act=search&keyword='+ svalue) ;
+								}
+							</script>
 						
 					</li>
 					<li><a href="#">Brand</a>
