@@ -145,7 +145,6 @@
 		 	
 		 }
 		 ul li a{
-		 	padding: 20px;
 		 	background: gray;
 		 	color: white;
 		 }
