@@ -218,9 +218,10 @@ function showSlides(n) {
 }
 </script>
     <h1>New Product</h1>
+    <hr>
 <div class="new">
      <?php 
-        $sql = "SELECT * FROM products LIMIT 12";
+        $sql = "SELECT * FROM `products` ORDER BY id DESC LIMIT 8";
         $query = mysqli_query($connection,$sql);
         if (!$query) {
           echo "Error: ". mysql_connect_error();
@@ -236,5 +237,9 @@ function showSlides(n) {
           }
         }
       ?>
- 
 </div>
+<center>
+  <a href="#">SEE MORE</a>
+</center>
+
+<hr>

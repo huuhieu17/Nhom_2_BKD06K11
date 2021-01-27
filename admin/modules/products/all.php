@@ -61,6 +61,7 @@ if (!$query) {
 	<?php 
 	foreach ($query as $row) {
 		$id = $row['id'];
+		$id_product = $row['id_product'];
 		$result = "";
 		switch ($row['product_status']) {
 			case '0':
@@ -81,8 +82,8 @@ if (!$query) {
 		echo "<td align='center'><b>".$row['product_name']."</b><br><img class='imgpdct' src='../public/img/product/".$row['product_images']."'>"."</td>";
 		echo "<td>".$row['product_price']."</td>";
 		echo "<td>".$result."</td>";
-		echo "<td class='action'><a href='?modules=brands&action=edit&id=$id'><i class='fa fa-pencil'></i>Edit</a></td>";
-			echo "<td class='action'><a href='?modules=products&action=delete&id=$id'><i class='fa fa-times-circle'></i>Delete</a></td>";
+		echo "<td class='action'><a href='?modules=products&action=edit&id=$id_product'><i class='fa fa-pencil'></i>Edit</a></td>";
+			echo "<td class='action'><a href='?modules=products&action=delete&id=$id_product'><i class='fa fa-times-circle'></i>Delete</a></td>";
 		echo "</tr>";
 	}
 	?>

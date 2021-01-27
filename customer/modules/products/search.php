@@ -32,17 +32,10 @@
 }
 </style>
 <h1>Search</h1><br>
-
-<input type="text" placeholder="Search" name="keyword" id="svalue1"><button onclick="search1()"><i class="fa fa-search"></i></button>
-<script type="text/javascript">
-	function search1(){
-		var svalue = document.getElementById('svalue1').value;
-		window.location.replace('?s=products&act=search&keyword='+ svalue) ;
-	}
-</script>
 <hr>
 <div class="scontent">
 	<div class="new">
+
      <?php
      	if (isset($_GET['keyword'])) {
      		$keyword = $_GET['keyword'];

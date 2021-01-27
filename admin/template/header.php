@@ -10,6 +10,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="../public/img/template/favicon.ico" type="image/gif" sizes="16x16">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="template/image-uploader.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Admin Panel | HStore</title>

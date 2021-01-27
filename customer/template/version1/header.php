@@ -225,16 +225,16 @@
 				<ul>
 					<li id="search">
 
-							<!-- <input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
+							<input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
 							<script type="text/javascript">
 								function search(){
 									var svalue = document.getElementById('svalue').value;
 									window.location.replace('?s=products&act=search&keyword='+ svalue) ;
 								}
-							</script> -->
-							<form action="">
+							</script>
+							<!-- <form action="">
 								<input type="text" name="keyword"> <button>Search</button>
-							</form>
+							</form> -->
 						
 					</li>
 					<li><a href="#">Brand</a>
@@ -244,7 +244,18 @@
 							<?php endforeach?>
 						</ul>
 					</li>
-					<li><a href="#">Type</a></li>
+					<li><a href="#">Type</a>
+						<ul>
+							<?php
+								$sql = "SELECT * FROM categorizes";
+								$query = mysqli_query($connection,$sql);
+								foreach ($query as $key) {
+									$id = $key['id'];
+								echo "<li><a href='?s=products&act=type&id=$id'>".$key['name']."</a></li>";
+								}
+							?>
+						</ul>
+					</li>
 					<li><a href="#">Upcomming</a></li>
 					
 					<?php 
