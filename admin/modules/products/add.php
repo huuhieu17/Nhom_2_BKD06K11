@@ -23,8 +23,6 @@
 <br><br>
 <h1>Add Product</h1>
 <form action="" method="POST" enctype="multipart/form-data">
-	Id:
-	<input type="number" name="id"><br>
 	Name:
 	<input type="text" name="name" placeholder="Name products"><br>
 	Type:
@@ -97,10 +95,9 @@ if (isset($_POST['submit'])) {
              
  //        } 
  //    }
-	$sql = "INSERT INTO products VALUES(NULL,'$name','','$price','$description','$brand','$type','$status')";
+	$sql = "INSERT INTO products VALUES(NULL,'$name','$price','$description','$brand','$type','$status')";
 	mysqli_query($connection,$sql);	
 	$sql = "SELECT id FROM products order by id DESC LIMIT 1";
-
 	$id = mysqli_fetch_assoc(mysqli_query($connection,$sql));
 	$id = $id['id'];
 	if (count($_FILES['images']['name']) > 0) {
@@ -117,6 +114,7 @@ if (isset($_POST['submit'])) {
 			$sql = "INSERT INTO products_images VALUES($id,'$newname')";
 			echo $sql;
 			mysqli_query($connection,$sql);
+			echo "<script>window.location.replace('?modules=products&action=all');</script>";
 		}
 	}else{
 		echo "<script>window.location.replace('?modules=products&action=all');</script>";

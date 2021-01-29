@@ -1,3 +1,13 @@
+<?php 
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$sql = "SELECT * FROM products WHERE id = '$id'";
+	$row = mysqli_fetch_assoc(mysqli_query($connection,$sql));
+}else{
+	echo "<script>window.location.replace('?modules=products&action=all');</script>";
+}
+$sql = "SELECT * FROM products WHERE id='$id'";
+?>
 <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <style>
 	a.nav{
@@ -23,17 +33,19 @@
 <br><br>
 <h1>Add Product</h1>
 <form action="" method="POST" enctype="multipart/form-data">
-	Id:
-	<input type="number" name="id"><br>
 	Name:
-	<input type="text" name="name" placeholder="Name products"><br>
+	<input type="text" name="name" placeholder="Name products" value="<?php echo $row['product_name'] ?>"><br>
 	Type:
 	<select name="type" id="">
 	<?php 
 		$sql = "SELECT * FROM categorizes"; // get brands
 		$query = mysqli_query($connection,$sql);
 		foreach ($query as $key) {
-			echo "<option value='".$key['id']."'>".$key['name']."</option>";
+			if ($row['product_type'] == $key['id']) {
+				echo "<option selected value='".$key['id']."'>".$key['name']."</option>";
+			}else{
+				echo "<option value='".$key['id']."'>".$key['name']."</option>";
+			}
 		}
 		
 	?>
@@ -44,25 +56,25 @@
 		$sql = "SELECT * FROM brands"; // get brands
 		$query = mysqli_query($connection,$sql);
 		foreach ($query as $key) {
-			echo "<option value='".$key['id']."'>".$key['name']."</option>";
+			if ($row['product_type'] == $key['id']) {
+				echo "<option selected value='".$key['id']."'>".$key['name']."</option>";
+			}else{
+				echo "<option value='".$key['id']."'>".$key['name']."</option>";
+			}
 		}
 		
 	?>
 	</select><br>
 	Price:
-	<input type="number" name="price"><br>
+	<input type="number" name="price" value="<?php echo $row['product_price'] ?>"><br>
 	Status:
 	<select name="status" id="">
 		<option value="1">Available</option>
 		<option value="0">Not Available</option>
 		<option value="2">Contact</option>
 	</select><br>
-	Image:
-	<div class="input-images-1">
-		
-	</div>
 	
-    <textarea name="editor1"></textarea>
+    <textarea name="editor1" value=""><?php echo $row['product_description'] ?></textarea>
       <script>
                         CKEDITOR.replace( 'editor1' );
       </script>
@@ -76,51 +88,9 @@ if (isset($_POST['submit'])) {
 	$price = $_POST['price'];
 	$status = $_POST['status'];
 	$description = $_POST['editor1'];
-	// Upload image 
-	$dir = "../public/img/product/";
-	// $fileNames = array_filter($_FILES['images']['name']); 
-	// echo $fileNames;
-	// if(!empty($fileNames)){ 
- //        foreach($_FILES['images']['name'] as $key=>$val){ 
- //            // File upload path 
- //            $fileName = basename($_FILES['images']['name'][$key]); 
- //            $targetFilePath = $dir . $fileName; 
- //            // Check whether file type is valid 
- //                // Upload file to server 
- //                if(move_uploaded_file($_FILES["images"]["tmp_name"][$key], $targetFilePath)){ 
- //                    // Image db insert sql 
- //                    $sql = "INSERT INTO products_images VALUES('$id','$fileName')";
- //                    $query = mysqli_query($connection,$sql);
- //                }else{ 
- //                    $errorUpload .= $_FILES['images']['name'][$key].' | '; 
- //                } 
-             
- //        } 
- //    }
-	$sql = "INSERT INTO products VALUES(NULL,'$name','','$price','$description','$brand','$type','$status')";
+	
+	$sql = "UPDATE products SET product_name = '$name',product_brand='$brand',product_type ='$type',product_price ='$price',product_status ='$status',product_description ='$description' WHERE id='$id'";
 	mysqli_query($connection,$sql);	
-	$sql = "SELECT id FROM products order by id DESC LIMIT 1";
-
-	$id = mysqli_fetch_assoc(mysqli_query($connection,$sql));
-	$id = $id['id'];
-	if (count($_FILES['images']['name']) > 0) {
-		$total = count($_FILES['images']['name']);
-		for ($i=0 ; $i <$total  ; $i++ ) { 
-			$fileName = $_FILES['images']['name'][$i];
-			$ext = explode('.', $_FILES['images']['name'][$i]);
-			$ext = $ext[count($ext)-1];
-			$newname = 'product_'.$id."_".$i.".".$ext;
-			$newdir = $dir.$newname;
-			$oldname = $dir.$fileName;
-			move_uploaded_file($_FILES['images']['tmp_name'][$i], $oldname);
-			rename($oldname, $newdir);
-			$sql = "INSERT INTO products_images VALUES($id,'$newname')";
-			echo $sql;
-			mysqli_query($connection,$sql);
-		}
-	}else{
-		echo "<script>window.location.replace('?modules=products&action=all');</script>";
-	}
 	//
 	
 	// $sql = "INSERT INTO products VALUES(NULL,'$id','$name','','$price','$description','$brand','$type','$status')";
@@ -128,7 +98,7 @@ if (isset($_POST['submit'])) {
 	// if (!$query) {
 	// 	echo "Error: ". mysqli_connect_error();
 	// }else{
-	// 	// echo "<script>window.location.replace('?modules=products&action=all');</script>";
+		echo "<script>window.location.replace('?modules=products&action=all');</script>";
 	// }
 }
 ?>

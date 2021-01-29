@@ -1,12 +1,34 @@
 <?php 
-$sql = "SELECT * FROM products";
+if (!isset($_GET['page'])) {
+		$present_page = 1;
+	}else{
+		$present_page = $_GET['page'];
+	}
+	$keyword= "";
+	if (isset($_POST['search'])) {
+		$keyword = $_POST['keyword'];
+		if (isset($_GET['keyword'])) {
+			$keyword = $_GET['keyword'];
+		}
+	}
+$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%'"; //get numproduct
+$query = mysqli_query($connection,$sql);
+$numproduct = mysqli_num_rows($query);
+$limit = 4;
+$numpage = ceil($numproduct/$limit);
+$skip = ($present_page - 1)* $limit;
+$sql = "SELECT * FROM products LIMIT $limit OFFSET $skip";
+	if (isset($_GET['keyword'])) {
+		$keyword = $_GET['keyword'];
+		$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' LIMIT $limit OFFSET $skip";
+	}else{
+		$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' LIMIT $limit OFFSET $skip";
+	}
+		
+	
 $query = mysqli_query($connection,$sql);
 if (!$query) {
 	echo "Error :". mysqli_connect_error();
-}else{
-	if (mysqli_num_rows($query) == 0) {
-		echo "No record!";
-	}
 }
 ?>
 <style>
@@ -19,8 +41,8 @@ if (!$query) {
 	text-decoration: underline;
 }
 	.imgpdct{
-		width: 150px;
-		height: 200px;
+		width: 50px;
+		height: 70px;
 	}
 	table{
 		font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +72,9 @@ if (!$query) {
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a><br><br>
 <h1>Manage Products</h1>
 <a id="add" href="?modules=products&action=add">Add new product</a>
+<form action="" method="POST">
+	<input type="text" name="keyword" placeholder="Name Product"><button name="search">Search</button>
+</form>
 <table>
 	<tr>
 		<th>Id</th>
@@ -59,8 +84,10 @@ if (!$query) {
 		<th colspan="2">Action</th>
 	</tr>
 	<?php 
+
 	foreach ($query as $row) {
 		$id = $row['id'];
+		$img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
 		$result = "";
 		switch ($row['product_status']) {
 			case '0':
@@ -77,8 +104,11 @@ if (!$query) {
 				break;
 		}
 		echo "<tr>";
+		if (mysqli_num_rows($query) == 0) {
+		echo "<td colspan='5'>No record!</td>";
+		}
 		echo "<td>".$row['id']."</td>";
-		echo "<td align='center'><b>".$row['product_name']."</b><br><img class='imgpdct' src='../public/img/product/".$row['product_images']."'>"."</td>";
+		echo "<td align='center'><b>".$row['product_name']."</b><br><img class='imgpdct' src='../public/img/product/".$img['url']."'>"."</td>";
 		echo "<td>".$row['product_price']."</td>";
 		echo "<td>".$result."</td>";
 		echo "<td class='action'><a href='?modules=products&action=edit&id=$id'><i class='fa fa-pencil'></i>Edit</a></td>";
@@ -87,3 +117,12 @@ if (!$query) {
 	}
 	?>
 </table>
+Page: 
+<?php 
+
+					for ($i=1; $i <= $numpage ; $i++) { 
+						echo "<a href='?modules=products&action=all&page=".$i."&keyword=".$keyword."'>".$i."</a>";
+						
+					}
+					
+				?>
