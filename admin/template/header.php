@@ -49,21 +49,28 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			text-align: right;
 		}
 		#contents{
+			height: 100%;
 			width: 100%;
 			float: right;
 		}
 		#sidebar{
 			width: 15%;
-			height: 100vh;
+			height: 100%;
 			float: left;
 			border: 1px solid #d2d6de;
 			border-top: 0;
 			box-sizing: border-box;
 			background: #f9fafc;
-
 		}
-
+		#footer{
+			width: 100%;
+		    overflow: hidden;
+		    display: block;
+		    float: none;
+		}
 		#content{
+			box-sizing: border-box;
+			height: 100%;
 			width: 84%;
 			float: left;
 		}

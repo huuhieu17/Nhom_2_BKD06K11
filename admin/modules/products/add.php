@@ -5,17 +5,22 @@
 		font-weight: bold;
 	}
 	form{
-		padding: 20px;
-		font-size: 20px;
+		padding: 0 20px ;
+		font-size: 15px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
 	input{
-		padding: 10px;
+		padding: 5px;
 	}
 	select{
-		padding: 10px;
+		padding: 5px;
+	}
+	.color{
+				display: inline-block;
+				font-size: 13px;
+				font-weight: bold;
 	}
 </style>
 
@@ -24,7 +29,7 @@
 <h1>Add Product</h1>
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
-	<input type="text" name="name" placeholder="Name products"><br>
+	<input type="text" name="name" placeholder="Name products">
 	Type:
 	<select name="type" id="">
 	<?php 
@@ -35,7 +40,7 @@
 		}
 		
 	?>
-	</select><br>
+	</select>
 	Brand:
 	<select name="brand" id="">
 	<?php 
@@ -46,21 +51,43 @@
 		}
 		
 	?>
-	</select><br>
+	</select>
 	Price:
-	<input type="number" name="price"><br>
+	<input type="number" name="price">
+	Color:
+	<div class="color">
+		<?php 
+			$sql = " SELECT * FROM variant_value WHERE variant_group_id = 1 ";
+			$query = mysqli_query($connection,$sql);
+			foreach ($query as $key) {
+				$id = $key['id'];
+				echo "<input type='checkbox' name='color[ ]' value='$id'> ". $key['value']. " ";
+			}
+		?>
+	</div>
+	Size:
+	<div class="size">
+		<?php 
+			$sql = " SELECT * FROM variant_value WHERE variant_group_id = 2 ";
+			$query = mysqli_query($connection,$sql);
+			foreach ($query as $key) {
+				$id = $key['id'];
+				echo "<input type='checkbox' name='size[ ]' value='$id'> ". $key['value']. " ";
+			}
+		?>
+	</div>
 	Status:
 	<select name="status" id="">
 		<option value="1">Available</option>
 		<option value="0">Not Available</option>
 		<option value="2">Contact</option>
-	</select><br>
+	</select>
 	Image:
-	<div class="input-images-1">
+	<div class="input-images-1 imgup">
 		
 	</div>
 	
-    <textarea name="editor1"></textarea>
+    <textarea name="editor1" class="ckedit"></textarea>
       <script>
                         CKEDITOR.replace( 'editor1' );
       </script>
@@ -100,6 +127,22 @@ if (isset($_POST['submit'])) {
 	$sql = "SELECT id FROM products order by id DESC LIMIT 1";
 	$id = mysqli_fetch_assoc(mysqli_query($connection,$sql));
 	$id = $id['id'];
+	$color = array(1,2,3,4,5,6,7,8,9,10,11);
+	for ($i=0; $i < sizeof($color) ; $i++) { 
+		$sql = "INSERT INTO product_variants VALUES(NULL,'$id','$color[$i]','1')";
+		$query=mysqli_query($connection,$sql);
+		if (!$query) {
+			echo "Error:".mysqli_error($connection);
+		}
+	}
+	$size = array(12,13,14,15,16,17);
+	for ($i=0; $i < sizeof($size) ; $i++) { 
+		$sql = "INSERT INTO product_variants VALUES(NULL,'$id','$size[$i]','1')";
+		$query=mysqli_query($connection,$sql);
+		if (!$query) {
+			echo "Error:".mysqli_error($connection);
+		}
+	}
 	if (count($_FILES['images']['name']) > 0) {
 		$total = count($_FILES['images']['name']);
 		for ($i=0 ; $i <$total  ; $i++ ) { 

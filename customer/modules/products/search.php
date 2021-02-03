@@ -50,8 +50,10 @@
           echo "No result for ".$keyword;
         }else{
           foreach ($query as $key) {
+            $id = $key['id'];
+            $img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
             echo "<div class='item'>";
-              echo "<img src='./public/img/product/".$key['product_images']."'>";
+              echo "<img src='./public/img/product/".$img['url']."'>";
               echo "<b>".$key['product_name']."</b><br><br>";
                   echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
             echo "</div>";

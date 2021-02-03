@@ -2,8 +2,14 @@
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 }
-	$sql = "DELETE FROM products WHERE id_product='$id'";
+	$sql = "DELETE FROM product_variants WHERE product_id='$id'";
 	$query = mysqli_query($connection,$sql);
+	$sql = "DELETE FROM products_images WHERE id='$id'";
+	$query = mysqli_query($connection,$sql);
+	$sql = "DELETE FROM products WHERE id='$id'";
+	$query = mysqli_query($connection,$sql);
+	
+
 	if (!$query) {
 		echo "Error",mysqli_connect_error();
 	}else{
