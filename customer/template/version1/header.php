@@ -1,5 +1,7 @@
 <?php
-	$sql = "SELECT * FROM brands";
+require_once('customer/config/config.php');
+require_once("customer/config/session.php");
+	$sql = "SELECT * FROM `brands`";
 	$query_brand = mysqli_query($connection,$sql);
 	$title = "Hstore - Making you to Shine";
 ?>

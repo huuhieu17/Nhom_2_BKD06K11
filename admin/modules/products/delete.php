@@ -1,4 +1,5 @@
 <?php 
+require_once 'template/header.php';
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 }
@@ -13,6 +14,7 @@ if (isset($_GET['id'])) {
 	if (!$query) {
 		echo "Error",mysqli_connect_error();
 	}else{
-		echo "<script>window.location.replace('?modules=products&action=all');</script>";
+		header("Location:?modules=products&action=all");
 	}
+	
 ?>

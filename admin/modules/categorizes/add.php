@@ -1,4 +1,5 @@
 <?php 
+require_once 'template/header.php';
 	if (isset($_POST['btn'])) {
 		$name = $_POST['name'];
 		$sql = "INSERT INTO categorizes VALUES(null,'$name')";
@@ -41,3 +42,4 @@
 	<button name="btn">Add</button>
 	</form>
 </div>
+<?php require_once 'template/footer.php'; ?>

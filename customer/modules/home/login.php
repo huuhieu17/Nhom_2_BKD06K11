@@ -1,5 +1,6 @@
 <?php
 require_once('customer/template/version1/header.php');
+$subTitle = "Login";
 	$error = "";
 	if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 		//problem with header location
@@ -25,31 +26,35 @@ require_once('customer/template/version1/header.php');
 ?>
 <style>
 	#login{
-		
-		padding: 10% 0;
+		background: #f9f9f9;
+		padding: 9% 0;
 		width: 100%;
 		text-align: center;
 	}
 	#form{
+		box-sizing: border-box;
+		text-align: left;
 		margin: auto;
-		padding: 2%;
+		padding: 1%;
 		background: white;
 		width: 30vw;
 		border: 1px solid #f9f9f9;
 		border-radius: 3px;
 	}
 	input.input{
+		box-sizing: border-box;
 		padding: 3%;
 		margin: 2%;
 		width: 90%;
 		border-radius: 3px;
 		border: 1px solid gray;
 	}
-	h3#title{
+	h2#title{
 		margin: 2%;
 		text-align: left;
 	}
 	button#btn{
+		box-sizing: border-box;
 		width: 90%;
 		background: black;
 		color: white;
@@ -76,16 +81,19 @@ require_once('customer/template/version1/header.php');
 </style>
 <div id="login">
 	<div id="form">	
-		<h3 id="title">Đăng nhập hệ thống</h3>
+		<h2 id="title">Login</h2>
+		<hr><br>
 		<form action="" method="POST">
 			<span style="color:red;font-size: 13px;"> <?php
 			echo $error;
 			?></span>	
+			Username: <br>
 			<input class="input" type="text" name="username" placeholder="Username"><br>
+			Password: <br>
 			<input class="input" type="password" name="password" placeholder="Password"><br>
 			<button name="btn" id="btn">Login</button>
 			<br>
-			<span>Bạn chưa có tài khoản ? <a href="?s=home&act=register">Đăng ký ngay</a></span>
+			<span>Don't have an account ? <a href="?s=home&act=register">Register Now</a></span>
 		</form>
 	</div>
 </div>

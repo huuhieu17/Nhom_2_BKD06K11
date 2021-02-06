@@ -1,4 +1,5 @@
 <?php 
+require_once 'template/header.php';
 	if (isset($_POST['btn'])) {
 		$name = $_POST['name'];
 		$sql = "INSERT INTO brands VALUES(null,'$name')";

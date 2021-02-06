@@ -1,4 +1,6 @@
 <?php 
+require_once("config/config.php");
+require_once("config/session.php");
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		header('Location:?modules=common&action=login');
 	}

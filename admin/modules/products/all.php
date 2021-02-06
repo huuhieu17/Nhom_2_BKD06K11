@@ -1,4 +1,5 @@
 <?php 
+require_once 'template/header.php';
 if (!isset($_GET['page'])) {
 		$present_page = 1;
 	}else{
@@ -124,5 +125,5 @@ Page:
 						echo "<a href='?modules=products&action=all&page=".$i."&keyword=".$keyword."'>".$i."</a>";
 						
 					}
-					
+					require_once 'template/footer.php';
 				?>

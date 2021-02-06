@@ -1,8 +1,9 @@
 <?php 
 	error_reporting(0);
+	require_once("config/config.php");
+require_once("config/session.php");
 	if (isset($_SESSION['admin']) || $_SESSION['admin'] != "") {
-		// header('Location:?modules=common&action=home');
-		echo "<script>window.location.replace('?modules=common&action=home');</script>";
+		header('Location:?modules=common&action=home');
 	}
 	$error = "";
 	if (isset($_POST['btn'])) {
@@ -38,33 +39,39 @@
 			font-family: inherit;
 		}
 		#container{
+			height: 100vh;
 			width: 100%;
-			background: black;
-			padding: 15% 0;
+			background: white;
+			padding: 4% 0;
 		}
 		#form{
-			width: 60vw;
-			background: white;
+
+			box-sizing: border-box;
+			width: 30vw;
+			background: #f1f1f1;
 			margin: auto;
 			border-radius: 3px;
 			text-align: center;
 		}
-		h3{
+		h1{
+			color: black;
 			font-family: arial;
 		}
 		input{
-			width: 50%;
+			box-sizing: border-box;
+			width: 70%;
 			padding: 2%;
 			margin: 1%;
-			border-radius: 3px;
+			border-radius: 5px;
 		}
 		button{
-			width: 50%;
+			box-sizing: border-box;
+			width: 69%;
 			padding: 2%;
-			background: #2196f3;
-			color: white;
-			outline: none;
-			border: none;
+			background: none;
+			color: black;
+			font-weight: bold;
+			border: 1px solid black;
 		}
 		form{
 			padding: 5% 0;
@@ -79,7 +86,7 @@
 	<div id="container">
 		<div id="form">
 			<form action="#" method="POST">
-				<h3>Admin login</h3>
+				<h1>Hstore</h1>
 				<hr>
 				<p style="color:red">
 					<?php 
@@ -87,7 +94,9 @@
 					 ?>
 					
 				</p>
+				Username: <br>	
 				<input type="text" name="username" placeholder="Username"><br>
+				Password: <br>	
 				<input type="password" name="password" placeholder="Password"><br>
 				<button name="btn">Login</button>
 			</form>

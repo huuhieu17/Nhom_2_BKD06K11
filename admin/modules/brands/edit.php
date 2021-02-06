@@ -1,4 +1,5 @@
 <?php 
+require_once 'template/header.php';
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$sql = "SELECT * FROM brands WHERE id ='$id' ";

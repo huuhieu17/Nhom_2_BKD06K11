@@ -1,3 +1,4 @@
+<?php require_once 'template/header.php'; ?>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a><br><br>
 <h1>Manage Product Type</h1>
 <a id="add" href="?modules=categorizes&action=add">Add new product type</a>
@@ -68,3 +69,4 @@ td a{
 	}
 	?>
 </table>
+<?php require_once 'template/footer.php'; ?>

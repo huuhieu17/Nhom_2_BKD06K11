@@ -1,4 +1,6 @@
 <?php 
+
+require_once 'template/header.php';
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$sql = "SELECT * FROM categorizes WHERE id ='$id' ";
@@ -13,7 +15,6 @@
 		if (!$query) {
 			# code...
 		}else{
-			echo "<script>window.location.replace('?modules=categorizes&action=all');</script>";
 			header('Location:?modules=categorizes&action=all');
 		}
 	}
@@ -54,3 +55,4 @@
 	<button name="btn">Edit</button>
 	</form>
 </div>
+<?php require_once 'template/footer.php'; ?>

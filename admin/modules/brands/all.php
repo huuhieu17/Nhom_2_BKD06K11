@@ -1,4 +1,4 @@
-
+<?php require_once 'template/header.php'; ?>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a><br><br>
 <h1>Manage Brands</h1>

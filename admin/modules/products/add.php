@@ -1,3 +1,5 @@
+<?php 
+require_once 'template/header.php'; ?>
 <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <style>
 	a.nav{
@@ -157,10 +159,10 @@ if (isset($_POST['submit'])) {
 			$sql = "INSERT INTO products_images VALUES($id,'$newname')";
 			echo $sql;
 			mysqli_query($connection,$sql);
-			echo "<script>window.location.replace('?modules=products&action=all');</script>";
+			header("Location:?modules=products&action=all");
 		}
 	}else{
-		echo "<script>window.location.replace('?modules=products&action=all');</script>";
+		header("Location:?modules=products&action=all");
 	}
 	//
 	
@@ -172,4 +174,5 @@ if (isset($_POST['submit'])) {
 	// 	// echo "<script>window.location.replace('?modules=products&action=all');</script>";
 	// }
 }
+require_once 'template/footer.php';
 ?>
