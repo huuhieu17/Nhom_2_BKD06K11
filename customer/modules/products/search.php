@@ -1,3 +1,7 @@
+<?php 
+require_once('customer/template/version1/header.php');
+$subTitle = "Search";
+?>
 <style type="text/css">
 	.scontent{
 		margin-top:6%;
@@ -63,3 +67,5 @@
  
 </div>
 </div>
+<?php 
+require_once('customer/template/version1/footer.php'); ?>

@@ -61,7 +61,7 @@
 			$query = mysqli_query($connection,$sql);
 			foreach ($query as $key) {
 				$id = $key['id'];
-				echo "<input type='checkbox' name='color[ ]' value='$id'> ". $key['value']. " ";
+				echo "<input type='checkbox' checked readonly name='color[ ]' value='$id'> ". $key['value']. " ";
 			}
 		?>
 	</div>

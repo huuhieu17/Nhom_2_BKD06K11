@@ -14,9 +14,10 @@ $path ="customer/modules/$s/$action.php";
 if (file_exists($path)){
 	require_once('customer/config/config.php');
 	require_once("customer/config/session.php");
-	require_once('customer/template/version1/header.php');
+	
 	require_once($path); 
-	require_once('customer/template/version1/footer.php');
+	require_once('customer/config/title.php');
+	
 }else{
 	$path = "customer/modules/home/404.php";
 	require_once($path);

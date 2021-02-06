@@ -3,7 +3,7 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$sql = "SELECT * FROM products WHERE id = '$id'";
 	$row = mysqli_fetch_assoc(mysqli_query($connection,$sql));
-	$id_product = $row['id'];
+	$id_product = $_GET['id'];
 }else{
 	echo "<script>window.location.replace('?modules=products&action=all');</script>";
 }
@@ -35,7 +35,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	}
 </style>
 
-<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="?modules=products&action=add">Add</a>
+<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="#">Edit</a>
 <br><br>
 <h1>Add Product</h1>
 <form action="" method="POST" enctype="multipart/form-data">
@@ -132,65 +132,35 @@ if (isset($_POST['submit'])) {
 	$description = $_POST['editor1'];
 	// Upload image 
 	$dir = "../public/img/product/";
-	// $fileNames = array_filter($_FILES['images']['name']); 
-	// echo $fileNames;
-	// if(!empty($fileNames)){ 
- //        foreach($_FILES['images']['name'] as $key=>$val){ 
- //            // File upload path 
- //            $fileName = basename($_FILES['images']['name'][$key]); 
- //            $targetFilePath = $dir . $fileName; 
- //            // Check whether file type is valid 
- //                // Upload file to server 
- //                if(move_uploaded_file($_FILES["images"]["tmp_name"][$key], $targetFilePath)){ 
- //                    // Image db insert sql 
- //                    $sql = "INSERT INTO products_images VALUES('$id','$fileName')";
- //                    $query = mysqli_query($connection,$sql);
- //                }else{ 
- //                    $errorUpload .= $_FILES['images']['name'][$key].' | '; 
- //                } 
-             
- //        } 
- //    }
-	// $sql = "INSERT INTO products VALUES(NULL,'$name','$price','$description','$brand','$type','$status')";
-	mysqli_query($connection,$sql);	
-	
+
+	$color = array();
 	$color = $_POST['color'];
-	for ($i=0; $i < sizeof($color) ; $i++) { 
-		echo $color[$i];
-		if ($_POST['color'][$i] == $color[$i]) {
-			$sql = "UPDATE product_variants SET status = 1 WHERE product_id ='$id_product' AND product_variant_value_id ='$color[$i]'";
+	for ($i=0; $i < count($color); $i++) { 
+		if (isset($_POST['color'])) {
+			$sql = "UPDATE product_variants SET status ='1' WHERE product_id ='$id_product' AND product_variant_value_id ='$color[$i]' AND product_variant_value_id <= 11";
+			mysqli_query($connection,$sql);
 		}
-		if (empty($_POST['color'][$i])) {
-			$sql = "UPDATE product_variants SET status = 0 WHERE product_id ='$id_product' AND product_variant_value_id ='$color[$i]'";
-		}
-			
-		
-		echo $sql;
-		$query=mysqli_query($connection,$sql);
-		if (!$query) {
-			echo "Error:".mysqli_error($connection);
-		}
+		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = 27 AND product_variant_value_id <= 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$color)).") ";
+			mysqli_query($connection,$sql);
 	}
-	$size = $_POST['size'];
-	for ($i=0; $i < sizeof($size) ; $i++) { 
-		if (isset($_POST['size']) || $chec == "Checked") {
-			$sql = "UPDATE product_variants SET status ='1' WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]'";
-		}else{
-			$sql = "UPDATE product_variants SET status ='0' WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]'";
-		}
-		$query=mysqli_query($connection,$sql);
-		if (!$query) {
-			echo "Error:".mysqli_error($connection);
-		}
-	}
-		//
 	
-	// $sql = "INSERT INTO products VALUES(NULL,'$id','$name','','$price','$description','$brand','$type','$status')";
-	// $query = mysqli_query($connection,$sql);
-	// if (!$query) {
-	// 	echo "Error: ". mysqli_connect_error();
-	// }else{
-	// 	// echo "<script>window.location.replace('?modules=products&action=all');</script>";
-	// }
+		
+	$size = array();
+	$size = $_POST['size'];
+	for ($i=0; $i < count($size); $i++) { 
+		if (isset($_POST['size'])) {
+			$sql = "UPDATE product_variants SET status ='1' WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]' AND product_variant_value_id  > 11";
+			mysqli_query($connection,$sql);
+		}
+		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = 27 AND product_variant_value_id > 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$size)).") ";
+			mysqli_query($connection,$sql);
+	}
+	$sql = "UPDATE products SET product_name ='$name',product_price ='$price',product_brand ='$brand',product_type ='$type',product_status = 'product_status',product_description ='$description' WHERE id= '$id_product'";
+	$query = mysqli_query($connection,$sql);
+	if (!$query) {
+		echo "Error: ". mysqli_connect_error();
+	}else{
+		echo "<script>window.location.replace('?modules=products&action=all');</script>";
+	}
 }
 ?>

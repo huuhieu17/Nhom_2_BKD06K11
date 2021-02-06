@@ -1,8 +1,9 @@
 <?php
+require_once('customer/template/version1/header.php');
 if (!isset($_SESSION['user']) || $_SESSION['user'] == "") {
 			// 
 }else{
-	echo "<script>window.location.replace('?s=home');</script>";
+	header('Location:?s=home');
 }
 if (isset($_POST['btn'])) {
 	$username = $_POST['username'];
@@ -97,3 +98,5 @@ if (isset($_POST['btn'])) {
 		</form>
 	</div>
 </div>
+<?php 
+require_once('customer/template/version1/footer.php'); ?>

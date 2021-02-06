@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>404</title>
-</head>
-<body>
-	
-</body>
-</html>
+<?php 
+require_once('customer/template/version1/header.php');
+$subTitle = "404 - PAGE NOT FOUND";
+require_once('customer/template/version1/footer.php'); ?>
+
+?>
