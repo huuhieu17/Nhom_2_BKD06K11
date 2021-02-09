@@ -128,7 +128,7 @@ require_once('customer/template/version1/header.php');
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   float: left;
-  width: 23%;
+  width: 30%;
   padding: 10px;
   margin: auto;
   height: 500px;
@@ -168,7 +168,7 @@ h1{
   }
   .item{
       height: 300px;
-      width: 44%;
+      width: 56%;
   }
   #content{
     margin-top: 20%;
@@ -183,7 +183,7 @@ h1{
   }
   .item{
     height: 350px;
-    width: 30%;
+    width: 45%;
   }
 }
  
@@ -195,11 +195,12 @@ h1{
   width: 22%;
 }
 }
-@media only screen and (max-width: 2250px) {
+@media only screen and (min-width: 1400px) {
 .item{
   width: 17%;
 }
 }
+
 
 </style>
 
