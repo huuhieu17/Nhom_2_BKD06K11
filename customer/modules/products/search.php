@@ -7,32 +7,55 @@ $subTitle = "Search";
 		margin-top:6%;
 	}
 	.new{
-  padding: 10px;
-  flex-direction: row;
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  width: 100%;
-  margin-top: 0%;
+ box-sizing: border-box;
+    height: 100%;
+    padding: 0;
+    width: 100vw;
+    margin: auto;
+    text-align: center;
+    flex-flow: row wrap;
+    display: flex;
+    flex-direction: row;
+}
+.new:after{
+  content: "";
+  display: table;
+  clear: both;
 }
 .item{
-  text-transform: uppercase;
-  margin:10px;
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-sizing: content-box;
   text-align: center;
-  flex: 20%;
-  width: 25%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  float: left;
+  width: 23%;
+  padding: 10px;
+  margin: auto;
+  height: 500px;
 }
+
 .item:hover{
   transition: 0.1s;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border: 2px solid gray;
+  background: black;
   border-radius: 2px;
+  color: white;
+}
+.item:hover .view img{
+  background: black;
+  opacity: 0.5;
+  transition: 0.2s;
+}
+.item:hover .view{
+  text-decoration: none;
+  color: white;
 }
 .item img{
   width: 100%;
-  height: 400px;
+  height: 80%;
+}
+.view{
+  text-decoration: none;
+  color: black;
 }
 </style>
 <h1>Search</h1><br>
@@ -57,9 +80,11 @@ $subTitle = "Search";
             $id = $key['id'];
             $img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
             echo "<div class='item'>";
+             echo "<a class='view' href='?s=products&act=detail&id=$id'>";
               echo "<img src='./public/img/product/".$img['url']."'>";
               echo "<b>".$key['product_name']."</b><br><br>";
                   echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
+              echo "<a class='view' href='?s=products&act=detail&id=$id'>";
             echo "</div>";
           }
         }

@@ -17,9 +17,11 @@ require_once('customer/template/version1/header.php');
 ?>
 <style>
 	.row{
-		display: block;
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.left{
+		flex: 60%;
 		width: 60%;
 		float: left;
 	}
@@ -50,7 +52,7 @@ require_once('customer/template/version1/header.php');
   display: none;
   position: fixed;
   z-index: 9999;
-  padding-top: 100px;
+  padding-top: 30px;
   left: 0;
   top: 0;
   width: 100%;
@@ -65,8 +67,8 @@ require_once('customer/template/version1/header.php');
   background-color: #fefefe;
   margin: auto;
   padding: 0;
-  width: 33%;
-  max-width: 1200px;
+  width: 30%;
+  max-width: 100vh;
 }
 
 /* The Close Button */
@@ -163,6 +165,7 @@ img.hover-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 	.right{
+		flex: 40%;
 		box-sizing: border-box;
 		padding: 0 20px;
 		width: 40%;
@@ -179,6 +182,11 @@ img.hover-shadow {
 		font-size: 13px;
 		list-style-type: disc;
 
+	}
+	@media only screen and (max-width: 768px){
+		.row .left{
+			flex: 61%;
+		}
 	}
 </style>
 <div class="pcontent">
@@ -377,4 +385,3 @@ function showSlides(n) {
 </div>
 <?php 
 require_once('customer/template/version1/footer.php'); ?>
- ?>

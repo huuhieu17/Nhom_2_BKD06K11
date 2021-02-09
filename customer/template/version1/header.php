@@ -132,6 +132,11 @@ require_once("customer/config/session.php");
 			margin-top: 5%;
 			width: 100vw;
 		}
+		@media only screen and (min-width: 490px) and (max-width: 766px){
+			#content{
+			margin-top: 20%;
+			}
+		}
 		@media only screen and (max-width: 768px) {
 		 ul{
 		  	display: none;
@@ -152,11 +157,15 @@ require_once("customer/config/session.php");
 		 	color: white;
 		 }
 		}
-
+		
 		@media only screen and (max-width: 768px) {
+			.modal-content{
+				width: 80%;
+			}
 			#content{
 			margin-top: 10%;
 			}
+			
 		  #menu{
 		  	font-size: 23px;
 		  	float: right;

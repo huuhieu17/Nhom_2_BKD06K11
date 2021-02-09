@@ -117,7 +117,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	</select>
 	
 	
-    <textarea name="editor1" class="ckedit"></textarea>
+    <textarea name="editor1" class="ckedit"> <?php echo $row['product_description'] ?></textarea>
       <script>
                         CKEDITOR.replace( 'editor1' );
       </script>
@@ -138,10 +138,10 @@ if (isset($_POST['submit'])) {
 	$color = $_POST['color'];
 	for ($i=0; $i < count($color); $i++) { 
 		if (isset($_POST['color'])) {
-			$sql = "UPDATE product_variants SET status ='1' WHERE product_id ='$id_product' AND product_variant_value_id ='$color[$i]' AND product_variant_value_id <= 11";
+			$sql = "UPDATE product_variants SET status =1 WHERE product_id ='$id_product' AND product_variant_value_id ='$color[$i]' AND product_variant_value_id <= 11";
 			mysqli_query($connection,$sql);
 		}
-		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = 27 AND product_variant_value_id <= 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$color)).") ";
+		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = '$id_product' AND product_variant_value_id <= 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$color)).") ";
 			mysqli_query($connection,$sql);
 	}
 	
@@ -150,19 +150,23 @@ if (isset($_POST['submit'])) {
 	$size = $_POST['size'];
 	for ($i=0; $i < count($size); $i++) { 
 		if (isset($_POST['size'])) {
-			$sql = "UPDATE product_variants SET status ='1' WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]' AND product_variant_value_id  > 11";
+			$sql = "UPDATE product_variants SET status = 1 WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]' AND product_variant_value_id  > 11";
 			mysqli_query($connection,$sql);
 		}
-		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = 27 AND product_variant_value_id > 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$size)).") ";
+		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = '$id_product' AND product_variant_value_id > 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$size)).") ";
 			mysqli_query($connection,$sql);
 	}
-	$sql = "UPDATE products SET product_name ='$name',product_price ='$price',product_brand ='$brand',product_type ='$type',product_status = 'product_status',product_description ='$description' WHERE id= '$id_product'";
+	$sql = "UPDATE products SET product_name ='$name',product_price ='$price',product_brand ='$brand',product_type ='$type',product_status = '$status',product_description ='$description' WHERE id= '$id_product'";
 	$query = mysqli_query($connection,$sql);
+	header("Location:?modules=products&action=all");
 	if (!$query) {
 		echo "Error: ". mysqli_connect_error();
 	}else{
 		header("Location:?modules=products&action=all");
 	}
+	// header("Location:?modules=products&action=all");
+		echo "<script>window.location.replace('?modules=products&action=all');</script>";
+	
 }
 require_once 'template/footer.php';
 ?>

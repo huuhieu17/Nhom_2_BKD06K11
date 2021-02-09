@@ -164,6 +164,8 @@ if (isset($_POST['submit'])) {
 	}else{
 		header("Location:?modules=products&action=all");
 	}
+		header("Location:?modules=products&action=all");
+	
 	//
 	
 	// $sql = "INSERT INTO products VALUES(NULL,'$id','$name','','$price','$description','$brand','$type','$status')";
@@ -171,7 +173,7 @@ if (isset($_POST['submit'])) {
 	// if (!$query) {
 	// 	echo "Error: ". mysqli_connect_error();
 	// }else{
-	// 	// echo "<script>window.location.replace('?modules=products&action=all');</script>";
+		echo "<script>window.location.replace('?modules=products&action=all');</script>";
 	// }
 }
 require_once 'template/footer.php';
