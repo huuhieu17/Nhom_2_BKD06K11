@@ -67,7 +67,7 @@ require_once('customer/template/version1/header.php');
   background-color: #fefefe;
   margin: auto;
   padding: 0;
-  width: 30%;
+  width: 50%;
   max-width: 100vh;
 }
 
@@ -186,6 +186,9 @@ img.hover-shadow {
 	@media only screen and (max-width: 768px){
 		.row .left{
 			flex: 61%;
+		}
+		.modal-content{
+			width: 80%;
 		}
 	}
 </style>
