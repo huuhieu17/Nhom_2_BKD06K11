@@ -64,9 +64,9 @@ $subTitle = "Search";
 	<div class="new">
 
      <?php
-     	if (isset($_GET['keyword'])) {
-     		$keyword = $_GET['keyword'];
-     	 	$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword'";
+     	if (isset($_GET['id'])) {
+     		$keyword = $_GET['id'];
+     	 	$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%'";
      	 }else{
      	 	 $sql = "SELECT * FROM products";
      	 } 
@@ -79,6 +79,7 @@ $subTitle = "Search";
           foreach ($query as $key) {
             $id = $key['id'];
             $img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
+
             echo "<div class='item'>";
              echo "<a class='view' href='?s=products&act=detail&id=$id'>";
               echo "<img src='./public/img/product/".$img['url']."'>";

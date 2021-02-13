@@ -1,35 +1,37 @@
 <?php
 require_once('customer/template/version1/header.php');
-$subTitle = "Brand";
+$subTitle = "Type";
+$sql = "SELECT * FROM categorizes";
+$query_type = mysqli_query($connection,$sql);
  ?>
  <style>
- 	.all{
- 		margin-top:6%;
- 		display: block;
- 		overflow: hidden;
- 		box-sizing: border-box;
- 		width: 100%;
+  .all{
+    margin-top:6%;
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
 
- 	}
- 	.side{
- 		width: 15%;
- 		height: 100vh;
- 		border-right: 1px solid black;
- 		box-sizing: border-box;
- 		float: left;
- 	}
- 	.center{
- 		box-sizing: border-box;
-	    height: 100%;
-	    margin: auto;
-	    text-align: center;
-	    flex-flow: row wrap;
-	    display: flex;
-	    flex-direction: row;
-	 	width: 83%;
-	 	float: left;
- 	}
- 	.center:after{
+  }
+  .side{
+    width: 15%;
+    height: 100vh;
+    border-right: 1px solid black;
+    box-sizing: border-box;
+    float: left;
+  }
+  .center{
+    box-sizing: border-box;
+      height: 100%;
+      margin: auto;
+      text-align: center;
+      flex-flow: row wrap;
+      display: flex;
+      flex-direction: row;
+    width: 83%;
+    float: left;
+  }
+  .center:after{
   content: "";
   display: table;
   clear: both;
@@ -70,27 +72,27 @@ $subTitle = "Brand";
   color: black;
 }
 .side ul{
-	width: 100%;
+  width: 100%;
 }
 .side li{
-	width: 100%;
+  width: 100%;
 }
 .item img{
   width: 100%;
   height: 80%;
 }
 .mobile{
-	display: none;
+  display: none;
 }
 .mobile button{
-	background: #f1f1f1;
-	border: none;
-	padding: 10px;
-	border-radius: 3px;
+  background: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
 }
 .mobile button a{
-	text-decoration: none;
-	color: black;
+  text-decoration: none;
+  color: black;
 }
 @media only screen and (max-width: 425px) {
  
@@ -99,25 +101,25 @@ $subTitle = "Brand";
       width: 56%;
   }
    .iteam img{
-  	height: 60%;
+    height: 60%;
   }
 }
 @media only screen and (max-width: 768px) and (min-width: 426px) {
-	.mobile{
-		display: block;
-	}
-	.side{
-		display: none;
-	}
-	.center{
-		width: 100%;
-	}
+  .mobile{
+    display: block;
+  }
+  .side{
+    display: none;
+  }
+  .center{
+    width: 100%;
+  }
   .item{
     height: 350px;
     width: 45%;
   }
   .iteam img{
-  	height: 60%;
+    height: 60%;
   }
 }
  
@@ -129,7 +131,7 @@ $subTitle = "Brand";
   width: 22%;
 }
  .iteam img{
-  	height: 60%;
+    height: 60%;
   }
 }
 
@@ -141,31 +143,31 @@ $subTitle = "Brand";
 
  </style>
  <div class="all">
- 	<div class="mobile">
- 		<?php foreach ($query_brand as $key): ?>
- 			<button><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name'] ?></a></button>
- 							
- 		<?php endforeach ?>
- 	</div>
- 	<div class="side">
- 		<center><h3>List Brand</h3></center>
- 		
- 		<hr>
- 		<?php foreach ($query_brand as $key): ?>
- 			<ul>
- 				<li><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name'] ?></a></li>
- 			</ul>					
- 		<?php endforeach ?>
- 	</div>
- 	<div class="center">
- 		
+  <div class="mobile">
+    <?php foreach ($query_type as $key): ?>
+      <button><a href="?s=products&act=type&id=<?php echo $key['id'] ?>"><?php echo $key['name'] ?></a></button>
+              
+    <?php endforeach ?>
+  </div>
+  <div class="side">
+    <center><h3>List Type</h3></center>
+    
+    <hr>
+    <?php foreach ($query_type as $key): ?>
+      <ul>
+        <li><a href="?s=products&act=type&id=<?php echo $key['id'] ?>"><?php echo $key['name'] ?></a></li>
+      </ul>         
+    <?php endforeach ?>
+  </div>
+  <div class="center">
+    
      <?php
-     	if (isset($_GET['id'])) {
-     		$keyword = $_GET['id'];
-     	 	$sql = "SELECT * FROM products WHERE product_brand = '$keyword'";
-     	 }else{
-     	 	 $sql = "SELECT * FROM products";
-     	 } 
+      if (isset($_GET['id'])) {
+        $keyword = $_GET['id'];
+        $sql = "SELECT * FROM products WHERE product_type[[[[[]]]]] = '$keyword'";
+       }else{
+         $sql = "SELECT * FROM products";
+       } 
         $query = mysqli_query($connection,$sql);
         if (!$query) {
           echo "Error: ". mysql_connect_error();
@@ -186,7 +188,7 @@ $subTitle = "Brand";
           }
         }
       ?>
- 	</div>
+  </div>
  </div>
 <?php 
 require_once('customer/template/version1/footer.php'); ?>

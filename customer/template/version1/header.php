@@ -249,14 +249,14 @@ require_once("customer/config/session.php");
 							</form> -->
 						
 					</li>
-					<li><a href="#">Brand</a>
+					<li><a href="?s=products&act=brand">Brand</a>
 						<ul>
 							<?php foreach ($query_brand as $key): ?>
-								<li><a href="?s=products&act=brand&id=$key['id']"><?php echo $key['name']; ?></a></li>
+								<li><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name']; ?></a></li>
 							<?php endforeach?>
 						</ul>
 					</li>
-					<li><a href="#">Type</a>
+					<li><a href="?s=products&act=type">Type</a>
 						<ul>
 							<?php
 								$sql = "SELECT * FROM categorizes";
