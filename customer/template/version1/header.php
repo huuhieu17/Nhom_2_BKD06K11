@@ -21,6 +21,7 @@ require_once("customer/config/session.php");
 			font-family: 'Open Sans', sans-serif;
 		}
 		#container{
+			position: relative;
 			width: 100vw;
 			height: 100vh;
 		}
@@ -28,10 +29,10 @@ require_once("customer/config/session.php");
 			box-sizing: border-box;
 			z-index: 99;
 			top: 0;
-			position: fixed;
+			position: relative;
 			width: 100%;
 			background: white;
-			margin-bottom: 3%;
+			
 			border-bottom: 1px solid #eee;
 		}
 		#left{
@@ -129,16 +130,15 @@ require_once("customer/config/session.php");
 			display: none;
 		}
 		#content{
-			margin-top: 5%;
+			overflow: hidden;
 			width: 100vw;
 		}
 		@media only screen and (min-width: 490px) and (max-width: 766px){
-			#content{
-			margin-top: 20%;
-			}
+		
 		}
 		@media only screen and (max-width: 768px) {
 		 ul{
+		 	width: 100%;
 		  	display: none;
 		  	margin: 0;
 		  	padding: 0;
@@ -152,7 +152,12 @@ require_once("customer/config/session.php");
 		 	background: gray;
 		 	
 		 }
+		 ul li:hover{
+		 	background: gray;
+		 }
 		 ul li a{
+		 	width: 100%;
+		 	height:100%;
 		 	background: gray;
 		 	color: white;
 		 }
@@ -162,9 +167,7 @@ require_once("customer/config/session.php");
 			.modal-content{
 				width: 80%;
 			}
-			#content{
-			margin-top: 10%;
-			}
+		
 			
 		  #menu{
 		  	font-size: 23px;

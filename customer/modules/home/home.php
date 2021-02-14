@@ -11,14 +11,12 @@ require_once('customer/template/version1/header.php');
 /* Position the image container (needed to position the left and right arrows) */
 
 .slideshow {
-  padding: 1% 0;
+  transition: 0.7s;
   width: 100%;
-  margin-top: 60px;
   z-index: 0;
   height: 100%;
 }
 #content{
-      margin-top: 0%;
       width: 100vw;
     }
 .slideshow #sleft{
@@ -50,7 +48,6 @@ require_once('customer/template/version1/header.php');
   top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -50px;
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -170,9 +167,7 @@ h1{
       height: 300px;
       width: 56%;
   }
-  #content{
-    margin-top: 20%;
-  }
+ 
 }
 @media only screen and (max-width: 768px) and (min-width: 426px) {
   .slideshow {

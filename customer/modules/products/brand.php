@@ -3,33 +3,32 @@ require_once('customer/template/version1/header.php');
 $subTitle = "Brand";
  ?>
  <style>
- 	.all{
- 		margin-top:6%;
- 		display: block;
- 		overflow: hidden;
- 		box-sizing: border-box;
- 		width: 100%;
+ 	  .all{
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
 
- 	}
- 	.side{
- 		width: 15%;
- 		height: 100vh;
- 		border-right: 1px solid black;
- 		box-sizing: border-box;
- 		float: left;
- 	}
- 	.center{
- 		box-sizing: border-box;
-	    height: 100%;
-	    margin: auto;
-	    text-align: center;
-	    flex-flow: row wrap;
-	    display: flex;
-	    flex-direction: row;
-	 	width: 83%;
-	 	float: left;
- 	}
- 	.center:after{
+  }
+  .side{
+    width: 15%;
+    height: 100vh;
+    border-right: 1px solid black;
+    box-sizing: border-box;
+    float: left;
+  }
+  .center{
+    box-sizing: border-box;
+      height: 100%;
+      margin: auto;
+      text-align: center;
+      flex-flow: row wrap;
+      display: flex;
+      flex-direction: row;
+    width: 83%;
+    float: left;
+  }
+  .center:after{
   content: "";
   display: table;
   clear: both;
@@ -70,68 +69,70 @@ $subTitle = "Brand";
   color: black;
 }
 .side ul{
-	width: 100%;
+  width: 100%;
 }
 .side li{
-	width: 100%;
+  width: 100%;
 }
 .item img{
   width: 100%;
   height: 80%;
 }
 .mobile{
-	display: none;
+  display: none;
 }
 .mobile button{
-	background: #f1f1f1;
-	border: none;
-	padding: 10px;
-	border-radius: 3px;
+  background: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
 }
 .mobile button a{
-	text-decoration: none;
-	color: black;
+  text-decoration: none;
+  color: black;
 }
 @media only screen and (max-width: 425px) {
- 
+  .center{
+    width: 100%;
+  }
   .item{
       height: 300px;
-      width: 56%;
+      width: 60%;
   }
-   .iteam img{
-  	height: 60%;
+   .item img{
+    height: 60%;
   }
 }
+@media only screen and (max-width: 768px){
+  .all{
+    
+  }
+  .mobile{
+    display: block;
+  }
+  .side{
+    display: none;
+  }
+
+}
 @media only screen and (max-width: 768px) and (min-width: 426px) {
-	.mobile{
-		display: block;
-	}
-	.side{
-		display: none;
-	}
-	.center{
-		width: 100%;
-	}
+  
+  .center{
+    width: 100%;
+  }
   .item{
     height: 350px;
-    width: 45%;
+    width: 30%;
   }
-  .iteam img{
-  	height: 60%;
+  .item img{
+    height: 66%;
   }
 }
  
 
 
 
-@media only screen and (max-width: 1024px) {
-.item{
-  width: 22%;
-}
- .iteam img{
-  	height: 60%;
-  }
-}
+
 
 @media only screen and (min-width: 1400px) {
 .item{

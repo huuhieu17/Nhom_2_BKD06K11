@@ -6,7 +6,6 @@ $query_type = mysqli_query($connection,$sql);
  ?>
  <style>
   .all{
-    margin-top:6%;
     display: block;
     overflow: hidden;
     box-sizing: border-box;
@@ -95,45 +94,47 @@ $query_type = mysqli_query($connection,$sql);
   color: black;
 }
 @media only screen and (max-width: 425px) {
- 
+  .center{
+    width: 100%;
+  }
   .item{
       height: 300px;
-      width: 56%;
+      width: 60%;
   }
-   .iteam img{
+   .item img{
     height: 60%;
   }
 }
-@media only screen and (max-width: 768px) and (min-width: 426px) {
+@media only screen and (max-width: 768px){
+  .all{
+    
+  }
   .mobile{
     display: block;
   }
   .side{
     display: none;
   }
+
+}
+@media only screen and (max-width: 768px) and (min-width: 426px) {
+  
   .center{
     width: 100%;
   }
   .item{
     height: 350px;
-    width: 45%;
+    width: 30%;
   }
-  .iteam img{
-    height: 60%;
+  .item img{
+    height: 66%;
   }
 }
  
 
 
 
-@media only screen and (max-width: 1024px) {
-.item{
-  width: 22%;
-}
- .iteam img{
-    height: 60%;
-  }
-}
+
 
 @media only screen and (min-width: 1400px) {
 .item{

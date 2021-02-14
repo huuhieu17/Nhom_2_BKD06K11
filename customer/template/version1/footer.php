@@ -34,5 +34,16 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<script type="text/javascript">
+  window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    document.getElementById("header").style.position = "fixed";
+  } else {
+     document.getElementById("header").style.position = "relative";
+  }
+}
+</script>
 </body>
 </html>
