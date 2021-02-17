@@ -41,7 +41,7 @@ $subTitle = "Brand";
   width: 23%;
   padding: 10px;
   margin: auto;
-  height: 500px;
+  height: 400px;
 }
 
 .item:hover{
@@ -62,7 +62,7 @@ $subTitle = "Brand";
 }
 .item img{
   width: 100%;
-  height: 80%;
+  height: 70%;
 }
 .view{
   text-decoration: none;
@@ -73,10 +73,6 @@ $subTitle = "Brand";
 }
 .side li{
   width: 100%;
-}
-.item img{
-  width: 100%;
-  height: 80%;
 }
 .mobile{
   display: none;

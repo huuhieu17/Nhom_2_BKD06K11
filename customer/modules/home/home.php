@@ -128,7 +128,7 @@ require_once('customer/template/version1/header.php');
   width: 30%;
   padding: 10px;
   margin: auto;
-  height: 500px;
+  height: 400px;
 }
 
 .item:hover{

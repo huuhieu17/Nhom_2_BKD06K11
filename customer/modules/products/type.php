@@ -43,7 +43,7 @@ $query_type = mysqli_query($connection,$sql);
   width: 23%;
   padding: 10px;
   margin: auto;
-  height: 500px;
+  height: 400px;
 }
 
 .item:hover{
@@ -64,7 +64,7 @@ $query_type = mysqli_query($connection,$sql);
 }
 .item img{
   width: 100%;
-  height: 80%;
+  height: 75%;
 }
 .view{
   text-decoration: none;
@@ -76,10 +76,7 @@ $query_type = mysqli_query($connection,$sql);
 .side li{
   width: 100%;
 }
-.item img{
-  width: 100%;
-  height: 80%;
-}
+
 .mobile{
   display: none;
 }
@@ -165,7 +162,7 @@ $query_type = mysqli_query($connection,$sql);
      <?php
       if (isset($_GET['id'])) {
         $keyword = $_GET['id'];
-        $sql = "SELECT * FROM products WHERE product_type[[[[[]]]]] = '$keyword'";
+        $sql = "SELECT * FROM products WHERE product_type = '$keyword'";
        }else{
          $sql = "SELECT * FROM products";
        } 

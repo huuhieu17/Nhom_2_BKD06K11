@@ -229,6 +229,7 @@ require_once("customer/config/session.php");
 	</style>
 </head>
 <body>
+	
 	<div id="container">
 		<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
 		<div id="header" class="topnav">
@@ -240,7 +241,7 @@ require_once("customer/config/session.php");
 				<ul>
 					<li id="search">
 
-							<input type="text" placeholder="Search" name="keyword" id="svalue"><button onclick="search()"><i class="fa fa-search"></i></button>
+							<input type="text" placeholder="Search" name="keyword" id="svalue" value = ""><button onclick="search()"><i class="fa fa-search"></i></button>
 							<script type="text/javascript">
 								function search(){
 									var svalue = document.getElementById('svalue').value;
