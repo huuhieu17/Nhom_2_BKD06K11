@@ -381,7 +381,8 @@ function showSlides(n) {
 			 } 
 
 			?>
-			</select>
+			</select><br><br>
+			<button>Add To Cart</button>
 			<hr>
 			<h4><b>Description</b></h4>
 			<p><?php echo $row['product_description'] ?></p>
