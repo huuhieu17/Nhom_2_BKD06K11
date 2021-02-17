@@ -16,6 +16,9 @@ require_once('customer/template/version1/header.php');
 	}
 ?>
 <style>
+	.pcontent{
+		border-top: 1px solid #eee;
+	}
 	.row{
 		display: flex;
 		flex-wrap: wrap;
@@ -193,7 +196,6 @@ img.hover-shadow {
 	}
 </style>
 <div class="pcontent">
-	<hr>
 	<div class="row">
 		<div class="left">
 			<?php 

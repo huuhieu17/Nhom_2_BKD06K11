@@ -10,12 +10,14 @@ $query_type = mysqli_query($connection,$sql);
     overflow: hidden;
     box-sizing: border-box;
     width: 100%;
+    height: 100vh;
+    border-top: 1px solid #eee;
 
   }
   .side{
     width: 15%;
-    height: 100vh;
-    border-right: 1px solid black;
+    height: 100%;
+    border-right: 1px solid #eee;
     box-sizing: border-box;
     float: left;
   }
