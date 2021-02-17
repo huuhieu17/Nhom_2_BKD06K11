@@ -279,9 +279,9 @@ require_once("customer/config/session.php");
 						echo "<li><a href='index.php?s=home&act=login'>Login</a></li>";
 						echo "<li><a href='index.php?s=home&act=register'>Sign Up</a></li>";
 					}else{
-						echo "<li><a href='?s=account&act=info' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
+						echo "<li><a href='?s=account&act=general' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
 							<ul>
-											<li><a class='act' href='?s=account&act=info'><i class='fa fa-user-o'></i>  Account Information</a></li>
+											<li><a class='act' href='?s=account&act=general'><i class='fa fa-user-o'></i>  Account </a></li>
 											<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
 							</ul>
 						</li>";

@@ -250,20 +250,31 @@ $keyword = $_GET['keyword'];
       $typesql = "";  
       if (isset($_GET['type'])) {
         $type = $_GET['type'];
-        $typesql = "AND product_type =".$type;
+        if ($type == "") {
+          $typesql = "";
+        }else{
+          $typesql = "AND product_type =".$type;
+        }
+        
         
       }
       $brandsql = "";  
       if (isset($_GET['brand'])) {
         $brand = $_GET['brand'];
-        $brandsql = "AND product_brand =".$brand;
+        if ($brand == "") {
+          $brandsql = "";
+        }else{
+          $brandsql = "AND product_brand = ".$brand;
+        }
+        
         
       }
-      $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%'".$sortsql." ".$typesql." ".$brandsql."";
+      $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."";
     }else{
      $sql = "SELECT * FROM products";
    } 
    $query = mysqli_query($connection,$sql);
+  
    if (!$query) {
     echo "Error: ". mysql_connect_error();
   }else if (mysqli_num_rows($query) == 0) {
