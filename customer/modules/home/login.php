@@ -4,7 +4,6 @@ $subTitle = "Login";
 $error = "";
 if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 		//problem with header location
-	echo "<script>window.location.replace('?s=home');</script>";
 	header('Location:?s=home');
 }else{
 	if(isset($_POST['btn'])){
@@ -20,7 +19,7 @@ if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 			$_SESSION['user']['id'] = $row['id'];
 			mysqli_close($connection);
 			//problem with header location
-			echo "<script>window.location.replace('?s=home');</script>";
+			
 			header('Location:?s=home');
 
 		}

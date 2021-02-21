@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 $s = $action = "";
 if (isset($_GET['s'])) {
 	$s = $_GET['s'];
@@ -18,5 +19,5 @@ if (file_exists($path)){
 	$path = "customer/modules/home/404.php";
 	require_once($path);
 }
-
+ob_end_flush();
 ?>

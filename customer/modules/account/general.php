@@ -44,7 +44,7 @@ $subTitle = "Account Infomation";
   }
   table,tr,td,th{
   	text-align: left;
-  	padding: 1px;
+  	padding: 3px;
   	margin:auto;
   	width: 70%;
   	border: 1px solid #eee;
@@ -55,6 +55,11 @@ $subTitle = "Account Infomation";
   	font-style: italic;
   	font-weight: bold;
   	text-align: left;
+  }
+  table tr td button{
+    padding: 10px;
+    color: black;
+    font-weight: bold;
   }
 </style>
 <div class="all">
@@ -67,7 +72,7 @@ $subTitle = "Account Infomation";
 	<div class="center">
 		<table>
 			<tr>
-				<td colspan="2"><h1>Account Information</h1></td>
+				<td colspan="2"><h2>Account Information</h2></td>
 			</tr>
 			<?php 
 			$iduser =  $_SESSION['user']['id'];
@@ -102,6 +107,9 @@ $subTitle = "Account Infomation";
 			<tr>
 				<td class="col1">Address:</td>
 				<td><?php echo $value['address'] ?></td>
+			</tr>
+			<tr>
+				<td colspan="2"><a href="?s=account&act=edit"><button>Edit</button></a></td>
 			</tr>		
 		</table>
 	</div>

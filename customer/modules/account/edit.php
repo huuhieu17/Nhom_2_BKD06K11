@@ -1,6 +1,25 @@
 <?php 
 	require_once('customer/template/version1/header.php');
 $subTitle = "Account Infomation";
+$iduser =  $_SESSION['user']['id'];
+if (isset($_POST['btn'])) {
+  $name = $_POST['name'];
+  $gender = $_POST['gender'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $address = $_POST['address'];
+  $sql = "UPDATE customers SET name = '$name',gender = '$gender', email = '$email', phone = '$phone', address = '$address' WHERE id ='$iduser' ";
+  
+  $query = mysqli_query($connection,$sql);
+  $_SESSION['user']['name'] = $name;
+  if (!$query) {
+    echo "Error". mysqli_connect_error($query);
+  }else{
+    echo "<script>
+    window.location.replace('?s=account&act=general');
+    </script>";
+  }
+}
 ?>
 <style>
 	.all{
@@ -44,7 +63,7 @@ $subTitle = "Account Infomation";
   }
   table,tr,td,th{
   	text-align: left;
-  	padding: 1px;
+  	padding: 3px;
   	margin:auto;
   	width: 70%;
   	border: 1px solid #eee;
@@ -55,6 +74,19 @@ $subTitle = "Account Infomation";
   	font-style: italic;
   	font-weight: bold;
   	text-align: left;
+  }
+  table tr td input{
+    padding: 10px;
+    width: 50%;
+    color: black;
+  }
+  form {
+    padding: 10px;
+  }
+  table tr td button{
+    padding: 10px;
+    color: black;
+    font-weight: bold;
   }
 </style>
 <div class="all">
@@ -73,16 +105,17 @@ $subTitle = "Account Infomation";
 			?>
 		  <form action="#" method="POST">
        <table>
+        <tr><td colspan="2"><h2>Update Information</h2></td></tr>
          <tr>
-           <td>Username</td>
-           <td><input type="" name="" placeholder="Username" value="<?php echo $value['username'] ?>"></td>
+           <td class="col1">Username</td>
+           <td><?php echo $value['username'] ?></td>
          </tr>
          <tr>
-           <td>Name</td>
+           <td class="col1">Name</td>
            <td><input type="text" name="name" placeholder="Name" value="<?php echo $value['name'] ?>"></td>
          </tr>
          <tr>
-           <td>Gender</td>
+           <td class="col1">Gender</td>
            <td><select name="gender" id="">
              <option value="0">Female</option>
              <option value="1">Male</option>
@@ -90,15 +123,21 @@ $subTitle = "Account Infomation";
            
          </tr>
          <tr>
-           <td>Email</td>
+           <td class="col1">Email</td>
            <td>
              <input type="email" name="email" placeholder="Email" value="<?php echo $value['email'] ?>">
            </td>
          </tr>
          <tr>
-           <td>Phone</td>
+           <td class="col1">Phone</td>
            <td><input type="text" name="phone" placeholder="Phone Number" value="<?php echo $value['phone'] ?>"></td>
          </tr>
+         <tr>
+           <td class="col1">Address</td>
+           <td><input type="text" name="address" placeholder="Address" value="<?php echo $value['address'] ?>"><span></span>
+           </td>
+         </tr>
+         <tr><td colspan="2"><Button name="btn">Update</Button></td></tr>
        </table> 
 
       </form>

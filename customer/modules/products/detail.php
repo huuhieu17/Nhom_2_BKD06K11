@@ -1,6 +1,6 @@
-<?php 
-$subTitle = "Product";
+<?php
 require_once('customer/template/version1/header.php');
+$subTitle = "Product";
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$sql = "SELECT * FROM products WHERE id = '$id'";
@@ -382,7 +382,7 @@ function showSlides(n) {
 
 			?>
 			</select><br><br>
-			<button>Add To Cart</button>
+			<a href="?s=invoices&act=cart&id=<?php echo $id ?>"><button>Add To Cart</button></a>
 			<hr>
 			<h4><b>Description</b></h4>
 			<p><?php echo $row['product_description'] ?></p>

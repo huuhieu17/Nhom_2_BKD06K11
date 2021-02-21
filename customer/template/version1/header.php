@@ -1,6 +1,6 @@
 <?php
-require_once('customer/config/config.php');
-require_once("customer/config/session.php");
+	require_once("customer/config/session.php");
+	require_once('customer/config/config.php');
 	$sql = "SELECT * FROM `brands`";
 	$query_brand = mysqli_query($connection,$sql);
 	$title = "Hstore - Making you to Shine";
@@ -48,16 +48,18 @@ require_once("customer/config/session.php");
 			padding: 10px;
 		}
 		#right{
+			padding-right: 20px;
 			box-sizing: border-box;
 			width: 80%;
 			float: right;
 			text-align: right;
 		}
 		ul{
+			
 			position: relative;
 			float: right;
 			display: flex;
-			flex: wrap;
+			flex-wrap: wrap;
 			list-style-type: none;
 		}
 		ul li{
@@ -281,13 +283,23 @@ require_once("customer/config/session.php");
 					}else{
 						echo "<li><a href='?s=account&act=general' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
 							<ul>
-											<li><a class='act' href='?s=account&act=general'><i class='fa fa-user-o'></i>  Account </a></li>
+											<li><a class='act' href='?s=account&act=general'><i class='fa fa-user'></i>  Account </a></li>
 											<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
 							</ul>
 						</li>";
 					}
 					?>
-					<li><a href="Login"><i class="fa fa-shopping-cart"></i></a></li>
+					<li><a href="?s=invoices&act=cart"><i class="fa fa-shopping-cart"></i>
+						<?php 
+							$t = 0;
+							if (isset($_SESSION['cart'])) {
+								foreach ($_SESSION['cart'] as $id => $quantity) {
+									$t += $quantity;
+								}
+								echo "($t)";
+							}
+						?>
+					</a></li>
 					<?php 
 						if (isset($_SESSION['user'])) {
 							echo "<li id='logout'><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>";
