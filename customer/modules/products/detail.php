@@ -382,7 +382,7 @@ function showSlides(n) {
 
 			?>
 			</select><br><br>
-			<a href="?s=invoices&act=cart&id=<?php echo $id ?>"><button>Add To Cart</button></a>
+			<a href="?s=invoices&act=cart&id=<?php echo $id ?>&up"><button>Add To Cart</button></a>
 			<hr>
 			<h4><b>Description</b></h4>
 			<p><?php echo $row['product_description'] ?></p>

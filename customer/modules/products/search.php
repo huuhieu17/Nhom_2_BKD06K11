@@ -9,7 +9,6 @@ $keyword = $_GET['keyword'];
     display: block;
     overflow: hidden;
     width: 100vw;
-    height: 100vh;
     border-top: 1px solid #eee;
   }
   .new{

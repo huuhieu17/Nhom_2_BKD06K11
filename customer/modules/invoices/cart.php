@@ -39,6 +39,10 @@ if (isset($_GET['id'])) {
  	font-weight: bold;
 
  	}
+ 	.imgcart{
+ 		width: 100px;
+ 		height: 70px;
+ 	}
  </style>
  <div class="cart">
  	<table>
@@ -55,21 +59,23 @@ if (isset($_GET['id'])) {
  		$total = 0;
  		foreach ($_SESSION['cart'] as $id => $quantity) {
  			$count +=1;
- 		 	$sql = "SELECT product_name,product_price FROM products WHERE id= '$id'";
+ 		 	$sql = "SELECT id,product_name,product_price FROM products WHERE id= '$id'";
  		 	$query = mysqli_query($connection,$sql);
  		 	$row = mysqli_fetch_assoc($query);
+ 		 	$product_id = $row['id'];
+ 		 	$img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id ='$product_id'"));
  		 	$name = $row['product_name'];
  		 	$price = $row['product_price'];
  		 	echo "<tr>";
  		 	echo "<td> $count </td>";
- 		 	echo "<td> $name </td>";
- 		 	echo "<td> $price </td>";
+ 		 	echo "<td>". $name ."<br><a href='?s=products&act=detail&id=$product_id'><img class='imgcart' src='./public/img/product/".$img['url']."'></a></td>";
+ 		 	echo "<td> $price $ </td>";
  		 	echo "<td>";
  		 	echo "<a href='?s=invoices&act=cart&id=$id&down'><button class='btn-q'>-</button></a>";
  		 	echo $quantity;
  		 	echo "<a href='?s=invoices&act=cart&id=$id&up'><button class='btn-q'>+</button></a>";
  		 	echo "</td>";
- 		 	echo "<td>".($price * $quantity)."</td>";
+ 		 	echo "<td>".($price * $quantity)."$ </td>";
  		 	$total += ($price * $quantity);
  		 	echo "</tr>";
 
@@ -78,7 +84,7 @@ if (isset($_GET['id'])) {
  		?>
  		<tr>
  			<td colspan="4">Total Pay</td>
- 			<td><?php echo $total ?></td>
+ 			<td><?php echo $total ?> $</td>
  		</tr>
  				
  	</table>	
