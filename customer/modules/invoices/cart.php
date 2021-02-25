@@ -25,7 +25,8 @@ if (isset($_GET['id'])) {
 ?>
  <style>
  	table{
- 		width: 70%;
+ 		float: left;
+ 		width: 80%;
  	}
  	table,th,tr,td{
  		border: 1px solid #eee;
@@ -42,6 +43,22 @@ if (isset($_GET['id'])) {
  	.imgcart{
  		width: 100px;
  		height: 70px;
+ 	}
+ 	.buy{
+ 		margin-left: 1%;
+ 		width: 18%;
+ 		float: left;
+ 		border: 1px solid #eee;
+ 	}
+ 	.buy button{
+ 		width: 100%;
+ 		background: none;
+ 		border: 1px solid #eee;
+ 		padding: 10px;
+ 		font-weight: bold;
+ 	}
+ 	.buy button:hover{
+ 		color: red;
  	}
  </style>
  <div class="cart">
@@ -87,7 +104,12 @@ if (isset($_GET['id'])) {
  			<td><?php echo $total ?> $</td>
  		</tr>
  				
- 	</table>	
+ 	</table>
+ 	<div class="buy">
+ 		<button onclick="window.location.replace('?s=home')">Continue Shopping</button><br>
+ 		<button onclick="window.location.replace('?s=invoices&act=checkout')">Pay</button>
+ 	</div>	
+
  </div>
  <?php 
 require_once('customer/template/version1/footer.php'); ?>

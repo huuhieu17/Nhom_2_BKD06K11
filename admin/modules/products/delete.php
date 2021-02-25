@@ -9,12 +9,16 @@ if (isset($_GET['id'])) {
 	$query = mysqli_query($connection,$sql);
 	$sql = "DELETE FROM products WHERE id='$id'";
 	$query = mysqli_query($connection,$sql);
+	$sql = "DELETE FROM sku WHERE product_id='$id'";
+	$query = mysqli_query($connection,$sql);
 	
 
 	if (!$query) {
 		echo "Error",mysqli_connect_error();
 	}else{
-		header("Location:?modules=products&action=all");
+		echo "<script>window.location.replace('?modules=products&action=all');</script>";
 	}
+
+
 	
 ?>

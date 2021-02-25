@@ -34,6 +34,9 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 				font-size: 13px;
 				font-weight: bold;
 	}
+	table,tr,th,td{
+		border: 1px solid #eee;
+	}
 </style>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="#">Edit</a>
@@ -42,6 +45,11 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
 	<input type="text" name="name" placeholder="Name products" value="<?php echo $row['product_name'] ?>">
+	Gender:
+	<select name="gender" id="">
+		<option value="0">Female</option>
+		<option value="1">Male</option>
+	</select>
 	Type:
 	<select name="type" id="">
 	<?php 
@@ -95,19 +103,55 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	Size:
 	<div class="size">
 		<?php 
-			$sql ="SELECT product_variants.product_id,product_variants.product_variant_value_id,product_variants.status,variant_value.value FROM product_variants INNER JOIN variant_value WHERE product_variants.product_id = '$id_product' AND product_variants.product_variant_value_id = variant_value.id AND variant_value.id > 11";
+			$sql = "SELECT * FROM sku WHERE product_id ='$id_product'";
+			
 			$query = mysqli_query($connection,$sql);
-				foreach ($query as $key => $value) {
-						if ($value['status'] == 1) {
-							$check = "Checked";
-						}else{
-							$check ="";
-						}
-						echo "<input type='checkbox'".$check." name='size[ ]' value='".$value['product_variant_value_id']."'> ". $value['value']. " ";	
-				}	
-
-						
 		?>
+		<?php foreach ($query as $keysize): ?>
+			<span>
+				<?php switch ($keysize['size_id']) {
+				case '12':
+					echo S;
+					break;
+				case '13':
+					echo M;
+					break;
+				case '14':
+					echo L;
+					break;
+				case '15':
+					echo XL;
+					break;
+				case '16':
+					echo XXL;
+					break;
+				case '17':
+					echo XXXL;
+					break;
+				
+				default:
+					# code...
+					break;
+				} ?>
+				<input type="number" name="quantity[ ]" placeholder ="Quantity" value ="<?php echo $keysize['quantity'] ?>">
+			</span>
+			
+		<?php endforeach ?>
+		<?php 
+		 $sizearray = array(12,13,14,15,16,17);
+		 $quantity = array();
+		 $quantity = $_POST['quantity'];
+		 for ($i=0; $i < count($quantity) ; $i++) { 
+		 	$sql = "UPDATE sku SET quantity ='$quantity[$i]' WHERE product_id = '$id_product' AND size_id='$sizearray[$i]'";
+		 	mysqli_query($connection,$sql);
+		 }
+		?>
+		<!-- <span>S:</span> <input type="number" name="squantity" placeholder="Quantity">
+		<span>M:</span> <input type="number" name="squantity" placeholder="Quantity">
+		<span>L:</span> <input type="number" name="squantity" placeholder="Quantity">
+		<span>XL:</span> <input type="number" name="squantity" placeholder="Quantity">
+		<span>XXL:</span> <input type="number" name="squantity" placeholder="Quantity">
+		<span>XXL:</span> <input type="number" name="squantity" placeholder="Quantity"> -->
 	</div>
 	Status:
 	<select name="status" id="">
@@ -126,6 +170,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 <?php 
 if (isset($_POST['submit'])) {
 	$name = $_POST['name'];
+	$gender = $_POST['gender'];
 	$brand = $_POST['brand'];
 	$type = $_POST['type'];
 	$price = $_POST['price'];
@@ -146,17 +191,8 @@ if (isset($_POST['submit'])) {
 	}
 	
 		
-	$size = array();
-	$size = $_POST['size'];
-	for ($i=0; $i < count($size); $i++) { 
-		if (isset($_POST['size'])) {
-			$sql = "UPDATE product_variants SET status = 1 WHERE product_id ='$id_product' AND product_variant_value_id ='$size[$i]' AND product_variant_value_id  > 11";
-			mysqli_query($connection,$sql);
-		}
-		$sql = "UPDATE product_variants SET status = 0 WHERE product_id = '$id_product' AND product_variant_value_id > 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$size)).") ";
-			mysqli_query($connection,$sql);
-	}
-	$sql = "UPDATE products SET product_name ='$name',product_price ='$price',product_brand ='$brand',product_type ='$type',product_status = '$status',product_description ='$description' WHERE id= '$id_product'";
+	
+	$sql = "UPDATE products SET product_name ='$name', product_gender ='$gender',product_price ='$price',product_brand ='$brand',product_type ='$type',product_status = '$status',product_description ='$description' WHERE id= '$id_product'";
 	$query = mysqli_query($connection,$sql);
 	header("Location:?modules=products&action=all");
 	if (!$query) {

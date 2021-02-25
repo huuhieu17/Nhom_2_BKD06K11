@@ -2,6 +2,12 @@
 require_once('customer/template/version1/header.php');
 $subTitle = "Login";
 $error = "";
+if (isset($_GET['error'])) {
+	if ($_GET['error'] == 1) {
+	$error = "You must login to do this action!";
+	}
+}
+
 if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 		//problem with header location
 	header('Location:?s=home');

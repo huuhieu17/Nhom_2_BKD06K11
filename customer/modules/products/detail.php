@@ -194,6 +194,9 @@ img.hover-shadow {
 			width: 80%;
 		}
 	}
+	span{
+		margin-right: 20px;
+	}
 </style>
 <div class="pcontent">
 	<div class="row">
@@ -291,102 +294,60 @@ function showSlides(n) {
 }
 </script>
 		<div class="right">
+			<form action="" method="POST">
+				
+			
 			<?php 
-			$sql = "SELECT * FROM product_variants WHERE product_id = '$id' AND status = 1 AND product_variant_value_id <= 11"; // color
+			$sql = "SELECT product_variants.id,product_variants.product_id,product_variants.product_variant_value_id, variant_value.value FROM `product_variants` INNER JOIN variant_value WHERE product_variants.product_id = '$id' AND status = 1 AND product_variants.product_variant_value_id = variant_value.id"; // color
 			$color = mysqli_query($connection,$sql);
-			$sql = "SELECT * FROM product_variants WHERE product_id = '$id' AND status = 1 AND product_variant_value_id > 11"; // size
-			$size = mysqli_query($connection,$sql);
+			
 			?>
 			<h1><?php echo $row['product_name'] ?></h1><br>
 			<h2 style="color: red"><?php echo $row['product_price']."$" ?></h2>
 			<br>
-			<h4>Color</h4>
-			<select name="color" id="">
-			<?php
-			foreach ($color as $key => $colors) {
-			 	echo "<option>";
-			 	switch ($colors['product_variant_value_id']) {
-			 		case '1':
-			 			echo "Black";
-			 			break;
-			 		case '2':
-			 			echo "Blue";
-			 			break;
-			 		case '3':
-			 			echo "Red";
-			 			break;
-			 		case '4':
-			 			echo "Yellow";
-			 			break;
-			 		case '5':
-			 			echo "Gray";
-			 			break;
-			 		case '6':
-			 			echo "Green";
-			 			break;
-			 		case '7':
-			 			echo "Orange";
-			 			break;
-			 		case '8':
-			 			echo "Pink";
-			 			break;
-			 		case '9':
-			 			echo "White";
-			 			break;
-			 		case '10':
-			 			echo "Brown";
-			 			break;
-			 		case '11':
-			 			echo "Purple";
-			 			break;
-			 		
-			 		default:
-			 			# code...
-			 			break;
-			 	}
-			 	echo "</option>";
-			 } 
 
+			<h4>Color: </h4>
+			<?php foreach ($color as $key => $colors): ?>
+				<?php if (isset($_POST['color'])): ?>
+					<?php if ($_POST['color'] == $colors['id']): ?>
+					<input type="radio" class="color" id="color" name="color" checked value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+					<?php else: ?>
+						<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+				<?php endif ?>
+				<?php else: ?>
+					<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+			<?php endif ?>
+				
+				
+			<?php endforeach ?>
+			<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+				<script>
+				$('input[name=color]').change(function(){
+				     $('form').submit();
+
+				});
+			</script>
+			<?php 
+				if (isset($_POST['color'])) {
+					$colorid = $_POST['color'];
+					$sql = "SELECT sku.size_id, sku.sku,sku.quantity, variant_value.value FROM sku INNER JOIN variant_value WHERE sku.product_id = '$id' AND sku.color_id = '$colorid' AND sku.size_id = variant_value.id AND sku.quantity > 0"; // size
+					$size = mysqli_query($connection,$sql);
+				}
+				
+			
 			?>
-			</select>
 			<h4>Size</h4>
-			<select name="size" id="">
-				<?php
-			foreach ($size as $key => $sizes) {
-			 	echo "<option>";
-			 	switch ($sizes['product_variant_value_id']) {
-			 		case '12':
-			 			echo "S";
-			 			break;
-			 		case '13':
-			 			echo "M";
-			 			break;
-			 		case '14':
-			 			echo "L";
-			 			break;
-			 		case '15':
-			 			echo "XL";
-			 			break;
-			 		case '16':
-			 			echo "XXL";
-			 			break;
-			 		case '17':
-			 			echo "XXXL";
-			 			break;
-			 		default:
-			 			# code...
-			 			break;
-			 	}
-			 	echo "</option>";
-			 } 
-
-			?>
-			</select><br><br>
-			<a href="?s=invoices&act=cart&id=<?php echo $id ?>&up"><button>Add To Cart</button></a>
+			<?php foreach ($size as $key => $sizes): ?>
+				<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+			<?php endforeach ?>
+			<br><br>
+			<a href="?s=invoices&act=cart&id=<?php echo $id ?>&up"><button type="button">Add To Cart</button></a>
 			<hr>
 			<h4><b>Description</b></h4>
 			<p><?php echo $row['product_description'] ?></p>
 		</div>
+		</form>
 	</div>
 </div>
 <?php 

@@ -32,6 +32,11 @@ require_once 'template/header.php'; ?>
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
 	<input type="text" name="name" placeholder="Name products">
+	Gender:
+	<select name="gender" id="">
+		<option value="0">Female</option>
+		<option value="1">Male</option>
+	</select>
 	Type:
 	<select name="type" id="">
 	<?php 
@@ -63,21 +68,11 @@ require_once 'template/header.php'; ?>
 			$query = mysqli_query($connection,$sql);
 			foreach ($query as $key) {
 				$id = $key['id'];
-				echo "<input type='checkbox' checked readonly name='color[ ]' value='$id'> ". $key['value']. " ";
+				echo "<input type='checkbox' readonly name='color[ ]' value='$id'> ". $key['value']. " ";
 			}
 		?>
 	</div>
-	Size:
-	<div class="size">
-		<?php 
-			$sql = " SELECT * FROM variant_value WHERE variant_group_id = 2 ";
-			$query = mysqli_query($connection,$sql);
-			foreach ($query as $key) {
-				$id = $key['id'];
-				echo "<input type='checkbox' name='size[ ]' value='$id'> ". $key['value']. " ";
-			}
-		?>
-	</div>
+	
 	Status:
 	<select name="status" id="">
 		<option value="1">Available</option>
@@ -98,6 +93,7 @@ require_once 'template/header.php'; ?>
 <?php 
 if (isset($_POST['submit'])) {
 	$name = $_POST['name'];
+	$gender = $_POST['gender'];
 	$brand = $_POST['brand'];
 	$type = $_POST['type'];
 	$price = $_POST['price'];
@@ -124,7 +120,8 @@ if (isset($_POST['submit'])) {
              
  //        } 
  //    }
-	$sql = "INSERT INTO products VALUES(NULL,'$name','$price','$description','$brand','$type','$status')";
+	$sql = "INSERT INTO products VALUES(NULL,'$name','$gender','$price','$description','$brand','$type','$status')";
+
 	mysqli_query($connection,$sql);	
 	$sql = "SELECT id FROM products order by id DESC LIMIT 1";
 	$id = mysqli_fetch_assoc(mysqli_query($connection,$sql));
@@ -137,14 +134,32 @@ if (isset($_POST['submit'])) {
 			echo "Error:".mysqli_error($connection);
 		}
 	}
+	$color = array();
+			$color = $_POST['color'];
+			for ($i=0; $i < count($color); $i++) { 
+				if (isset($_POST['color'])) {
+					$sql = "UPDATE product_variants SET status =1 WHERE product_id ='$id' AND product_variant_value_id ='$color[$i]' AND product_variant_value_id <= 11";
+					mysqli_query($connection,$sql);
+				}
+				$sql = "UPDATE product_variants SET status = 0 WHERE product_id = '$id' AND product_variant_value_id <= 11 AND product_variant_value_id NOT IN (".implode(',',array_map('intval',$color)).") ";
+					mysqli_query($connection,$sql);
+					
+	}
 	$size = array(12,13,14,15,16,17);
-	for ($i=0; $i < sizeof($size) ; $i++) { 
-		$sql = "INSERT INTO product_variants VALUES(NULL,'$id','$size[$i]','1')";
-		$query=mysqli_query($connection,$sql);
-		if (!$query) {
-			echo "Error:".mysqli_error($connection);
+	$sql = "SELECT id FROM product_variants WHERE product_id ='$id' AND status = 1";
+	$query = mysqli_query($connection,$sql);
+	foreach ($query as $keycolor ) {
+		$color_id = $keycolor['id'];
+		for ($i=0; $i < count($size); $i++) { 
+			$sku = "P".$id."C".$color_id."S".$size[$i];
+			$sql= "INSERT INTO sku VALUES(NULL,'$id','$sku','$color_id','$size[$i]',0)";
+			mysqli_query($connection,$sql);	
 		}
 	}
+	
+	// size
+	
+	
 	if (count($_FILES['images']['name']) > 0) {
 		$total = count($_FILES['images']['name']);
 		for ($i=0 ; $i <$total  ; $i++ ) { 

@@ -14,6 +14,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="template/image-uploader.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js" integrity="sha512-eH6+OZuv+ndnPTxzVfin+li0PXKxbwi1gWWH2xqmljlTfO3JdBlccZkwWd0ZcWAtDTvsqntx1bbVSkWzHUtfQQ==" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Admin Panel | HStore</title>
 	<style>
@@ -24,11 +25,11 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		}
 		#container{
 			width: 100%;
-			height: 100vh;
+			height: 100%;
 			background: #f9f9f9;
 		}
 		#nav{
-			height: 7%;
+			height: 50px;
 			width: 100%;
 			background: white;
 			border-bottom: 1px solid #d2d6de;
@@ -65,6 +66,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			background: #f9fafc;
 		}
 		#footer{
+			height: 100%;
 			width: 100%;
 		    overflow: hidden;
 		    display: block;
