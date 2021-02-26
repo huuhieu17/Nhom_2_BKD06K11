@@ -12,9 +12,26 @@ $subTitle = "Product";
 			echo "<script>window.location.replace('?s=home&act=404')</script>";
 		}
 			$row = mysqli_fetch_assoc($query);	
-		
+		//color fetch
+			$sql = "SELECT product_variants.id,product_variants.product_id,product_variants.product_variant_value_id, variant_value.value FROM `product_variants` INNER JOIN variant_value WHERE product_variants.product_id = '$id' AND status = 1 AND product_variants.product_variant_value_id = variant_value.id"; // color
+			$color = mysqli_query($connection,$sql);
+			
+	}
+
+	$product_sku = "<br>";
+	$product_quantity ="<br>";
+	if (isset($_POST['size'])) {
+		$sizep = $_POST['size'];
+		$colorp = $_POST['color'];
+		$sku_sql = "SELECT * FROM sku WHERE product_id = '$id' AND color_id= '$colorp' AND size_id='$sizep'";
+		$sku_query = mysqli_query($connection,$sku_sql);
+		$product_s = mysqli_fetch_assoc($sku_query);
+		$product_sku = $product_s['sku'];
+		$product_quantity ="Quantity: ".$product_s['quantity'];
+		$sku_id = $product_s['id'];
 	}
 ?>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'> </script>
 <style>
 	.pcontent{
 		border-top: 1px solid #eee;
@@ -197,6 +214,16 @@ img.hover-shadow {
 	span{
 		margin-right: 20px;
 	}
+	#addcart{
+		background: black;
+		padding: 10px;
+		color: white;
+		margin-bottom: 10px;
+	}
+	#quantity{
+		color: black;
+		font-size: 15px;
+	}
 </style>
 <div class="pcontent">
 	<div class="row">
@@ -296,32 +323,43 @@ function showSlides(n) {
 		<div class="right">
 			<form action="" method="POST">
 				
+			<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 			
-			<?php 
-			$sql = "SELECT product_variants.id,product_variants.product_id,product_variants.product_variant_value_id, variant_value.value FROM `product_variants` INNER JOIN variant_value WHERE product_variants.product_id = '$id' AND status = 1 AND product_variants.product_variant_value_id = variant_value.id"; // color
-			$color = mysqli_query($connection,$sql);
+			<h1><?php echo $row['product_name'] ?></h1>
+			<h4 style="color: gray"><?php echo $product_sku ?></h4>
 			
-			?>
-			<h1><?php echo $row['product_name'] ?></h1><br>
-			<h2 style="color: red"><?php echo $row['product_price']."$" ?></h2>
+			<h2 style="color: red">
+				<?php if ($row['product_status'] == 1): ?>
+					<?php echo $row['product_price']."$" ?></h2>
+				<?php endif ?>
+				<?php if ($row['product_status'] == 0): ?>
+					Not Available
+				<?php endif ?>
+				<?php if ($row['product_status'] == 2): ?>
+					Contact
+				<?php endif ?>
+				
 			<br>
 
 			<h4>Color: </h4>
 			<?php foreach ($color as $key => $colors): ?>
 				<?php if (isset($_POST['color'])): ?>
-					<?php if ($_POST['color'] == $colors['id']): ?>
-					<input type="radio" class="color" id="color" name="color" checked value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+					<?php if ($_POST['color'] == $colors['product_variant_value_id']): ?>
+					<input type="radio" class="color" id="color" name="color" checked value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 					<?php else: ?>
-						<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+						<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 				<?php endif ?>
 				<?php else: ?>
-					<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['id'] ?>"> <span><?php echo $colors['value'] ?></span>
+					<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 			<?php endif ?>
 				
 				
 			<?php endforeach ?>
-			<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
-</script>
+			
 				<script>
 				$('input[name=color]').change(function(){
 				     $('form').submit();
@@ -337,12 +375,33 @@ function showSlides(n) {
 				
 			
 			?>
-			<h4>Size</h4>
-			<?php foreach ($size as $key => $sizes): ?>
-				<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
-			<?php endforeach ?>
-			<br><br>
-			<a href="?s=invoices&act=cart&id=<?php echo $id ?>&up"><button type="button">Add To Cart</button></a>
+			<h4>Size:</h4>
+			<?php if (isset($_POST['color'])): ?>
+				<?php foreach ($size as $key => $sizes): ?>
+					<?php if (isset($_POST['size'])): ?>
+						<?php if ($_POST['size'] == $sizes['size_id']): ?>
+							<input type="radio" name="size" checked value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+							<?php else: ?>
+								<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+						<?php endif ?>
+					<?php else: ?>
+						<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+					<?php endif ?>
+				
+				<script>
+				$('input[name=size]').change(function(){
+				     $('form').submit();
+
+				});
+			</script>
+				<?php endforeach ?>
+			<?php endif ?>
+			<p id="quantity"><?php echo $product_quantity ?></p>
+			<br>
+			<?php if ($row['product_status'] == 1): ?>
+				<a href="?s=invoices&act=cart&id=<?php echo $sku_id ?>&up"><button id="addcart" type="button">Add To Cart</button></a>
+			<?php endif ?>
+			
 			<hr>
 			<h4><b>Description</b></h4>
 			<p><?php echo $row['product_description'] ?></p>

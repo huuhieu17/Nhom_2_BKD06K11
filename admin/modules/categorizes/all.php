@@ -1,7 +1,7 @@
 <?php require_once 'template/header.php'; ?>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a><br><br>
 <h1>Manage Product Type</h1>
-<a id="add" href="?modules=categorizes&action=add">Add new product type</a>
+
 <style>
 	a.nav{
 		color: gray;
@@ -10,7 +10,8 @@
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
+  margin:auto;
 }
 a#add{
 	font-weight: bold;
@@ -21,16 +22,15 @@ a#add{
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+
 
 #customers tr:hover {background-color: #ddd;}
 
 #customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: gray;
-  color: white;
+  		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;	
+		color: black;
 }
 td a{
 	font-weight: bold;
@@ -41,6 +41,12 @@ td a{
 </style>
 
 <table id="customers">
+	<tr>
+		<td colspan="4">
+			<a id="add" href="?modules=categorizes&action=add">Add new product type</a>
+		</td>
+		
+	</tr>
 	<tr>
 		<th>ID</th>
 		<th>Product Type</th>

@@ -16,9 +16,7 @@ require_once('customer/template/version1/header.php');
   z-index: 0;
   height: 100%;
 }
-#content{
-      width: 100vw;
-    }
+
 .slideshow #sleft{
   height: 90%;
 	position: relative;
@@ -119,7 +117,7 @@ require_once('customer/template/version1/header.php');
   content: "";
   display: table;
   clear: both;
-}
+} 
 .item{
   box-sizing: content-box;
   text-align: center;
@@ -262,7 +260,7 @@ function next() {
     <hr>
 <div class="new">
      <?php 
-        $sql = "SELECT * FROM `products` ORDER BY id DESC LIMIT 8";
+        $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC LIMIT 8 ";
         $query = mysqli_query($connection,$sql);
         if (!$query) {
           echo "Error: ". mysql_connect_error();

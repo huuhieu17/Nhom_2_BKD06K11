@@ -146,10 +146,10 @@ if (isset($_POST['submit'])) {
 					
 	}
 	$size = array(12,13,14,15,16,17);
-	$sql = "SELECT id FROM product_variants WHERE product_id ='$id' AND status = 1";
+	$sql = "SELECT * FROM product_variants WHERE product_id ='$id' AND status = 1";
 	$query = mysqli_query($connection,$sql);
 	foreach ($query as $keycolor ) {
-		$color_id = $keycolor['id'];
+		$color_id = $keycolor['product_variant_value_id'];
 		for ($i=0; $i < count($size); $i++) { 
 			$sku = "P".$id."C".$color_id."S".$size[$i];
 			$sql= "INSERT INTO sku VALUES(NULL,'$id','$sku','$color_id','$size[$i]',0)";

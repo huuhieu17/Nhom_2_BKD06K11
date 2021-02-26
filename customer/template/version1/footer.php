@@ -39,11 +39,24 @@ function topFunction() {
 
 function myFunction() {
   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    document.getElementById("header").style.position = "fixed";
+    document.getElementById("header").style.position = "sticky";
   } else {
      document.getElementById("header").style.position = "relative";
   }
+   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    document.getElementById("footer").style.position = "sticky";
+  } else {
+     document.getElementById("footer").style.position = "fixed";
+  }
+ 
+ 
 }
+</script>
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>
 </body>
 </html>

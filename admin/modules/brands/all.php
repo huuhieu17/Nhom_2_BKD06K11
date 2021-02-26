@@ -2,9 +2,10 @@
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a><br><br>
 <h1>Manage Brands</h1>
-<a id="add" href="?modules=brands&action=add">Add new brand</a>
+
 
 <style>
+
 	a.nav{
 		color: gray;
 		font-weight: bold;
@@ -12,8 +13,10 @@
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
+  margin:auto;
 }
+
 a#add{
 	font-weight: bold;
 	text-decoration: underline;
@@ -23,16 +26,15 @@ a#add{
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+
 
 #customers tr:hover {background-color: #ddd;}
 
 #customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: gray;
-  color: white;
+  		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;	
+		color: black;
 }
 td a{
 	font-weight: bold;
@@ -43,6 +45,9 @@ td a{
 </style>
 
 <table id="customers">
+	<tr>
+		<td colspan="4"><a id="add" href="?modules=brands&action=add">Add new brand</a></td>
+	</tr>
 	<tr>
 		<th>ID</th>
 		<th>Brand name</th>

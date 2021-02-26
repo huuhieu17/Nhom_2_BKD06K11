@@ -29,15 +29,17 @@
 			box-sizing: border-box;
 			z-index: 99;
 			top: 0;
-			position: relative;
+			position: sticky;
 			width: 100%;
+			height: 71px;
 			background: white;
-			
 			border-bottom: 1px solid #eee;
 		}
 		#left{
+			background: white;
 			cursor: pointer;
 		    width: 20%;
+		    height: 100%;
 		    box-sizing: border-box;
 		    float: left;
 		    position: relative;
@@ -45,12 +47,14 @@
 		    bottom: 0;
 		}
 		#left img{
-			padding: 10px;
+
 		}
 		#right{
+			background: white;
 			padding-right: 20px;
 			box-sizing: border-box;
 			width: 80%;
+			height: 100%;
 			float: right;
 			text-align: right;
 		}
@@ -116,10 +120,15 @@
 			padding: 5px;
 		}
 		#footer{
+			box-sizing: border-box;
+			position: fixed;
+			width: 100%;
 			background: #000;
 			color: white;
 			padding: 20px;
+			bottom:0;
 		}
+			
 		#menu{
 			padding: 20px;
 			border: none;
@@ -134,11 +143,17 @@
 		#content{
 			overflow: hidden;
 			width: 100vw;
+			margin-bottom: 50px;
 		}
 		@media only screen and (min-width: 490px) and (max-width: 766px){
-		
+				 #header{
+		 	height: 25px;
+		 }
 		}
 		@media only screen and (max-width: 768px) {
+		 #header{
+		 	height: 25px;
+		 }
 		 ul{
 		 	width: 100%;
 		  	display: none;
