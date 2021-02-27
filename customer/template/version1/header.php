@@ -20,36 +20,39 @@
 			margin: 0;
 			font-family: 'Open Sans', sans-serif;
 		}
+		body{
+			height: 100%;
+		}
 		#container{
 			position: relative;
 			width: 100vw;
-			height: 100vh;
+			height: 100%;
 		}
-		#header{
+		#container #header{
 			box-sizing: border-box;
 			z-index: 99;
 			top: 0;
 			position: sticky;
 			width: 100%;
-			height: 71px;
+			height: 7%;
 			background: white;
 			border-bottom: 1px solid #eee;
 		}
-		#left{
+		#container  #header #left{
+			padding: 8px;
 			background: white;
 			cursor: pointer;
 		    width: 20%;
 		    height: 100%;
 		    box-sizing: border-box;
 		    float: left;
-		    position: relative;
 		    top: 0;
 		    bottom: 0;
 		}
-		#left img{
+		#container  #header #left img{
 
 		}
-		#right{
+		#container #header #right{
 			background: white;
 			padding-right: 20px;
 			box-sizing: border-box;
@@ -59,7 +62,7 @@
 			text-align: right;
 		}
 		ul{
-			
+			box-sizing: border-box;
 			position: relative;
 			float: right;
 			display: flex;
@@ -67,6 +70,7 @@
 			list-style-type: none;
 		}
 		ul li{
+			box-sizing: border-box;
 			padding: 20px;
 			display: list-item;
 		}
@@ -111,6 +115,7 @@
 			display: block;
 		}
 		#search input{
+			box-sizing: border-box;
 			display: inline;
 			padding: 5px;
 		}
@@ -121,8 +126,9 @@
 		}
 		#footer{
 			box-sizing: border-box;
-			position: fixed;
+			position: relative;
 			width: 100%;
+			height: 10%;
 			background: #000;
 			color: white;
 			padding: 20px;
@@ -130,7 +136,7 @@
 		}
 			
 		#menu{
-			padding: 20px;
+			padding: 8px;
 			border: none;
 			background: none;
 			outline: none;
@@ -143,16 +149,13 @@
 		#content{
 			overflow: hidden;
 			width: 100vw;
+			height: 80%;
 			margin-bottom: 50px;
 		}
 		@media only screen and (min-width: 490px) and (max-width: 766px){
-				 #header{
-		 	height: 25px;
-		 }
 		}
 		@media only screen and (max-width: 768px) {
 		 #header{
-		 	height: 25px;
 		 }
 		 ul{
 		 	width: 100%;
@@ -191,7 +194,8 @@
 		  	float: right;
 		  	display: block;
 		  }
-		  #left{
+		  		#container  #header #left{
+		  			padding: 8px;
 		  	width: 100%;
 		  }
 		  #right{

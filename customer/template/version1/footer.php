@@ -43,11 +43,11 @@ function myFunction() {
   } else {
      document.getElementById("header").style.position = "relative";
   }
-   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    document.getElementById("footer").style.position = "sticky";
-  } else {
-     document.getElementById("footer").style.position = "fixed";
-  }
+  //  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+  //   document.getElementById("footer").style.position = "sticky";
+  // } else {
+  //    document.getElementById("footer").style.position = "fixed";
+  // }
  
  
 }

@@ -3,6 +3,7 @@ require_once('customer/template/version1/header.php');
 $subTitle = "Search";
 $keyword= "";
 $keyword = $_GET['keyword'];
+$sort = $keyword = $brand = $type = "";
 ?>
 <style type="text/css">
 	.scontent{
@@ -55,7 +56,9 @@ $keyword = $_GET['keyword'];
   margin: auto;
   height: 400px;
 }
-
+.item .view{
+  height: 100%;
+}
 .item:hover{
   transition: 0.1s;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -72,9 +75,20 @@ $keyword = $_GET['keyword'];
   text-decoration: none;
   color: white;
 }
-.item img{
+.item .view .img{
   width: 100%;
-  height: 80%;
+  height: 70%;
+}
+.item .view .img img{
+  height: 100%;
+  width: 100%;
+}
+.item .view .name{
+  height: 20%;
+
+}
+.item .view .price{
+  height: 9%;
 }
 .view{
   text-decoration: none;
@@ -105,11 +119,9 @@ $keyword = $_GET['keyword'];
   }
   .item{
     height: 300px;
-    width: 60%;
+    width: 43%;
   }
-  .item img{
-    height: 60%;
-  }
+ 
 }
 @media only screen and (max-width: 768px){
  .new{
@@ -129,6 +141,22 @@ $keyword = $_GET['keyword'];
 }
 .hidden{
   display: none;
+}
+.page1{
+  overflow: auto;
+  padding: 20px;
+  width: 100%;
+  text-align: center; 
+}
+.page1 a{
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+  padding:3px;
+}
+.page1 a.active{
+  background: black;
+  color: white;
 }
 </style>
 
@@ -184,8 +212,8 @@ $keyword = $_GET['keyword'];
              <option value="">------------</option>
              <?php foreach ($query_type as $key): ?>
               <?php if ($_GET['type'] == $key['id']): ?>
-                 <option value="<?php echo $key['id'] ?>" selected><?php echo $key['name'] ?></option>
-              <?php else: ?>
+               <option value="<?php echo $key['id'] ?>" selected><?php echo $key['name'] ?></option>
+               <?php else: ?>
                 <option value="<?php echo $key['id'] ?>"><?php echo $key['name'] ?></option>
               <?php endif ?>
               
@@ -193,107 +221,142 @@ $keyword = $_GET['keyword'];
           </select>
         </span>
         <span>
-           Brand:
-           <?php 
-           $query_type = mysqli_query($connection,"SELECT * FROM brand");
-           ?>
-           <select name="brand" id="">
-             <option value="">------------</option>
-             <?php foreach ($query_brand as $key): ?>
-              <?php if ($_GET['brand'] == $key['id']): ?>
-                 <option value="<?php echo $key['id'] ?>" selected><?php echo $key['name'] ?></option>
-              <?php else: ?>
-                <option value="<?php echo $key['id'] ?>"><?php echo $key['name'] ?></option>
-              <?php endif ?>
-              
-            <?php endforeach ?>
-          </select>
-        </span>
-      </form>
+         Brand:
+         <?php 
+         $query_type = mysqli_query($connection,"SELECT * FROM brand");
+         ?>
+         <select name="brand" id="">
+           <option value="">------------</option>
+           <?php foreach ($query_brand as $key): ?>
+            <?php if ($_GET['brand'] == $key['id']): ?>
+             <option value="<?php echo $key['id'] ?>" selected><?php echo $key['name'] ?></option>
+             <?php else: ?>
+              <option value="<?php echo $key['id'] ?>"><?php echo $key['name'] ?></option>
+            <?php endif ?>
+            
+          <?php endforeach ?>
+        </select>
+      </span>
+    </form>
 
-    </div>
-    <div class="new">
+  </div>
+  <div class="new">
 
-     <?php
-     if (isset($_GET['keyword'])) {
-       $keyword = $_GET['keyword'];
+   <?php
+   if (isset($_GET['keyword'])) {
+     $keyword = $_GET['keyword'];
         //sort
-       $sortsql = "";
-       if (isset($_GET['sort'])) {
-         $sort = $_GET['sort'];
-         switch ($sort) {
-          case '1':
-          $sortsql = "AND product_price < 100";
-          break;
-          case '2':
-          $sortsql = "AND product_price > 100 AND product_price < 500 ";
-          break;
-          case '3':
-          $sortsql = "AND product_price > 500 AND product_price < 1000 ";
+     $sortsql = "";
+     if (isset($_GET['sort'])) {
+       $sort = $_GET['sort'];
+       switch ($sort) {
+        case '1':
+        $sortsql = "AND product_price < 100";
+        break;
+        case '2':
+        $sortsql = "AND product_price > 100 AND product_price < 500 ";
+        break;
+        case '3':
+        $sortsql = "AND product_price > 500 AND product_price < 1000 ";
             # code...
-          break;
-          case '4':
-          $sortsql = "AND product_price > 1000 AND product_price < 5000 ";
+        break;
+        case '4':
+        $sortsql = "AND product_price > 1000 AND product_price < 5000 ";
             # code...
-          break;
-          case '5':
-          $sortsql = "AND product_price > 5000 ";
+        break;
+        case '5':
+        $sortsql = "AND product_price > 5000 ";
             # code...
-          break;
+        break;
 
-          default:
+        default:
             # code...
-          break;
-        }
+        break;
       }
-      $typesql = "";  
-      if (isset($_GET['type'])) {
-        $type = $_GET['type'];
-        if ($type == "") {
-          $typesql = "";
-        }else{
-          $typesql = "AND product_type =".$type;
-        }
-        
-        
-      }
-      $brandsql = "";  
-      if (isset($_GET['brand'])) {
-        $brand = $_GET['brand'];
-        if ($brand == "") {
-          $brandsql = "";
-        }else{
-          $brandsql = "AND product_brand = ".$brand;
-        }
-        
-        
-      }
-      $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."";
-    }else{
-     $sql = "SELECT * FROM products";
-   } 
-   $query = mysqli_query($connection,$sql);
-  
-   if (!$query) {
-    echo "Error: ". mysql_connect_error();
-  }else if (mysqli_num_rows($query) == 0) {
-    echo "No result for ".$keyword;
-  }else{
-    foreach ($query as $key) {
-      $id = $key['id'];
-      $img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
-
-      echo "<div class='item'>";
-      echo "<a class='view' href='?s=products&act=detail&id=$id'>";
-      echo "<img src='./public/img/product/".$img['url']."'>";
-      echo "<b>".$key['product_name']."</b><br><br>";
-      echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
-      echo "<a class='view' href='?s=products&act=detail&id=$id'>";
-      echo "</div>";
     }
-  }
-  ?>
+    $typesql = "";  
+    if (isset($_GET['type'])) {
+      $type = $_GET['type'];
+      if ($type == "") {
+        $typesql = "";
+      }else{
+        $typesql = "AND product_type =".$type;
+      }
+      
+      
+    }
+    $brandsql = "";  
+    if (isset($_GET['brand'])) {
+      $brand = $_GET['brand'];
+      if ($brand == "") {
+        $brandsql = "";
+      }else{
+        $brandsql = "AND product_brand = ".$brand;
+      }
+      
+      
+    }
+    $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."" ;
+  }else{
+   $sql = "SELECT * FROM products";
+ } 
+ $query = mysqli_query($connection,$sql);
+   // PAGENIATION
+ if (!isset($_GET['page'])) {
+  $present_page = 1;
+}else{
+  $present_page = $_GET['page'];
+}
+$total_product = mysqli_num_rows($query);
+$limit = 8;
+$total_page = ceil($total_product/$limit);
+$skip = ($present_page - 1)*$limit;
+$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."LIMIT $limit OFFSET $skip" ;
+$query = mysqli_query($connection,$sql);
+if (!$query) {
+  echo "Error: ". mysql_connect_error();
+}else if (mysqli_num_rows($query) == 0) {
+  echo "No result for ".$keyword;
+}else{
+  foreach ($query as $key) {
+    $id = $key['id'];
+    $img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
 
+    echo "<div class='item'>";
+    echo "<a class='view' href='?s=products&act=detail&id=$id'>";
+    echo "<div class='img'>";
+    echo "<img src='./public/img/product/".$img['url']."'>";
+    echo "</div>";
+    echo "<div class='name'>";
+    echo "<b>".$key['product_name']."</b><br><br>";
+    echo "</div>";
+    echo "<div class='price'>";
+    echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
+    echo "</div>";
+
+    echo "</a>";
+    echo "</div>";
+  }
+}
+?>
+</div>
+
+<div class="page1">
+  <a href="#">Page:
+  </a>  
+  <?php
+  $isactive = "";
+  if (isset($_GET['page'])) {
+   if ($_GET['page'] == $present_page) {
+    $isactive = "active";
+  }
+}
+
+for ($i=1; $i <= $total_page ; $i++) { 
+  // /?s=products&act=search&keyword=&sort=&type=&brand=
+  echo "<a class='$isactive' href='?s=products&act=search&keyword=".$keyword."&sort=".$sort."&type=".$type."&brand=".$brand."&page=".$i."'>".$i."</a>";
+
+} ?>
 </div>
 </div>
 <?php 

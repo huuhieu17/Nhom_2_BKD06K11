@@ -10,38 +10,38 @@
 		color: gray;
 		font-weight: bold;
 	}
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-  margin:auto;
-}
+	#customers {
+		font-family: Arial, Helvetica, sans-serif;
+		border-collapse: collapse;
+		width: 80%;
+		margin:auto;
+	}
 
-a#add{
-	font-weight: bold;
-	text-decoration: underline;
-}
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+	a#add{
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	#customers td, #customers th {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
 
 
 
-#customers tr:hover {background-color: #ddd;}
+	#customers tr:hover {background-color: #ddd;}
 
-#customers th {
-  		padding-top: 12px;
+	#customers th {
+		padding-top: 12px;
 		padding-bottom: 12px;
 		text-align: left;	
 		color: black;
-}
-td a{
-	font-weight: bold;
-}
-.action{
-	text-align: center;
-}
+	}
+	td a{
+		font-weight: bold;
+	}
+	.action{
+		text-align: center;
+	}
 </style>
 
 <table id="customers">
