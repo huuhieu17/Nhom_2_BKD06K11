@@ -1,6 +1,7 @@
   <?php
   require_once('customer/template/version1/header.php');
   $subTitle = "Brand";
+  $keyword = "";
   ?>
   <style>
     .all{
@@ -116,7 +117,7 @@
     }
     @media only screen and (max-width: 768px){
       .all{
-        
+
       }
       .mobile{
         display: block;
@@ -127,7 +128,7 @@
 
     }
     @media only screen and (max-width: 768px) and (min-width: 426px) {
-      
+
       .center{
         width: 100%;
       }
@@ -145,22 +146,22 @@
       }
     }
 
-.page1{
-  overflow: auto;
-  padding: 20px;
-  width: 100%;
-  text-align: center; 
-}
-.page1 a{
-  text-decoration: none;
-  color: black;
-  margin-right: 10px;
-  padding:3px;
-}
-.page1 a.active{
-  background: black;
-  color: white;
-}
+    .page1{
+      overflow: auto;
+      padding: 20px;
+      width: 100%;
+      text-align: center; 
+    }
+    .page1 a{
+      text-decoration: none;
+      color: black;
+      margin-right: 10px;
+      padding:3px;
+    }
+    .page1 a.active{
+      background: black;
+      color: white;
+    }
   </style>
   <div class="all">
     <div class="mobile">
@@ -180,27 +181,37 @@
  <?php endforeach ?>
 </div>
 <div class="center">
- 
+
  <?php
  if (isset($_GET['id'])) {
-   $keyword = $_GET['id'];
+  if ($_GET['id'] == "") {
+     $sql = "SELECT * FROM products";
+  }else{
+       $keyword = $_GET['id'];
    $sql = "SELECT * FROM products WHERE product_brand = '$keyword'";
+  }
+
  }else{
    $sql = "SELECT * FROM products";
  } 
- $query = mysqli_query($connection,$sql); //get total product
  if (!isset($_GET['page'])) {
   $present_page = 1;
 }else{
   $present_page = $_GET['page'];
 }
- $total_product = mysqli_num_rows($query);
- $limit = 8;
- $total_page = ceil($total_product/$limt);
- $skip = ($present_page-1)*$limit;
+$query = mysqli_query($connection,$sql); //get total product
+$total_product = mysqli_num_rows($query);
+$limit = 8;
+$total_page = ceil($total_product/$limit);
+$skip = ($present_page - 1)*$limit;
+if (!isset($_GET['id']) || $_GET['id'] == "") {
+  $sql = "SELECT * FROM products LIMIT $limit OFFSET $skip";
+}else{
   $sql = "SELECT * FROM products WHERE product_brand = '$keyword' LIMIT $limit OFFSET $skip";
-   $query = mysqli_query($connection,$sql);
- if (!$query) {
+}
+
+$query = mysqli_query($connection,$sql);
+if (!$query) {
   echo "Error: ". mysql_connect_error();
 }else if (mysqli_num_rows($query) == 0) {
   echo "No product";
@@ -225,8 +236,6 @@
   }
 }
 ?>
-</div>
-
 <div class="page1">
   <a href="#">Page:
   </a>  
@@ -240,11 +249,11 @@
 
 for ($i=1; $i <= $total_page ; $i++) { 
   // /?s=products&act=search&keyword=&sort=&type=&brand=
-  echo "<a class='$isactive' href='?s=products&act=search&keyword=".$keyword."&sort=".$sort."&type=".$type."&brand=".$brand."&page=".$i."'>".$i."</a>";
+  echo "<a class='$isactive' href='?s=products&act=brand&id=".$keyword."&page=".$i."'>".$i."</a>";
 
 } ?>
 </div>
-
+</div>
 </div>
 <?php 
 require_once('customer/template/version1/footer.php'); ?>

@@ -1,6 +1,7 @@
 <?php
 require_once('customer/template/version1/header.php');
 $subTitle = "Product";
+$sku_id = "";
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$sql = "SELECT * FROM products WHERE id = '$id'";
@@ -31,7 +32,7 @@ $subTitle = "Product";
 		$sku_id = $product_s['id'];
 	}
 ?>
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'> </script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'> </script>
 <style>
 	.pcontent{
 		border-top: 1px solid #eee;
@@ -399,7 +400,12 @@ function showSlides(n) {
 			<p id="quantity"><?php echo $product_quantity ?></p>
 			<br>
 			<?php if ($row['product_status'] == 1): ?>
-				<a href="?s=invoices&act=cart&id=<?php echo $sku_id ?>&up"><button id="addcart" type="button">Add To Cart</button></a>
+				<?php if (isset($_POST['size'])): ?>
+					<a href="?s=invoices&act=cart&id=<?php echo $sku_id ?>&up"><button id="addcart" type="button">Add To Cart</button></a>
+					<?php else: ?>
+					<a href="#"><button id="addcart" type="button">Add To Cart</button></a>
+				<?php endif ?>
+				
 			<?php endif ?>
 			
 			<hr>

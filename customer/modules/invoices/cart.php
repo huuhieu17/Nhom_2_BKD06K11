@@ -20,8 +20,15 @@ if (isset($_GET['id'])) {
 		$_SESSION['cart'][$id] = 1;
 	}
 	header("Location:index.php?s=invoices&act=cart");
-	// echo "<script>window.location.replace('')</script>";
+	
 }
+if (isset($_SESSION['user'])) {
+	$userid = $_SESSION['user']['id'];
+	$user_sql = "SELECT name,phone,address FROM customers WHERE id = '$userid' ";
+	$query = mysqli_query($connection,$user_sql);
+	$userinfo = mysqli_fetch_assoc($query);
+}
+
 ?>
  <style>
  	table{
@@ -35,7 +42,7 @@ if (isset($_GET['id'])) {
  		text-align: center;
  	}
  	th{
- 		text-align: left
+ 		text-align: center;
  	}
  	.btn-q{
  	padding: 5px;
@@ -69,7 +76,12 @@ if (isset($_GET['id'])) {
  		width: 100%;
  		border:0;
  		border-bottom: 1px solid #eee;
+ 		border-top: 1px solid #eee;
  		padding: 10px;
+ 	}
+ 	span{
+ 		font-size: 13px;
+ 		color:#aaa;
  	}
  </style>
  <div class="cart">
@@ -89,11 +101,15 @@ if (isset($_GET['id'])) {
  		$total = 0;
  		foreach ($_SESSION['cart'] as $id => $quantity) {
  			$count +=1;
- 		 	$sql = "SELECT products.id,products.product_name, products.product_price, sku.sku, sku.color_id, sku.size_id FROM sku INNER JOIN products WHERE sku.id = '$id' AND products.id = sku.product_id";
+ 		 	$sql = "SELECT products.id,products.product_name, products.product_price, sku.sku, sku.color_id, sku.size_id,sku.quantity FROM sku INNER JOIN products WHERE sku.id = '$id' AND products.id = sku.product_id";
  		 	$query = mysqli_query($connection,$sql);
  		 	$row = mysqli_fetch_assoc($query);
  		 	$product_id = $row['id'];
  		 	$img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id ='$product_id'"));
+ 		 	$quantity_product = $row['quantity'];
+ 		 	if ($quantity > $quantity_product) {
+ 		 		$quantity = $quantity_product;
+ 		 	}
  		 	$name = $row['product_name'];
  		 	$price = $row['product_price'];
  		 	$color_id = $row['color_id'];
@@ -110,9 +126,16 @@ if (isset($_GET['id'])) {
  		 	echo "</td>";
  		 	echo "<td> $price $ </td>";
  		 	echo "<td>";
+
  		 	echo "<a href='?s=invoices&act=cart&id=$id&down'><button class='btn-q'>-</button></a>";
  		 	echo $quantity;
- 		 	echo "<a href='?s=invoices&act=cart&id=$id&up'><button class='btn-q'>+</button></a>";
+ 		 	if ($quantity == $quantity_product) {
+ 		 		echo "<a href='#'><button class='btn-q' type='buttom'>+</button></a>";
+ 		 	}else{
+ 		 		echo "<a href='?s=invoices&act=cart&id=$id&up'><button class='btn-q'>+</button></a>";
+ 		 	}
+ 		 	
+ 		 	echo "</br>Quantity remaining:" .$quantity_product;
  		 	echo "</td>";
  		 	echo "<td>".($price * $quantity)."$ </td>";
  		 	$total += ($price * $quantity);
@@ -120,8 +143,9 @@ if (isset($_GET['id'])) {
  		 		if (isset($_POST['btn'])) {
  		 			$id_cart = $_POST['id'];
  		 			unset($_SESSION['cart'][$id_cart]);
+ 		 			header("Location:index.php?s=invoices&act=cart");
  		 		}
- 		 		echo "<form action='#' method ='POST'>";
+ 		 		echo "<form action='index.php?s=invoices&act=cart' method ='POST'>";
  		 			echo "<input type='hidden' name='id' value='$id'>";
  		 			echo "<button name='btn'>Remove</button>";
  		 		echo "</form>";
@@ -139,12 +163,28 @@ if (isset($_GET['id'])) {
  	</table>
  	<div class="buy">
  		<button onclick="window.location.replace('?s=home')">Continue Shopping</button><br>
- 		<form action="#">
- 			<input type="text" placeholder="Name"><br>
- 			<input type="number" placeholder="Phone"><br>
- 			<input type="text" placeholder="Address"><br>
- 			<button>Buy</button>
+ 		<?php if (isset($_SESSION['user'])): ?>
+ 			<form action="index.php?s=invoices&act=checkout" method="POST">
+ 				<span>Receiver Name:</span>
+ 			<input type="text" placeholder="Name" name="receiver_name"value="<?php echo $userinfo['name'] ?>"><br>
+ 			<span>Receiver PhoneNumber:</span>
+ 			<input type="number" name="receiver_phone" placeholder="Phone" value="<?php echo $userinfo['phone'] ?>"><br>
+ 			<span>Receiver Address:</span>
+ 			<input type="text" name="receiver_address" placeholder="Address" value="<?php echo $userinfo['address'] ?>"><br>
+
+ 			<input type="hidden" name="total_amount" value="<?php echo $total ?>" >
+ 			<span>Receiver Note:</span>
+ 			<input type="text" name="receiver_note" placeholder="Note" value="">
+ 			<?php if ($total == 0): ?>
+ 				<button type ="button" name="btnCheckOut">Checkout</button>
+ 				<?php else: ?>
+ 			<button name="btnCheckOut">Checkout</button>
+ 			<?php endif ?>
  		</form>
+ 		<?php else: ?>
+ 			<Button onclick="window.location.replace('?s=home&act=login&checkout')">Login To Checkout</Button>
+ 		<?php endif ?>
+ 		
  	</div>	
 
  </div>

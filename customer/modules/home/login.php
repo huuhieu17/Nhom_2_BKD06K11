@@ -25,8 +25,12 @@ if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 			$_SESSION['user']['id'] = $row['id'];
 			mysqli_close($connection);
 			//problem with header location
+			if (isset($_GET['checkout'])) {
+				header('Location:?s=invoices&act=cart');
+			}else{
+				header('Location:?s=home');
+			}
 			
-			header('Location:?s=home');
 
 		}
 	}

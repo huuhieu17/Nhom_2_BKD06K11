@@ -3,6 +3,7 @@ require_once('customer/template/version1/header.php');
 $subTitle = "Type";
 $sql = "SELECT * FROM categorizes";
 $query_type = mysqli_query($connection,$sql);
+$keyword = "";
 ?>
 <style>
   .all{
@@ -158,6 +159,22 @@ $query_type = mysqli_query($connection,$sql);
       width: 17%;
     }
   }
+   .page1{
+      overflow: auto;
+      padding: 20px;
+      width: 100%;
+      text-align: center; 
+    }
+    .page1 a{
+      text-decoration: none;
+      color: black;
+      margin-right: 10px;
+      padding:3px;
+    }
+    .page1 a.active{
+      background: black;
+      color: white;
+    }
 
 </style>
 <div class="all">
@@ -180,13 +197,33 @@ $query_type = mysqli_query($connection,$sql);
   <div class="center">
     
    <?php
-   if (isset($_GET['id'])) {
-    $keyword = $_GET['id'];
-    $sql = "SELECT * FROM products WHERE product_type = '$keyword'";
+  if (isset($_GET['id'])) {
+  if ($_GET['id'] == "") {
+     $sql = "SELECT * FROM products";
   }else{
+       $keyword = $_GET['id'];
+   $sql = "SELECT * FROM products WHERE product_type = '$keyword'";
+  }
+
+ }else{
    $sql = "SELECT * FROM products";
  } 
+  if (!isset($_GET['page'])) {
+  $present_page = 1;
+}else{
+  $present_page = $_GET['page'];
+}
  $query = mysqli_query($connection,$sql);
+$query = mysqli_query($connection,$sql); //get total product
+$total_product = mysqli_num_rows($query);
+$limit = 8;
+$total_page = ceil($total_product/$limit);
+$skip = ($present_page - 1)*$limit;
+if (!isset($_GET['id']) || $_GET['id'] == "") {
+  $sql = "SELECT * FROM products LIMIT $limit OFFSET $skip";
+}else{
+  $sql = "SELECT * FROM products WHERE type = '$keyword' LIMIT $limit OFFSET $skip";
+}
  if (!$query) {
   echo "Error: ". mysql_connect_error();
 }else if (mysqli_num_rows($query) == 0) {
@@ -215,6 +252,23 @@ $query_type = mysqli_query($connection,$sql);
   }
 }
 ?>
+<div class="page1">
+  <a href="#">Page:
+  </a>  
+  <?php
+  $isactive = "";
+  if (isset($_GET['page'])) {
+   if ($_GET['page'] == $present_page) {
+    $isactive = "active";
+  }
+}
+
+for ($i=1; $i <= $total_page ; $i++) { 
+  // /?s=products&act=search&keyword=&sort=&type=&brand=
+  echo "<a class='$isactive' href='?s=products&act=brand&id=".$keyword."&page=".$i."'>".$i."</a>";
+
+} ?>
+</div>
 </div>
 </div>
 <?php 
