@@ -88,7 +88,7 @@ if (isset($_POST['btn'])) {
 			<span style="color:red;font-size: 13px;" id="error">
 				<?php
 				if (isset($_POST['btn'])) {
-					echo $error;
+					echo $error.'</br>';
 				}
 				?>
 

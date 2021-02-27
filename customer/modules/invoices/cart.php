@@ -31,6 +31,9 @@ if (isset($_SESSION['user'])) {
 
 ?>
  <style>
+ 	.cart{
+ 		height: 100vh;
+ 	}
  	table{
  		float: left;
  		width: 80%;

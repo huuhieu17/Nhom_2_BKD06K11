@@ -36,7 +36,7 @@
 			width: 100%;
 			height: 7%;
 			background: white;
-			border-bottom: 1px solid #eee;
+			border-bottom: 2px solid #eee;
 		}
 		#container  #header #left{
 			padding: 8px;
@@ -303,6 +303,7 @@
 						echo "<li><a href='?s=account&act=general' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
 							<ul>
 											<li><a class='act' href='?s=account&act=general'><i class='fa fa-user'></i>  Account </a></li>
+											<li><a class='act' href='?s=invoices&act=history'><i class='fa fa-history'></i>  Order History </a></li>
 											<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
 							</ul>
 						</li>";

@@ -2,8 +2,18 @@
 require_once('customer/template/version1/header.php');
 $subTitle = "Checkout";
 ?>
+<style>
+	.checkout a{
+		text-decoration: none;
+		color: black;
+		font-weight: bold;
+	}
+	.checkout{
+		height: 100vh;
+	}
+</style>
 <div class="checkout">
-	<?php if (!isset($_SESSION['user']) || !isset($_SESSION['cart'])): ?>
+	<?php if (!isset($_SESSION['user'])): ?>
 		<?php header("Location:?s=home&act=login&error=1"); ?>
 		<?php else: ?>
 			<h1>Checkout</h1>
@@ -35,14 +45,15 @@ $subTitle = "Checkout";
 							$sql = "UPDATE sku SET quantity ='$newQuantity' WHERE id='$id'";
 							$query = mysqli_query($connection,$sql);
 						}
+						$_SESSION['id_invoice'] = $id_invoice;
 					unset($_SESSION['cart']);
+
 					}
 				}
 			?>
 			<h1>Your Order Has Been Processed! </h1>
-			<h4> THANK YOU</h4>
 			<p>Thanks for shopping with us online! Your order has been successful processed!</p>
-			<p>Order Number:</p><a href="?s=invoices&act=detail&id=<?php echo $id_invoice ?>"><?php echo $id_invoice ?></a>
+			<span>Order Number:</span><a href="?s=invoices&act=detail&id=<?php echo $_SESSION['id_invoice'] ?>">	#<?php echo $_SESSION['id_invoice'] ?></a>
 	<?php endif ?>
 </div>
 <?php 
