@@ -20,6 +20,9 @@ require_once 'template/header.php';
 	}
 ?>
 <style>
+	#contents{
+		height: 100vh;
+	}
 	#addbrand{
 		width: 100%;
 		background: #f1f1f1;

@@ -2,6 +2,7 @@
 require_once 'template/header.php'; ?>
 <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <style>
+	
 	a.nav{
 		color: gray;
 		font-weight: bold;

@@ -58,7 +58,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		}
 		#sidebar{
 			width: 15%;
-			height: 100%;
+			height: 89%;
 			float: left;
 			border: 1px solid #d2d6de;
 			border-top: 0;
@@ -66,7 +66,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 			background: #f9fafc;
 		}
 		#footer{
-			height: 100%;
+			height: 5%;
 			width: 100%;
 		    overflow: hidden;
 		    display: block;
@@ -74,7 +74,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		}
 		#content{
 			box-sizing: border-box;
-			height: 100%;
+			height: 89%;
 			width: 84%;
 			float: left;
 		}
@@ -243,7 +243,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 					<?php endif ?>
 				
 				<div class="link">
-					<a href="#"><i class="fa fa-handshake-o"></i> Transaction / Order </a>
+					<a href="?modules=invoices&action=manage"><i class="fa fa-handshake-o"></i> Transaction / Order </a>
 				</div>
 				<div class="link">
 					<a href="#"><i class="fa fa-newspaper-o"></i> News</a>

@@ -44,7 +44,6 @@
       padding: 10px;
       margin-left: auto;
       margin-right: auto;
-      height: 400px;
     }
 
     .item:hover{
@@ -201,7 +200,7 @@
 }
 $query = mysqli_query($connection,$sql); //get total product
 $total_product = mysqli_num_rows($query);
-$limit = 8;
+$limit = 10;
 $total_page = ceil($total_product/$limit);
 $skip = ($present_page - 1)*$limit;
 if (!isset($_GET['id']) || $_GET['id'] == "") {

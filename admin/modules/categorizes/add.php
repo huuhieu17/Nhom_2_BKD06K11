@@ -33,6 +33,9 @@ require_once 'template/header.php';
 		color: gray;
 		font-weight: bold;
 	}
+	#contents{
+		height: 100vh;
+	}
 </style>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a>/<a class="nav"href="?modules=categorizes&action=add">Add</a>
 <div id="addbrand">

@@ -5,7 +5,9 @@
 
 
 <style>
-
+	#contents{
+		height: 100vh;
+	}
 	a.nav{
 		color: gray;
 		font-weight: bold;
@@ -73,3 +75,4 @@
 	}
 	?>
 </table>
+<?php require_once 'template/footer.php'; ?>

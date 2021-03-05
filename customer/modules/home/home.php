@@ -123,10 +123,10 @@ require_once('customer/template/version1/header.php');
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   float: left;
-  width: 30%;
+  width: 23%;
   padding: 10px;
   margin: 0 auto 0 auto;
-  height: 400px;
+  height: 25vw;
 }
 
 .item:hover{
@@ -146,14 +146,15 @@ require_once('customer/template/version1/header.php');
 }
 .item .view .img{
   width: 100%;
-  height: 70%;
+  height: 80%;
 }
 .item .view .img img{
   height: 100%;
   width: 100%;
 }
 .item .view .name{
-  height: 20%;
+  height: 10%;
+  overflow: hidden;
 
 }
 .item .view .price{
@@ -173,11 +174,10 @@ h1{
     display: none;  
   }
   .item{
-    height: 300px;
-    width: 44%;
+    width: 42%;
   }
-  .item img{
-    height: 70%;
+  .item{
+    height: 60vw;
   }
   a{
     font-size: 15px;
@@ -193,8 +193,8 @@ h1{
     height: 100%;
   }
   .item{
-    height: 350px;
-    width: 45%;
+    width: 30%;
+    height: 40vw;
   }
 }
 
@@ -278,7 +278,7 @@ h1{
     <hr>
     <div class="new">
      <?php 
-     $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC LIMIT 8 ";
+     $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC LIMIT 15 ";
      $query = mysqli_query($connection,$sql);
      if (!$query) {
       echo "Error: ". mysql_connect_error();

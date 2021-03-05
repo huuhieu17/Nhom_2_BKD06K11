@@ -33,6 +33,9 @@ if (!$query) {
 }
 ?>
 <style>
+	#contents{
+		height: 100vh;
+	}
 	a.nav{
 		color: gray;
 		font-weight: bold;

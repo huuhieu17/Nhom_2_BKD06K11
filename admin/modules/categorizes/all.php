@@ -3,6 +3,9 @@
 <h1>Manage Product Type</h1>
 
 <style>
+	#contents{
+		height: 100vh;
+	}
 	a.nav{
 		color: gray;
 		font-weight: bold;

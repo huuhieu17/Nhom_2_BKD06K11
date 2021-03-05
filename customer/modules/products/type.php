@@ -32,6 +32,7 @@ $keyword = "";
     flex-direction: row;
     width: 83%;
     float: left;
+    overflow: auto;
   }
   .center:after{
     content: "";
@@ -46,7 +47,6 @@ $keyword = "";
     width: 23%;
     padding: 10px;
     margin: 0 auto 0 auto;
-    height: 400px;
   }
 
   .item:hover{
@@ -216,7 +216,7 @@ $keyword = "";
  $query = mysqli_query($connection,$sql);
 $query = mysqli_query($connection,$sql); //get total product
 $total_product = mysqli_num_rows($query);
-$limit = 8;
+$limit = 10;
 $total_page = ceil($total_product/$limit);
 $skip = ($present_page - 1)*$limit;
 if (!isset($_GET['id']) || $_GET['id'] == "") {

@@ -20,6 +20,9 @@ require_once 'template/header.php';
 	}
 ?>
 <style>
+	#contents{
+		height: 100vh;
+	}
 	#addbrand{
 		width: 100%;
 		background: #f1f1f1;
@@ -55,3 +58,4 @@ require_once 'template/header.php';
 	<button name="btn">Add</button>
 	</form>
 </div>
+<?php require_once 'template/footer.php'; ?>

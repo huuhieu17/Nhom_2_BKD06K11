@@ -2,7 +2,7 @@
 
 
 // module
-error_reporting(0);	
+// error_reporting(0);	
 $module = $action = "";
 if (isset($_GET['modules'])) {
 	$module = $_GET['modules'];

@@ -41,7 +41,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="#">Edit</a>
 <br><br>
-<h1>Add Product</h1>
+<h1>Edit Product</h1>
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
 	<input type="text" name="name" placeholder="Name products" value="<?php echo $row['product_name'] ?>">
