@@ -274,7 +274,7 @@ h1{
       }
 
     </script>
-    <h1>New Product</h1>
+    <h1>New Arrival</h1>
     <hr>
     <div class="new">
      <?php 
@@ -297,7 +297,7 @@ h1{
         echo "<b>".$key['product_name']."</b>";
         echo "</div>";
         echo "<div class='price'>";
-        echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
+        echo "<b><p style='color:red'>".number_format($key['product_price'],0,'','.')."$</p></b>";
         echo "</div>";               
         echo "</a>";
         echo "</div>";

@@ -118,7 +118,7 @@ $query = mysqli_query($connection,$sql);
 			<?php foreach ($query as $row): ?>
 				<tr>
 					<td><?php echo $row['id'] ?></td>
-					<td><?php echo $row['total_amounts'] ?></td>
+					<td><?php echo number_format($row['total_amounts'],0,'','.')." $"; ?></td>
 					<td><?php echo date("F j, Y H:ia", strtotime($row['create_at'])); ?></td>
 					<td><?php echo $row['receiver'] ?></td>		
 					<td><?php echo $row['phone'] ?></td>		
@@ -151,9 +151,13 @@ $query = mysqli_query($connection,$sql);
 					<td colspan="5">
 						Page: 
 						<?php
+						$paid = "";
+						if (isset($_GET['paid'])) {
+							$paid = $_GET['paid'];
+						}
 						for ($i=1; $i <= $totalPage ; $i++) { 
   // /?s=products&act=search&keyword=&sort=&type=&brand=
-							echo "<a href='?s=invoices&act=history&paid=".$_GET['paid']."&page=$i'>".$i."</a>";
+							echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i'>".$i."</a>";
 
 						} ?>
 					</td>

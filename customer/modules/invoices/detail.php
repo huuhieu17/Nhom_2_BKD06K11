@@ -117,7 +117,7 @@ if (isset($_GET['id'])) {
 			<?php endforeach ?>
 			<tr>
 					<th>Total Amout</th>
-					<td colspan="2" style="color: red;font-weight: bold;"><?php echo $show['total_amounts'] ?>$</td>	
+					<td colspan="2" style="color: red;font-weight: bold;"><?php echo number_format($show['total_amounts'],0,'','.'); ?>$</td>	
 				</tr>
 		</table>
 		<script>

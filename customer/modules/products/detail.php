@@ -335,7 +335,7 @@ function showSlides(n) {
 			
 			<h2 style="color: red">
 				<?php if ($row['product_status'] == 1): ?>
-					<?php echo $row['product_price']."$" ?></h2>
+					<?php echo number_format($row['product_price'],0,'','.')." $"; ?></h2>
 				<?php endif ?>
 				<?php if ($row['product_status'] == 0): ?>
 					Not Available

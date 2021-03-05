@@ -127,7 +127,7 @@ if (isset($_SESSION['user'])) {
  		 	echo "Color: ".$getColor['value']."<br>" ;
  		 	echo "Size: ".$getSize['value'];
  		 	echo "</td>";
- 		 	echo "<td> $price $ </td>";
+ 		 	echo "<td> ".number_format($price,0,'','.')." $</td>";
  		 	echo "<td>";
 
  		 	echo "<a href='?s=invoices&act=cart&id=$id&down'><button class='btn-q'>-</button></a>";
@@ -140,7 +140,7 @@ if (isset($_SESSION['user'])) {
  		 	
  		 	echo "</br>Quantity remaining:" .$quantity_product;
  		 	echo "</td>";
- 		 	echo "<td>".($price * $quantity)."$ </td>";
+ 		 	echo "<td>".number_format($price * $quantity,0,'','.')."$ </td>";
  		 	$total += ($price * $quantity);
  		 	echo "<td>";
  		 		if (isset($_POST['btn'])) {
@@ -160,7 +160,7 @@ if (isset($_SESSION['user'])) {
  		?>
  		<tr>
  			<td colspan="6">Total Pay</td>
- 			<td><?php echo $total ?> $</td>
+ 			<td><?php echo number_format($total,0,'','.') ?> $</td>
  		</tr>
  				
  	</table>
