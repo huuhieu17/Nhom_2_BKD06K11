@@ -9,7 +9,7 @@
 		height: 100vh;
 	}
 	a.nav{
-		color: gray;
+		color: black;
 		font-weight: bold;
 	}
 	#customers {

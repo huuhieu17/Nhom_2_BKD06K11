@@ -235,23 +235,7 @@ if (!$query) {
   }
 }
 ?>
-<div class="page1">
-  <a href="#">Page:
-  </a>  
-  <?php
-  $isactive = "";
-  if (isset($_GET['page'])) {
-   if ($_GET['page'] == $present_page) {
-    $isactive = "active";
-  }
-}
 
-for ($i=1; $i <= $total_page ; $i++) { 
-  // /?s=products&act=search&keyword=&sort=&type=&brand=
-  echo "<a class='$isactive' href='?s=products&act=brand&id=".$keyword."&page=".$i."'>".$i."</a>";
-
-} ?>
-</div>
 </div>
 </div>
 <?php 

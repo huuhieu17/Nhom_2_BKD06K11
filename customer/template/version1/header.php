@@ -31,7 +31,7 @@
 			width: 100vw;
 			height: 100%;
 		}
-		#container #header{
+		#container .topnav{
 			box-sizing: border-box;
 			z-index: 99;
 			top: 0;

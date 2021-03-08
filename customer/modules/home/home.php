@@ -221,7 +221,7 @@ h1{
 <div class="slideshow">
 	<div id="sleft">
 		<div class="mySlides">
-      
+
       <img src="public/img/template/banner.jpg" style="width:100%">
     </div>
 
@@ -278,9 +278,20 @@ h1{
     <hr>
     <div class="new">
      <?php 
-     $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC LIMIT 15 ";
-     $query = mysqli_query($connection,$sql);
-     if (!$query) {
+     if (!isset($_GET['page'])) {
+      $present_page = 1;
+    }else{
+      $present_page = $_GET['page'];
+    }
+    $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC";
+    $query = mysqli_query($connection,$sql); 
+    $totalProduct = mysqli_num_rows($query);
+    $limit = 15;
+    $totalPage = ceil($totalProduct/$limit);
+    $skip = ($present_page - 1)*$limit;
+    $sql = $sql. " LIMIT $limit OFFSET $skip";
+    $query = mysqli_query($connection,$sql);
+    if (!$query) {
       echo "Error: ". mysql_connect_error();
     }else if (mysqli_num_rows($query) == 0) {
       echo "No products";
@@ -305,10 +316,27 @@ h1{
     }
     ?>
   </div>
-  <center>
-    <a href="#">SEE MORE</a>
-  </center>
 
-  <hr>
-  <?php 
-  require_once('customer/template/version1/footer.php'); ?>
+  <div class="page1">
+    <center>
+      
+      
+      Page:
+      <?php
+      $isactive = "";
+      if (isset($_GET['page'])) {
+       if ($_GET['page'] == $present_page) {
+        $isactive = "active";
+      }
+    }
+
+    for ($i=1; $i <= $totalPage ; $i++) { 
+  // /?s=products&act=search&keyword=&sort=&type=&brand=
+      echo "<a class='$isactive' href='?s=home&page=".$i."'>".$i."</a>";
+
+    } ?>
+  </center>
+</div>
+<hr>
+<?php 
+require_once('customer/template/version1/footer.php'); ?>

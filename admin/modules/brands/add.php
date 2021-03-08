@@ -33,7 +33,7 @@ require_once 'template/header.php';
 		width: 80%;
 	}
 	a.nav{
-		color: gray;
+		color: black;
 		font-weight: bold;
 	}
 </style>
