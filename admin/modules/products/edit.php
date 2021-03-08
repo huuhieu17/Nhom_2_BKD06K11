@@ -111,22 +111,22 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 			<span>
 				<?php switch ($keysize['size_id']) {
 				case '12':
-					echo S;
+					echo 'S';
 					break;
 				case '13':
-					echo M;
+					echo 'M';
 					break;
 				case '14':
-					echo L;
+					echo 'L';
 					break;
 				case '15':
-					echo XL;
+					echo 'XL';
 					break;
 				case '16':
-					echo XXL;
+					echo 'XXL';
 					break;
 				case '17':
-					echo XXXL;
+					echo 'XXXL';
 					break;
 				
 				default:
@@ -140,11 +140,14 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 		<?php 
 		 $sizearray = array(12,13,14,15,16,17);
 		 $quantity = array();
-		 $quantity = $_POST['quantity'];
+		 if (isset($_POST['quantity'])) {
+		 	 $quantity = $_POST['quantity'];
 		 for ($i=0; $i < count($quantity) ; $i++) { 
 		 	$sql = "UPDATE sku SET quantity ='$quantity[$i]' WHERE product_id = '$id_product' AND size_id='$sizearray[$i]'";
 		 	mysqli_query($connection,$sql);
 		 }
+		 }
+		
 		?>
 		<!-- <span>S:</span> <input type="number" name="squantity" placeholder="Quantity">
 		<span>M:</span> <input type="number" name="squantity" placeholder="Quantity">
