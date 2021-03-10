@@ -1,9 +1,10 @@
 <?php 
 require_once 'template/header.php';
 $subTitle = "Invoice Detail";
+$idAdmin = $_SESSION['admin']['id'];
 if (isset($_GET['id'])) {
 	$idOrder = $_GET['id'];
-		$sql = "SELECT invoices.id,invoices.create_at,invoices.receiver,invoices.phone,invoices.total_amounts,invoices.address,invoices.status,invoices.note,invoices_detail.id_product,invoices.id_customer,invoices_detail.quantity,sku.id,sku.sku,sku.color_id,sku.size_id,products.product_name FROM invoices INNER JOIN invoices_detail INNER JOIN sku INNER JOIN products WHERE invoices.id = '$idOrder' AND invoices_detail.id_product = sku.id AND sku.product_id = products.id AND invoices_detail.id_invoices = invoices.id";
+		$sql = "SELECT invoices.id,invoices.create_at,invoices.receiver,invoices.phone,invoices.total_amounts,invoices.address,invoices.status,invoices.note,invoices_detail.id_product,invoices.id_customer,invoices_detail.quantity,sku.id,sku.sku,sku.color_id,sku.size_id,products.product_name,invoices.id_admin FROM invoices INNER JOIN invoices_detail INNER JOIN sku INNER JOIN products WHERE invoices.id = '$idOrder' AND invoices_detail.id_product = sku.id AND sku.product_id = products.id AND invoices_detail.id_invoices = invoices.id";
 			$query = mysqli_query($connection,$sql);
 	if (!$query) {
 		echo "Error:";
@@ -21,7 +22,7 @@ if (isset($_GET['id'])) {
 }
 if (isset($_POST['status'])) {
 	$status = $_POST['status'];
-	$sql = "UPDATE invoices SET status = '$status' WHERE id = '$idOrder'";
+	$sql = "UPDATE invoices SET status = '$status',id_admin = '$idAdmin' WHERE id = '$idOrder'";
 	$query = mysqli_query($connection,$sql);
 	if (!$query) {
 		echo 'Error!';
@@ -70,7 +71,7 @@ if (isset($_POST['status'])) {
 	<h4> Order Information</h4>
 	<div class="info">
 		<p><span>Order Number:</span> <?php echo $idOrder ?></p>
-	<p><span>Created At:</span> <?php date("F j, Y H:i:a", strtotime($data['create_at'])); ?></p>
+	<p><span>Created At:</span> <?php echo date("F j, Y H:i a", strtotime($data['create_at'])); ?></p>
 	<p><span>Receiver Name:</span><?php echo $data['receiver'] ?> </p>
 	<p><span>Phone:</span><?php echo $data['phone'] ?> </p>
 	<p><span>Address:</span> <?php echo $data['address'] ?> </p>
@@ -95,6 +96,7 @@ if (isset($_POST['status'])) {
 					}
 		?>
 		<form action="#" method="POST">
+			Action:
 			<select name="status" id="" onchange="this.form.submit();">
 				<?php if ($data['status'] == 1): ?>
 					<option value="1" selected="">Pending</option>
@@ -121,7 +123,7 @@ if (isset($_POST['status'])) {
 			</select>
 		</form>
 	</p>
-	
+	<p><span>Admin Modify:</span><?php echo $data['id_admin']; ?></p>
 	</div>
 	
 	<h4> Order Detail</h4>

@@ -34,7 +34,7 @@ if (!$query) {
 ?>
 <style>
 	#contents{
-		height: 100vh;
+		height: 100%;
 	}
 	a.nav{
 		color: gray;
@@ -70,9 +70,25 @@ if (!$query) {
 	td a{
 		font-weight: bold;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
+	.page{
+		text-align: center;
+	}
+	@media only screen and (max-width: 768px){
+		table{
+			width: 100%;
+		}
+	}
 </style>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a><br><br>
-<h1>Manage Products</h1>
+<h4>Manage Products</h4>
 
 <table>
 	<tr>
@@ -126,12 +142,17 @@ if (!$query) {
 	}
 	?>
 </table>
-Page: 
+<div class="page">
+	Page: 
 <?php 
 
 for ($i=1; $i <= $numpage ; $i++) { 
 	echo "<a href='?modules=products&action=all&page=".$i."&keyword=".$keyword."'>".$i."</a>";
 
 }
+?>
+</div>
+
+<?php
 require_once 'template/footer.php';
 ?>

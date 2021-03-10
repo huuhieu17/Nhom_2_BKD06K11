@@ -66,6 +66,9 @@ if (isset($_GET['filter'])) {
 				border: 1px solid #eee;
 				border-collapse: collapse;
 			}
+			table tr td a{
+				text-decoration: underline;
+			}
 			#filter{
 				text-align: center;
 				margin: auto;
@@ -73,10 +76,23 @@ if (isset($_GET['filter'])) {
 			#filter button{
 				padding: 4px;
 			}
+			h4{
+				text-align: left;
+				font-size: 13px;
+				box-sizing: border-box;
+				width: 100%;
+				padding: 10px;
+				background: #f1f1f1;
+			}
+			@media only screen and (max-width: 768px){
+				table{
+					width: 100%;
+				}
+			}
 		</style>
 		<a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=invoices&action=manage">Invoices</a>
 		<div class="invoices">
-			<h1>Invoices</h1>
+			<h4>Invoices</h4>
 			<table>
 				<tr>
 					<td colspan="6" id="filter">

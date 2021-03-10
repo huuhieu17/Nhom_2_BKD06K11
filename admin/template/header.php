@@ -186,6 +186,9 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 		  	#logout{
 		  		display: block;	
 			}
+			#content{
+				width: 100%;
+			}
 	  	}
 	</style>
 </head>

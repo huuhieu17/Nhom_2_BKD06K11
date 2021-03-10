@@ -1,7 +1,7 @@
 <?php require_once 'template/header.php'; ?>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a><br><br>
-<h1>Manage Brands</h1>
+<h4>Manage Brands</h4>
 
 
 <style>
@@ -43,6 +43,19 @@
 	}
 	.action{
 		text-align: center;
+	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
+	@media only screen and (max-width: 768px) {
+		#customers{
+			width: 100%;
+		}
 	}
 </style>
 

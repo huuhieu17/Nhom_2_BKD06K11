@@ -12,7 +12,6 @@ require_once 'template/header.php';
 	}
 	#addbrand{
 		width: 100%;
-		background: #f1f1f1;
 		margin: auto;
 	}
 	form{
@@ -36,10 +35,23 @@ require_once 'template/header.php';
 		color: black;
 		font-weight: bold;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
+	@media only screen and (max-width: 768px) {
+		form{
+			width: 100%;
+		}
+	}
 </style>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a>/<a class="nav"href="?modules=brands&action=add">Add</a>
-<h1>Add Brands</h1>
+<h4>Add Brands</h4>
 <div id="addbrand">
 	<form method="POST">
 		<span>Brand Name:</span><br>

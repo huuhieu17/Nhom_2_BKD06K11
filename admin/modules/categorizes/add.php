@@ -36,9 +36,24 @@ require_once 'template/header.php';
 	#contents{
 		height: 100vh;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
+	@media only screen and (max-width: 768px) {
+		form{
+			width: 100%;
+			text-align: center;
+		}
+	}
 </style>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=categorizes&action=all">Product Type</a>/<a class="nav"href="?modules=categorizes&action=add">Add</a>
 <div id="addbrand">
+	<h4>Add Type</h4>
 	<form method="POST">
 		<span>Product Type:</span><br>
 	<input type="text" name="name" placeholder="Product Type"><br>

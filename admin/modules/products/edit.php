@@ -37,11 +37,19 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	table,tr,th,td{
 		border: 1px solid #eee;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
 </style>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="#">Edit</a>
 <br><br>
-<h1>Edit Product</h1>
+<h4>Edit Product</h4>
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
 	<input type="text" name="name" placeholder="Name products" value="<?php echo $row['product_name'] ?>">
@@ -86,7 +94,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	Color:
 	<div class="color">
 		<?php 
-			$sql ="SELECT product_variants.product_id,product_variants.product_variant_value_id,product_variants.status,variant_value.value FROM product_variants INNER JOIN variant_value WHERE product_variants.product_id = '$id_product' AND product_variants.product_variant_value_id = variant_value.id LIMIT 11";
+			$sql ="SELECT product_variants.product_id,product_variants.product_variant_value_id,product_variants.status,variant_value.value FROM product_variants INNER JOIN variant_value WHERE product_variants.product_id = '$id_product' AND product_variants.product_variant_value_id = variant_value.id AND product_variants.status = 1";
 			$query = mysqli_query($connection,$sql);
 				foreach ($query as $key => $value) {
 						if ($value['status'] == 1) {

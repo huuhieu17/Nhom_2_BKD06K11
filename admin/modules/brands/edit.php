@@ -25,7 +25,6 @@ require_once 'template/header.php';
 	}
 	#addbrand{
 		width: 100%;
-		background: #f1f1f1;
 		margin: auto;
 	}
 	form{
@@ -49,9 +48,24 @@ require_once 'template/header.php';
 		color: black;
 		font-weight: bold;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
+	@media only screen and (max-width: 768px) {
+		form{
+			width: 100%;
+			text-align: center;
+		}
+	}
 </style>
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=brands&action=all">Brands</a>/<a class="nav"href="?modules=brands&action=edit">Edit</a>
 <div id="addbrand">
+	<h4>Edit Brand</h4>
 	<form method="POST">
 		<span>Brand Name:</span><br>
 	<input type="text" name="name" placeholder="Brand Name" value="<?php echo $result['name']?>"><br>

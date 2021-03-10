@@ -169,6 +169,9 @@ require_once('customer/template/version1/header.php');
 h1{
   text-align: center;
 }
+form{
+  text-align: center;
+}
 @media only screen and (max-width: 425px) {
   .slideshow{
     display: none;  
@@ -275,6 +278,33 @@ h1{
 
     </script>
     <h1>New Arrival</h1>
+    <form action="#" method="GET">
+      <?php if (isset($_GET['gender'])): ?>
+              <?php if ($_GET['gender'] == ""): ?>
+              <input type="radio" name="gender" value ="" checked="" onchange="this.form.submit()">All
+              <?php else: ?>
+              <input type="radio" name="gender" value ="" onchange="this.form.submit()">All
+              <?php endif ?>
+            <?php if ($_GET['gender'] == 1): ?>
+              
+            <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="1"> Male
+                    <?php else: ?>
+            <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Male
+                    
+            <?php endif ?>
+            <?php if ($_GET['gender'] == 0): ?>
+               <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="0"> Female
+               <?php else: ?>
+               <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Female
+
+            <?php endif ?>
+            <?php else: ?>
+              <input type="radio" name="gender" value ="" onchange="this.form.submit()" checked="">All  <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Male <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Female
+      <?php endif ?>
+
+
+    </form>
+    
     <hr>
     <div class="new">
      <?php 
@@ -283,7 +313,15 @@ h1{
     }else{
       $present_page = $_GET['page'];
     }
-    $sql = "SELECT * FROM `products` WHERE product_status = 1 ORDER BY id DESC";
+    $gender = $sGender = $sqlGender = "";
+
+    if (isset($_GET['gender']) && ($_GET['gender']) !== "") {
+      $gender = $_GET['gender'];
+      $_SESSION['gender'] = $gender;
+      $sGender = $_SESSION['gender'];
+      $sqlGender = "AND product_gender = '$gender'";  
+    }
+    $sql = "SELECT * FROM `products` WHERE product_status = 1 ".$sqlGender." ORDER BY id DESC";
     $query = mysqli_query($connection,$sql); 
     $totalProduct = mysqli_num_rows($query);
     $limit = 15;
@@ -332,7 +370,7 @@ h1{
 
     for ($i=1; $i <= $totalPage ; $i++) { 
   // /?s=products&act=search&keyword=&sort=&type=&brand=
-      echo "<a class='$isactive' href='?s=home&page=".$i."'>".$i."</a>";
+      echo "<a class='$isactive' href='?s=home&page=".$i."&gender=".$sGender."'>".$i."</a>";
 
     } ?>
   </center>

@@ -25,11 +25,19 @@ require_once 'template/header.php'; ?>
 				font-size: 13px;
 				font-weight: bold;
 	}
+	h4{
+		text-align: left;
+		font-size: 13px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #f1f1f1;
+	}
 </style>
 
 <a class="nav"href="?modules=common&action=home">Home</a>/<a class="nav" href="?modules=products&action=all">Products</a>/<a class="nav"href="?modules=products&action=add">Add</a>
 <br><br>
-<h1>Add Product</h1>
+<h4>Add Product</h4>
 <form action="" method="POST" enctype="multipart/form-data">
 	Name:
 	<input type="text" name="name" placeholder="Name products">
