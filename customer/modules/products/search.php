@@ -11,133 +11,142 @@ $sort = $keyword = $brand = $type = "";
     overflow: hidden;
     width: 100vw;
     border-top: 1px solid #eee;
+    height: 100%;
   }
   .new{
-   box-sizing: border-box;
-   height: 100%;
-   padding: 0;
-   width: 83%;
-   float: left;
-   margin: auto;
-   text-align: center;
-   flex-flow: row wrap;
-   display: flex;
-   flex-direction: row;
- }
- .new:after{
-  content: "";
-  display: table;
-  clear: both;
-}
-.side{
-  height: 100%;
-  border-right: 1px solid #eee;
-  box-sizing: border-box;
-  width: 15%;
-  float: left;
-}
-.side ul{
-  float: none;
-  width: 100%;
-}
-.side li{
-  float: none;
-  display: block;
-  width: 100%;
-}
+    box-sizing: border-box;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    flex-flow: row wrap;
+    display: flex;
+    flex-direction: row;
+    width: 83%;
+    float: left;
+    overflow: auto;
+  }
+  .new:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .side{
+    height: 100%;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+    width: 15%;
+    float: left;
+  }
+  .side ul{
+    float: none;
+    width: 100%;
+  }
+  .side li{
+    float: none;
+    display: block;
+    width: 100%;
+  }
 
-.item{
-  box-sizing: content-box;
-  text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  float: left;
-  width: 20%;
-  padding: 10px;
-  margin: auto;
-  height: 400px;
-}
-.item .view{
-  height: 100%;
-}
-.item:hover{
-  transition: 0.1s;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background: black;
-  border-radius: 2px;
-  color: white;
-}
-.item:hover .view img{
-  background: black;
-  opacity: 0.5;
-  transition: 0.2s;
-}
-.item:hover .view{
-  text-decoration: none;
-  color: white;
-}
-.item .view .img{
-  width: 100%;
-  height: 70%;
-}
-.item .view .img img{
-  height: 100%;
-  width: 100%;
-}
-.item .view .name{
-  height: 20%;
+  .item{
+    height: 40vh;
+    box-sizing: content-box;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    float: left;
+    width: 23%;
+    padding: 10px;
+    margin: 0 auto 0 auto;
+  }
+  .item .view{
+    height: 100%;
+  }
+  .item:hover{
+    transition: 0.1s;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background: black;
+    border-radius: 2px;
+    color: white;
+  }
+  .item:hover .view img{
+    background: black;
+    opacity: 0.5;
+    transition: 0.2s;
+  }
+  .item:hover .view{
+    text-decoration: none;
+    color: white;
+  }
+  .item .view .img{
+    width: 100%;
+    height: 70%;
+  }
+  .item .view .img img{
+    height: 100%;
+    width: 100%;
+  }
+  .item .view .name{
+    height: 20%;
 
-}
-.item .view .price{
-  height: 9%;
-}
-.view{
-  text-decoration: none;
-  color: black;
-}
-.side form{
-  width: 100%;
-  box-sizing: border-box;
-}
-.side form span{
-  box-sizing: border-box;
-  width: 100%;
-  display: block;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-.side form span input{
-  width: 80%;
-  box-sizing: border-box;
-  padding: 7px;
-}
-.side form span button{
-  padding: 7px;
-}
-@media only screen and (max-width: 425px) {
-  .new{
+  }
+  .item .view .price{
+    height: 9%;
+  }
+  .view{
+    text-decoration: none;
+    color: black;
+  }
+  .side form{
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .side form span{
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .side form span input{
+    width: 80%;
+    box-sizing: border-box;
+    padding: 7px;
+  }
+  .side form span button{
+    padding: 7px;
+  }
+  @media only screen and (max-width: 425px) {
+    .new{
+      width: 100%;
+    }
+    .item{
+      height: 300px;
+      width: 45%;
+    }
+    
+  }
+  @media only screen and (max-width: 768px){
+   .new{
     width: 100%;
   }
   .item{
-    height: 300px;
-    width: 43%;
+    height: 30%;
   }
- 
-}
-@media only screen and (max-width: 768px){
- .new{
-  width: 100%;
-}
-.item{
-  height: 350px;
-  /*width: 60%;*/
-}
-.item img{
-  height: 60%;
-}
-.side{
-  display: none;
-}
 
+  .side{
+    width: 100%;
+    height: auto; 
+  }
+
+}
+@media only screen and (max-width: 768px) and (min-width: 426px) {
+  .item{
+    width: 30%;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .item{
+    width: 17%;
+  }
 }
 .hidden{
   display: none;
@@ -316,7 +325,7 @@ $query = mysqli_query($connection,$sql);
 if (!$query) {
   echo "Error: ". mysql_connect_error();
 }else if (mysqli_num_rows($query) == 0) {
-  echo "No result for ".$keyword;
+  echo "No result ".$keyword;
 }else{
   foreach ($query as $key) {
     $id = $key['id'];
@@ -339,8 +348,6 @@ if (!$query) {
   }
 }
 ?>
-</div>
-
 <div class="page1">
   <a href="#">Page:
   </a>  
@@ -357,6 +364,9 @@ for ($i=1; $i <= $total_page ; $i++) {
   echo "<a class='$isactive' href='?s=products&act=search&keyword=".$keyword."&sort=".$sort."&type=".$type."&brand=".$brand."&page=".$i."'>".$i."</a>";
 
 } ?>
+</div>
+
+
 </div>
 </div>
 <?php 

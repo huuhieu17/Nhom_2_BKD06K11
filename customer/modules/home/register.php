@@ -72,12 +72,12 @@ if (isset($_POST['btn'])) {
 	}
 	@media only screen and (max-width: 768px) {
 		#form{
-		margin: auto;
-		padding: 2%;
-		background: white;
-		width: 60vw;
-		border: 1px solid #f9f9f9;
-		border-radius: 3px;
+			margin: auto;
+			padding: 2%;
+			background: white;
+			width: 100vw;
+			border: 1px solid #f9f9f9;
+			border-radius: 3px;
 		}
 	}
 </style>

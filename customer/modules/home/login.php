@@ -4,7 +4,7 @@ $subTitle = "Login";
 $error = "";
 if (isset($_GET['error'])) {
 	if ($_GET['error'] == 1) {
-	$error = "You must login to do this action!";
+		$error = "You must login to do this action!";
 	}
 }
 
@@ -85,7 +85,7 @@ if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 			margin: auto;
 			padding: 2%;
 			background: white;
-			width: 60vw;
+			width: 100vw;
 			border: 1px solid #f9f9f9;
 			border-radius: 3px;
 		}

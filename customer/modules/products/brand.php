@@ -9,7 +9,7 @@
       overflow: hidden;
       box-sizing: border-box;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       border-top: 1px solid #eee;
     }
     .side{
@@ -29,6 +29,7 @@
       flex-direction: row;
       width: 83%;
       float: left;
+      overflow: auto;
     }
     .center:after{
       content: "";
@@ -36,14 +37,14 @@
       clear: both;
     }
     .item{
+      height: 40vh;
       box-sizing: content-box;
       text-align: center;
       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       float: left;
       width: 23%;
       padding: 10px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 0 auto;
     }
 
     .item:hover{
@@ -63,7 +64,7 @@
       color: white;
     }
 
-    .view{
+    .item .view{
       height: 100%;
       text-decoration: none;
       color: black;
@@ -83,6 +84,7 @@
     .item .view .price{
       height: 9%;
     }
+
     .side ul{
       width: 100%;
     }
@@ -107,11 +109,7 @@
         width: 100%;
       }
       .item{
-        height: 300px;
-        width: 60%;
-      }
-      .item img{
-        height: 60%;
+        width: 44%;
       }
     }
     @media only screen and (max-width: 768px){
@@ -124,6 +122,9 @@
       .side{
         display: none;
       }
+      .item{
+        height: 35vh;
+      }
 
     }
     @media only screen and (max-width: 768px) and (min-width: 426px) {
@@ -132,11 +133,7 @@
         width: 100%;
       }
       .item{
-        height: 350px;
         width: 30%;
-      }
-      .item img{
-        height: 66%;
       }
     }
     @media only screen and (min-width: 1400px) {
@@ -178,22 +175,23 @@
      <li><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name'] ?></a></li>
    </ul>					
  <?php endforeach ?>
+
 </div>
 <div class="center">
 
  <?php
  if (isset($_GET['id'])) {
   if ($_GET['id'] == "") {
-     $sql = "SELECT * FROM products";
-  }else{
-       $keyword = $_GET['id'];
-   $sql = "SELECT * FROM products WHERE product_brand = '$keyword'";
-  }
-
- }else{
    $sql = "SELECT * FROM products";
- } 
- if (!isset($_GET['page'])) {
+ }else{
+   $keyword = $_GET['id'];
+   $sql = "SELECT * FROM products WHERE product_brand = '$keyword'";
+ }
+
+}else{
+ $sql = "SELECT * FROM products";
+} 
+if (!isset($_GET['page'])) {
   $present_page = 1;
 }else{
   $present_page = $_GET['page'];
@@ -236,7 +234,25 @@ if (!$query) {
 }
 ?>
 
+<div class="page1">
+  <a href="#">Page:
+  </a>  
+  <?php
+  $isactive = "";
+  if (isset($_GET['page'])) {
+   if ($_GET['page'] == $present_page) {
+    $isactive = "active";
+  }
+}
+
+for ($i=1; $i <= $total_page ; $i++) { 
+  // /?s=products&act=search&keyword=&sort=&type=&brand=
+  echo "<a class='$isactive' href='?s=products&act=brand&id=".$keyword."&page=".$i."'>".$i."</a>";
+
+} ?>
 </div>
+</div>
+
 </div>
 <?php 
 require_once('customer/template/version1/footer.php'); ?>

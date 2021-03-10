@@ -4,14 +4,14 @@
 </div>
 </div>
 <script>
-function menu() {
-  var x = document.getElementById("header");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
+  function menu() {
+    var x = document.getElementById("header");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
   }
-}
 </script>
 <script>
 //Get the button
@@ -37,26 +37,26 @@ function topFunction() {
 <script type="text/javascript">
   window.onscroll = function() {myFunction()};
 
-function myFunction() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    document.getElementById("header").style.position = "sticky";
-  } else {
+  function myFunction() {
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+      document.getElementById("header").style.position = "sticky";
+    } else {
      document.getElementById("header").style.position = "relative";
-  }
+   }
   //  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
   //   document.getElementById("footer").style.position = "sticky";
   // } else {
   //    document.getElementById("footer").style.position = "fixed";
   // }
- 
- 
+  
+  
 }
 </script>
 
 <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
 </script>
 </body>
 </html>

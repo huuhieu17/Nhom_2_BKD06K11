@@ -61,15 +61,39 @@ $subTitle = "Account Infomation";
     color: black;
     font-weight: bold;
   }
+  h4{
+    text-align: left;
+    font-size: 13px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+  @media only screen and (max-width: 768px){
+    .side{
+      width: 100%;
+      height: auto;
+    }
+    .center{
+      width: 100%;
+    }
+    table{
+      width: 100%;
+    }
+    table tr td input{
+      width: 70%;
+    }
+  }
 </style>
 <div class="all">
 	<div class="side">
 		<center><h3>Account</h3><hr></center>
-		<span><a href="#"> > General</a></span>
-		<span><a href="#"> > Invoices</a></span>
-		<span><a href="#"> > Change Password</a></span>
+		<span><a href="?s=account&act=general"> > General</a></span>
+		<span><a href="?s=invoices&act=history"> > Invoices</a></span>
+		<span><a href="?s=account&act=changepw"> > Change Password</a></span>
 	</div>
 	<div class="center">
+    <h4>General</h4>
 		<table>
 			<tr>
 				<td colspan="2"><h2>Account Information</h2></td>

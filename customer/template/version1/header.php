@@ -1,9 +1,9 @@
 <?php
-	require_once("customer/config/session.php");
-	require_once('customer/config/config.php');
-	$sql = "SELECT * FROM `brands`";
-	$query_brand = mysqli_query($connection,$sql);
-	$title = "Hstore - Making you to Shine";
+require_once("customer/config/session.php");
+require_once('customer/config/config.php');
+$sql = "SELECT * FROM `brands`";
+$query_brand = mysqli_query($connection,$sql);
+$title = "Hstore - Making you to Shine";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,12 +11,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 	
 	<style>
-				html {
-		  scroll-behavior: smooth;
+		html {
+			scroll-behavior: smooth;
 		}
 		*{
 			padding: 0;
@@ -45,12 +45,12 @@
 			padding: 8px;
 			background: white;
 			cursor: pointer;
-		    width: 20%;
-		    height: 100%;
-		    box-sizing: border-box;
-		    float: left;
-		    top: 0;
-		    bottom: 0;
+			width: 20%;
+			height: 100%;
+			box-sizing: border-box;
+			float: left;
+			top: 0;
+			bottom: 0;
 		}
 		#container  #header #left img{
 
@@ -137,7 +137,7 @@
 			padding: 20px;
 			bottom:0;
 		}
-			
+		
 		#menu{
 			padding: 8px;
 			border: none;
@@ -158,97 +158,97 @@
 		@media only screen and (min-width: 490px) and (max-width: 766px){
 		}
 		@media only screen and (max-width: 768px) {
-		 #header{
-		 }
-		 ul{
-		 	width: 100%;
-		  	display: none;
-		  	margin: 0;
-		  	padding: 0;
-		 }
-		 ul li ul li{
-		 	display: none;
-		 }
-		 ul li{
-		 	border-bottom: 1px solid white;
-		 	padding: 20px;
-		 	background: gray;
-		 	
-		 }
-		 ul li:hover{
-		 	background: gray;
-		 }
-		 ul li a{
-		 	width: 100%;
-		 	height:100%;
-		 	background: gray;
-		 	color: white;
-		 }
+			#header{
+			}
+			ul{
+				width: 100%;
+				display: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li ul li{
+				display: none;
+			}
+			ul li{
+				border-bottom: 1px solid #aaa;
+				padding: 20px;
+				background: white;
+				
+			}
+			ul li:hover{
+				background: #eee;
+			}
+			ul li a{
+				width: 100%;
+				height:100%;
+				background: none;
+				color: black;
+			}
 		}
 		
 		@media only screen and (max-width: 768px) {
 			.modal-content{
 				width: 80%;
 			}
-		
 			
-		  #menu{
-		  	font-size: 23px;
-		  	float: right;
-		  	display: block;
-		  }
-		  		#container  #header #left{
-		  			padding: 8px;
-		  	width: 100%;
-		  }
-		  #right{
-		  }
-		 
-		  #left img{
+			
+			#menu{
+				font-size: 23px;
+				float: right;
+				display: block;
+			}
+			#container  #header #left{
+				padding: 8px;
+				width: 100%;
+			}
+			#right{
+			}
+			
+			#left img{
 
-		  	float: left;
-		  }
-		 .responsive {position: relative;}
-		   .topnav.responsive ul {
-		    display: block;
-		    text-align: right;
-		    float: right;
-		    width: 125%;
-		  	}
-		  	.topnav.responsive ul li ul{
-		  		display: none;
-		  	}
-		  	#logout{
-			display: block;
+				float: left;
+			}
+			.responsive {position: relative;}
+			.topnav.responsive ul {
+				display: block;
+				text-align: right;
+				float: right;
+				width: 125%;
+			}
+			.topnav.responsive ul li ul{
+				display: none;
+			}
+			#logout{
+				display: block;
+			}
+			#search form input{
+				width: 80%;
+				padding: 15px;
+			}
+			#search form button{
+				/*width: 90%;*/
+				padding: 15px;
+			}
 		}
-		#search form input{
-			width: 80%;
-			padding: 15px;
+		#myBtn {
+			display: none; /* Hidden by default */
+			position: fixed; /* Fixed/sticky position */
+			bottom: 20px; /* Place the button at the bottom of the page */
+			right: 0px; /* Place the button 30px from the right */
+			z-index: 99; /* Make sure it does not overlap */
+			border: none; /* Remove borders */
+			outline: none; /* Remove outline */
+			background-color: #19b5acc7; /* Set a background color */
+			color: white; /* Text color */
+			cursor: pointer; /* Add a mouse pointer on hover */
+			padding: 15px; /* Some padding */
+			border-radius: 10px; /* Rounded corners */
+			font-size: 15px; /* Increase font size */
 		}
-		#search form button{
-			/*width: 90%;*/
-			padding: 15px;
-		}
-		}
-#myBtn {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 0px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: #19b5acc7; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 15px; /* Increase font size */
-}
 
-#myBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
-}
+		#myBtn:hover {
+			background-color: #555; /* Add a dark-grey background on hover */
+		}
 
 	</style>
 </head>
@@ -265,55 +265,55 @@
 				<ul>
 					<li id="search">
 
-							<input type="text" placeholder="Search" name="keyword" id="svalue" value = ""><button onclick="search()"><i class="fa fa-search"></i></button>
-							<script type="text/javascript">
-								function search(){
-									var svalue = document.getElementById('svalue').value;
-									window.location.replace('?s=products&act=search&keyword='+ svalue) ;
-								}
-							</script>
+						<input type="text" placeholder="Search" name="keyword" id="svalue" value = ""><button onclick="search()"><i class="fa fa-search"></i></button>
+						<script type="text/javascript">
+							function search(){
+								var svalue = document.getElementById('svalue').value;
+								window.location.replace('?s=products&act=search&keyword='+ svalue) ;
+							}
+						</script>
 							<!-- <form action="">
 								<input type="text" name="keyword"> <button>Search</button>
 							</form> -->
-						
-					</li>
-					<li><a href="?s=products&act=brand">Brand</a>
-						<ul>
-							<?php foreach ($query_brand as $key): ?>
-								<li><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name']; ?></a></li>
-							<?php endforeach?>
-						</ul>
-					</li>
-					<li><a href="?s=products&act=type">Type</a>
-						<ul>
-							<?php
+							
+						</li>
+						<li><a href="?s=products&act=brand">Brand</a>
+							<ul>
+								<?php foreach ($query_brand as $key): ?>
+									<li><a href="?s=products&act=brand&id=<?php echo $key['id'] ?>"><?php echo $key['name']; ?></a></li>
+								<?php endforeach?>
+							</ul>
+						</li>
+						<li><a href="?s=products&act=type">Type</a>
+							<ul>
+								<?php
 								$sql = "SELECT * FROM categorizes";
 								$query = mysqli_query($connection,$sql);
 								foreach ($query as $key) {
 									$id = $key['id'];
-								echo "<li><a href='?s=products&act=type&id=$id'>".$key['name']."</a></li>";
+									echo "<li><a href='?s=products&act=type&id=$id'>".$key['name']."</a></li>";
 								}
-							?>
-						</ul>
-					</li>
-					<li><a href="#">Upcomming</a></li>
-					
-					<?php 
-					if (!isset($_SESSION['user'])|| $_SESSION['user'] === "") {
-						echo "<li><a href='index.php?s=home&act=login'>Login</a></li>";
-						echo "<li><a href='index.php?s=home&act=register'>Sign Up</a></li>";
-					}else{
-						echo "<li><a href='?s=account&act=general' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
-							<ul>
-											<li><a class='act' href='?s=account&act=general'><i class='fa fa-user'></i>  Account </a></li>
-											<li><a class='act' href='?s=invoices&act=history'><i class='fa fa-history'></i>  Order History </a></li>
-											<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
+								?>
 							</ul>
-						</li>";
-					}
-					?>
-					<li><a href="?s=invoices&act=cart"><i class="fa fa-shopping-cart"></i>
+						</li>
+						<li><a href="#">Upcomming</a></li>
+						
 						<?php 
+						if (!isset($_SESSION['user'])|| $_SESSION['user'] === "") {
+							echo "<li><a href='index.php?s=home&act=login'>Login</a></li>";
+							echo "<li><a href='index.php?s=home&act=register'>Sign Up</a></li>";
+						}else{
+							echo "<li><a href='?s=account&act=general' style='font-weight:bold;'>".$_SESSION['user']['name']."</a>
+							<ul>
+							<li><a class='act' href='?s=account&act=general'><i class='fa fa-user'></i>  Account </a></li>
+							<li><a class='act' href='?s=invoices&act=history'><i class='fa fa-history'></i>  Order History </a></li>
+							<li><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>
+							</ul>
+							</li>";
+						}
+						?>
+						<li><a href="?s=invoices&act=cart"><i class="fa fa-shopping-cart"></i>
+							<?php 
 							$t = 0;
 							if (isset($_SESSION['cart'])) {
 								foreach ($_SESSION['cart'] as $id => $quantity) {
@@ -321,19 +321,19 @@
 								}
 								echo "($t)";
 							}
-						?>
-					</a></li>
-					<?php 
+							?>
+						</a></li>
+						<?php 
 						if (isset($_SESSION['user'])) {
 							echo "<li id='logout'><a class='act' href='index.php?s=home&act=logout'><i class='fa fa-power-off'></i>  Logout</a></li>";
 						}
-					?>
-					
-					
-				</ul>
+						?>
+						
+						
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div id="content">
-			
-		
-	
+			<div id="content">
+				
+				
+				

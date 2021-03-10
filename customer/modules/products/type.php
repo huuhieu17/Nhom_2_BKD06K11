@@ -11,7 +11,7 @@ $keyword = "";
     overflow: hidden;
     box-sizing: border-box;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     border-top: 1px solid #eee;
 
   }
@@ -45,6 +45,7 @@ $keyword = "";
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     float: left;
     width: 23%;
+    height: 45vh;
     padding: 10px;
     margin: 0 auto 0 auto;
   }
@@ -116,11 +117,8 @@ $keyword = "";
       width: 100%;
     }
     .item{
-      height: 300px;
-      width: 60%;
-    }
-    .item img{
-      height: 60%;
+      height: 35vh;
+      width: 44%;
     }
   }
   @media only screen and (max-width: 768px){
@@ -133,16 +131,14 @@ $keyword = "";
     .side{
       display: none;
     }
-
+    .item{
+      height: 35vh;
+    }
   }
   @media only screen and (max-width: 768px) and (min-width: 426px) {
     
     .center{
       width: 100%;
-    }
-    .item{
-      height: 350px;
-      width: 30%;
     }
     .item img{
       height: 66%;
@@ -159,22 +155,22 @@ $keyword = "";
       width: 17%;
     }
   }
-   .page1{
-      overflow: auto;
-      padding: 20px;
-      width: 100%;
-      text-align: center; 
-    }
-    .page1 a{
-      text-decoration: none;
-      color: black;
-      margin-right: 10px;
-      padding:3px;
-    }
-    .page1 a.active{
-      background: black;
-      color: white;
-    }
+  .page1{
+    overflow: auto;
+    padding: 20px;
+    width: 100%;
+    text-align: center; 
+  }
+  .page1 a{
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    padding:3px;
+  }
+  .page1 a.active{
+    background: black;
+    color: white;
+  }
 
 </style>
 <div class="all">
@@ -197,23 +193,23 @@ $keyword = "";
   <div class="center">
     
    <?php
-  if (isset($_GET['id'])) {
-  if ($_GET['id'] == "") {
+   if (isset($_GET['id'])) {
+    if ($_GET['id'] == "") {
      $sql = "SELECT * FROM products";
-  }else{
-       $keyword = $_GET['id'];
-   $sql = "SELECT * FROM products WHERE product_type = '$keyword'";
-  }
+   }else{
+     $keyword = $_GET['id'];
+     $sql = "SELECT * FROM products WHERE product_type = '$keyword'";
+   }
 
  }else{
    $sql = "SELECT * FROM products";
  } 
-  if (!isset($_GET['page'])) {
+ if (!isset($_GET['page'])) {
   $present_page = 1;
 }else{
   $present_page = $_GET['page'];
 }
- $query = mysqli_query($connection,$sql);
+$query = mysqli_query($connection,$sql);
 $query = mysqli_query($connection,$sql); //get total product
 $total_product = mysqli_num_rows($query);
 $limit = 10;
@@ -224,7 +220,7 @@ if (!isset($_GET['id']) || $_GET['id'] == "") {
 }else{
   $sql = "SELECT * FROM products WHERE type = '$keyword' LIMIT $limit OFFSET $skip";
 }
- if (!$query) {
+if (!$query) {
   echo "Error: ". mysql_connect_error();
 }else if (mysqli_num_rows($query) == 0) {
   echo "No product";

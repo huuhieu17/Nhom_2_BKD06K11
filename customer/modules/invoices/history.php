@@ -50,7 +50,6 @@ $query = mysqli_query($connection,$sql);
 <style>
 	.historyCart{
 		width: 100%;
-		height: 100vh;
 	}
 	.historyCart #cleft{
 		width: 10%;
@@ -78,6 +77,14 @@ $query = mysqli_query($connection,$sql);
 		width: 100%;
 		padding: 10px;
 		background: #f1f1f1;
+	}
+	@media only screen and (max-width: 768px){
+		.historyCart #cleft{
+			width: 100%;
+		}
+		.historyCart #cright{
+			width: 100%;
+		}
 	}
 </style>
 <div class="historyCart">
@@ -148,20 +155,20 @@ $query = mysqli_query($connection,$sql);
 				</tr>	
 			<?php endforeach ?>
 			<tr>
-					<td colspan="5">
-						Page: 
-						<?php
-						$paid = "";
-						if (isset($_GET['paid'])) {
-							$paid = $_GET['paid'];
-						}
-						for ($i=1; $i <= $totalPage ; $i++) { 
+				<td colspan="5">
+					Page: 
+					<?php
+					$paid = "";
+					if (isset($_GET['paid'])) {
+						$paid = $_GET['paid'];
+					}
+					for ($i=1; $i <= $totalPage ; $i++) { 
   // /?s=products&act=search&keyword=&sort=&type=&brand=
-							echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i'>".$i."</a>";
+						echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i'>".$i."</a>";
 
-						} ?>
-					</td>
-				</tr>
+					} ?>
+				</td>
+			</tr>
 		</table>
 	</div>
 	

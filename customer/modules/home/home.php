@@ -31,7 +31,7 @@ require_once('customer/template/version1/header.php');
     display: none;
   }
   .mySlides img{
-    height: 90vh;
+    height: 80vh;
   }
   /* Add a pointer when hovering over the thumbnail images */
   .cursor {
@@ -187,7 +187,7 @@ h1{
 }
 @media only screen and (max-width: 768px) and (min-width: 426px) {
   .slideshow {
-    padding: 3% 0;
+    display: none;
   }
   .mySlides img{
     height: 100%;
@@ -205,6 +205,9 @@ h1{
   .item{
     width: 22%;
   }
+  .slideshow{
+    display: none;
+  }
 }
 @media only screen and (min-width: 1400px) {
   .item{
@@ -221,7 +224,6 @@ h1{
 <div class="slideshow">
 	<div id="sleft">
 		<div class="mySlides">
-
       <img src="public/img/template/banner.jpg" style="width:100%">
     </div>
 
@@ -235,9 +237,7 @@ h1{
     <a class="prev" onclick="plusSlides(-1)">❮</a>
     <a class="next" id="next" onclick="plusSlides(1)">❯</a>
 
-    <div class="caption-container">
-      <p id="caption"></p>
-    </div>
+    
 
 
   </div>

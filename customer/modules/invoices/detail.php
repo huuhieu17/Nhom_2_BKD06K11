@@ -66,71 +66,71 @@ if (isset($_GET['id'])) {
 	<h4> Order Information</h4>
 	<div class="info">
 		<p><span>Order Number:</span> <?php echo $idOrder ?></p>
-	<p><span>Created At:</span> <?php date("F j, Y H:i:a", strtotime($data['create_at'])); ?></p>
-	<p><span>Receiver Name:</span><?php echo $data['receiver'] ?> </p>
-	<p><span>Phone:</span><?php echo $data['phone'] ?> </p>
-	<p><span>Address:</span> <?php echo $data['address'] ?> </p>
-	<p><span>Order Status:</span>
-		<?php 
-					switch ($data['status']) {
-						case '1':
-							echo "Pending ";
-							echo "<button onclick='cancelOrder()'> Cancel Order</button>";
-							break;
-						case '2':
-							echo "Approved";
-							break;
-						case '3':
-							echo "Completed";
-							break;
-						case '0':
-							echo "Cancelled";
-							break;
-						default:
+		<p><span>Created At:</span> <?php date("F j, Y H:i:a", strtotime($data['create_at'])); ?></p>
+		<p><span>Receiver Name:</span><?php echo $data['receiver'] ?> </p>
+		<p><span>Phone:</span><?php echo $data['phone'] ?> </p>
+		<p><span>Address:</span> <?php echo $data['address'] ?> </p>
+		<p><span>Order Status:</span>
+			<?php 
+			switch ($data['status']) {
+				case '1':
+				echo "Pending ";
+				echo "<button onclick='cancelOrder()'> Cancel Order</button>";
+				break;
+				case '2':
+				echo "Approved";
+				break;
+				case '3':
+				echo "Completed";
+				break;
+				case '0':
+				echo "Cancelled";
+				break;
+				default:
 							# code...
-							break;
-					}
-		?>
-	</p>
+				break;
+			}
+			?>
+		</p>
 	</div>
 	
 	<h4> Order Detail</h4>
-		<table>
+	<table>
+		<tr>
+			<th>Product</th>
+			<th>Detail</th>
+			<th>Quantity</th>
+			
+		</tr>
+		<?php foreach ($query as $total => $show): ?>
 			<tr>
-				<th>Product</th>
-				<th>Detail</th>
-				<th>Quantity</th>
-				
+				<td> <?php echo $show['product_name'] ?></td>
+				<td>Sku:<?php echo $show['sku'] ?><br>
+					Size: <?php echo $nameSize['value'] ?><br>
+					Color: <?php echo $nameColor['value'] ?>
+				</td>
+				<td>
+					<?php echo $show['quantity'] ?>
+				</td>
 			</tr>
-			<?php foreach ($query as $total => $show): ?>
-				<tr>
-					<td> <?php echo $show['product_name'] ?></td>
-					<td>Sku:<?php echo $show['sku'] ?><br>
-						Size: <?php echo $nameSize['value'] ?><br>
-						Color: <?php echo $nameColor['value'] ?>
-					</td>
-					<td>
-						<?php echo $show['quantity'] ?>
-					</td>
-				</tr>
-					
-			<?php endforeach ?>
-			<tr>
-					<th>Total Amout</th>
-					<td colspan="2" style="color: red;font-weight: bold;"><?php echo number_format($show['total_amounts'],0,'','.'); ?>$</td>	
-				</tr>
-		</table>
-		<script>
-			function cancelOrder() {
+			
+		<?php endforeach ?>
+		<tr>
+			<th>Total Amout</th>
+			<td colspan="2" style="color: red;font-weight: bold;"><?php echo number_format($show['total_amounts'],0,'','.'); ?>$</td>	
+		</tr>
+	</table>
+	<script>
+		function cancelOrder() {
 			var msg;
 			var r =	confirm("Do You Want Cancel This Order ?");
-				if( r == true){
-					document.location.replace('?s=invoices&act=detail&id=<?php echo $idOrder ?>&action=Cancel');
-				}else{
-					alert('Opps!');
-				}
+			if( r == true){
+				document.location.replace('?s=invoices&act=detail&id=<?php echo $idOrder ?>&action=Cancel');
+			}else{
+				alert('Opps!');
 			}
-		</script>
+		}
+	</script>
 </div>		
 <?php 
 require_once('customer/template/version1/footer.php'); ?>
