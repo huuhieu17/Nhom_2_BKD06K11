@@ -296,7 +296,7 @@ $title = "Hstore - Making you to Shine";
 								?>
 							</ul>
 						</li>
-						<li><a href="#">Upcomming</a></li>
+						<li><a href="?s=home&act=news">Upcomming</a></li>
 						
 						<?php 
 						if (!isset($_SESSION['user'])|| $_SESSION['user'] === "") {

@@ -188,12 +188,13 @@ if (isset($_GET['id'])) {
 			.right{
 				flex: 40%;
 				box-sizing: border-box;
-				padding: 0 20px;
+				padding: 0;
 				width: 40%;
 				float: left;
 				
 			}
 			.right ul{
+				padding: 0 20px;
 				display: block;
 				float: none;
 			}
@@ -212,14 +213,6 @@ if (isset($_GET['id'])) {
 				padding: 10px;
 				background: #f1f1f1;
 			}
-			@media only screen and (max-width: 768px){
-				.row .left{
-					flex: 61%;
-				}
-				.modal-content{
-					width: 80%;
-				}
-			}
 			span{
 				margin-right: 20px;
 			}
@@ -232,6 +225,84 @@ if (isset($_GET['id'])) {
 			#quantity{
 				color: black;
 				font-size: 15px;
+			}
+			.random{
+				display: flex;
+				  align-items: center;
+				  justify-content: center;
+				box-sizing: border-box;
+				width: 80%;
+				margin: auto;
+				text-align: center;
+				flex-flow: row wrap;
+				display: flex;
+				flex-direction: row;
+
+				float: left;
+				overflow: auto;
+			}
+			.item{
+				height: 35vh;
+				box-sizing: content-box;
+				text-align: center;
+				box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+				float: left;
+				width: 15%;
+				padding: 10px;
+				margin: 0 auto 0 auto;
+			}
+
+			.item:hover{
+				transition: 0.1s;
+				box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+				background: black;
+				border-radius: 2px;
+				color: white;
+			}
+			.item:hover .view img{
+				background: black;
+				opacity: 0.5;
+				transition: 0.2s;
+			}
+			.item:hover .view{
+				text-decoration: none;
+				color: white;
+			}
+
+			.item .view{
+				height: 100%;
+				text-decoration: none;
+				color: black;
+			}
+			.item .view .img{
+				width: 100%;
+				height: 70%;
+			}
+			.item .view .img img{
+				height: 100%;
+				width: 100%;
+			}
+			.item .view .name{
+				height: 20%;
+
+			}
+			.item .view .price{
+				height: 9%;
+			}
+			@media only screen and (max-width: 768px){
+				.row .left{
+					flex: 61%;
+				}
+				.modal-content{
+					width: 80%;
+				}
+				.item{
+					height: 35vh;
+					width: 44%;
+				}
+				.random{
+					width: 100%;
+				}
 			}
 		</style>
 		<div class="pcontent">
@@ -422,6 +493,39 @@ if (isset($_GET['id'])) {
 						</div>
 					</form>
 				</div>
+				<h4>May you like</h4>
+				<div class="random">
+					
+					<?php 
+					$sql = "SELECT * FROM products ORDER BY RAND() LIMIT 4 ";
+					$query = mysqli_query($connection,$sql);
+					if (!$query) {
+						echo "Error: ". mysql_connect_error();
+					}else if (mysqli_num_rows($query) == 0) {
+						echo "No product";
+					}else{
+						foreach ($query as $key) {
+							$id = $key['id'];
+							$img = mysqli_fetch_assoc(mysqli_query($connection,"SELECT url FROM products_images WHERE id = '$id'"));
+
+							echo "<div class='item'>";
+							echo "<a class='view' href='?s=products&act=detail&id=$id'>";
+							echo "<div class ='img'>";
+							echo "<img src='./public/img/product/".$img['url']."'>";
+							echo "</div>";
+							echo "<div class ='name'>";
+							echo "<b>".$key['product_name']."</b>";   
+							echo "</div>";
+							echo "<div class ='price'>";
+							echo "<b><p style='color:red'>".$key['product_price']."$</p></b>";
+							echo "</div>";
+							echo "</a>";
+							echo "</div>";
+						}
+					}
+					?>
+				</div>
+				
 			</div>
 			<?php 
 			require_once('customer/template/version1/footer.php'); ?>

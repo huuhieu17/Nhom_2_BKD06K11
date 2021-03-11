@@ -22,7 +22,7 @@ require_once('customer/template/version1/header.php');
     position: relative;
     width: 100%;
   }
-
+  .
   /* Hide the images by default */
   .mySlides {
     height: 100%;
@@ -32,6 +32,7 @@ require_once('customer/template/version1/header.php');
   }
   .mySlides img{
     height: 80vh;
+    width: 100%;
   }
   /* Add a pointer when hovering over the thumbnail images */
   .cursor {
@@ -168,6 +169,8 @@ require_once('customer/template/version1/header.php');
 
 h1{
   text-align: center;
+  background: #eee;
+  width: 100%;
 }
 form{
   text-align: center;
@@ -226,17 +229,20 @@ form{
 
 <div class="slideshow">
 	<div id="sleft">
-		<div class="mySlides">
-      <img src="public/img/template/banner.jpg" style="width:100%">
-    </div>
+    <?php 
+            $sql = "SELECT * FROM news ORDER BY ID DESC LIMIT 4";
+      $query = mysqli_query($connection,$sql);
+    ?>
+    <?php foreach ($query as $post): ?>
+      <div class="mySlides">
+      <a href="?s=home&act=upcomming&id=<?php echo $post['id'] ?>">
+      <img src="public/img/template/<?php echo $post['img'] ?>" style="width:100%">
+      </a>
+     </div>
+    <?php endforeach ?>
+		
 
-    <div class="mySlides">
-      <img src="public/img/template/img_nature_wide.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <img src="public/img/template/img_mountains_wide.jpg" style="width:100%">
-    </div>
+    
     <a class="prev" onclick="plusSlides(-1)">❮</a>
     <a class="next" id="next" onclick="plusSlides(1)">❯</a>
 
