@@ -46,8 +46,7 @@ $keyword = "";
     float: left;
     width: 23%;
     height: 45vh;
-    padding: 10px;
-    margin: 0 auto 0 auto;
+    margin: 1%;
   }
 
   .item:hover{

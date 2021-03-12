@@ -43,8 +43,7 @@
       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       float: left;
       width: 23%;
-      padding: 10px;
-      margin: 0 auto 0 auto;
+      margin: 1%;
     }
 
     .item:hover{

@@ -110,6 +110,7 @@ require_once('customer/template/version1/header.php');
    width: 100vw;
    margin: auto;
    text-align: center;
+   justify-content: center;
    flex-flow: row wrap;
    display: flex;
    flex-direction: row;
@@ -121,12 +122,10 @@ require_once('customer/template/version1/header.php');
 } 
 .item{
   box-sizing: content-box;
-  text-align: center;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   float: left;
   width: 23%;
-  padding: 10px;
-  margin: 0 auto 0 auto;
+  margin: 1%;
   height: 25vw;
 }
 

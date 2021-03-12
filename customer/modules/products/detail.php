@@ -228,8 +228,7 @@ if (isset($_GET['id'])) {
 			}
 			.random{
 				display: flex;
-				  align-items: center;
-				  justify-content: center;
+				 justify-content: center;
 				box-sizing: border-box;
 				width: 80%;
 				margin: auto;
@@ -237,7 +236,6 @@ if (isset($_GET['id'])) {
 				flex-flow: row wrap;
 				display: flex;
 				flex-direction: row;
-
 				float: left;
 				overflow: auto;
 			}
@@ -248,8 +246,8 @@ if (isset($_GET['id'])) {
 				box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 				float: left;
 				width: 15%;
-				padding: 10px;
-				margin: 0 auto 0 auto;
+
+				margin: 2%;
 			}
 
 			.item:hover{
@@ -497,7 +495,7 @@ if (isset($_GET['id'])) {
 				<div class="random">
 					
 					<?php 
-					$sql = "SELECT * FROM products ORDER BY RAND() LIMIT 4 ";
+					$sql = "SELECT * FROM products ORDER BY RAND() LIMIT 5 ";
 					$query = mysqli_query($connection,$sql);
 					if (!$query) {
 						echo "Error: ". mysql_connect_error();
