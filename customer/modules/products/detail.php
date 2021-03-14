@@ -89,7 +89,6 @@ if (isset($_GET['id'])) {
 				margin: auto;
 				padding: 0;
 				width: 50%;
-				max-width: 100vh;
 			}
 
 			/* The Close Button */
@@ -292,6 +291,7 @@ if (isset($_GET['id'])) {
 					flex: 61%;
 				}
 				.modal-content{
+					margin-top: 60px;
 					width: 80%;
 				}
 				.item{
@@ -480,7 +480,7 @@ if (isset($_GET['id'])) {
 							<?php if (isset($_POST['size'])): ?>
 								<a href="?s=invoices&act=cart&id=<?php echo $sku_id ?>&up"><button id="addcart" type="button">Add To Cart</button></a>
 								<?php else: ?>
-									<a href="#"><button id="addcart" type="button">Add To Cart</button></a>
+									<a href="#"><button id="addcart" type="button"><i class="fa fa-cart-plus"></i> Add To Cart</button></a>
 								<?php endif ?>
 								
 							<?php endif ?>

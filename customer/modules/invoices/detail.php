@@ -129,6 +129,7 @@ if (isset($_GET['id'])) {
 			}else{
 				alert('Opps!');
 			}
+			document.location.replace('?s=invoices&act=detail&id=<?php echo $idOrder ?>&action=Cancel');
 		}
 	</script>
 </div>		

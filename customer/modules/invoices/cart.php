@@ -54,6 +54,10 @@ if (isset($_SESSION['user'])) {
 		font-weight: bold;
 
 	}
+	.btn-q i{
+		font-size: 17px;
+		color:black;
+	}
 	.imgcart{
 		width: 100px;
 		height: 70px;
@@ -93,6 +97,17 @@ if (isset($_SESSION['user'])) {
 		width: 100%;
 		padding: 10px;
 		background: #f1f1f1;
+	}
+	td button{
+		background: none;
+		border:0;
+	}
+	td button i:hover{
+		border:1px;
+	}
+	td button i{
+		font-size: 30px;
+		color:red;
 	}
 	@media only screen and (max-width: 768px){
 		table{
@@ -149,12 +164,12 @@ if (isset($_SESSION['user'])) {
 			echo "<td> ".number_format($price,0,'','.')." $</td>";
 			echo "<td>";
 
-			echo "<a href='?s=invoices&act=cart&id=$id&down'><button class='btn-q'>-</button></a>";
+			echo "<a href='?s=invoices&act=cart&id=$id&down'><button class='btn-q'><i class='fa fa-minus'></i></button></a>";
 			echo $quantity;
 			if ($quantity == $quantity_product) {
-				echo "<a href='#'><button class='btn-q' type='buttom'>+</button></a>";
+				echo "<a href='#'><button class='btn-q' type='buttom'><i class='fa fa-plus'></i></button></a>";
 			}else{
-				echo "<a href='?s=invoices&act=cart&id=$id&up'><button class='btn-q'>+</button></a>";
+				echo "<a href='?s=invoices&act=cart&id=$id&up'><button class='btn-q'><i class='fa fa-plus'></i></button></a>";
 			}
 			
 			echo "</br>Quantity remaining:" .$quantity_product;
@@ -164,12 +179,11 @@ if (isset($_SESSION['user'])) {
 			echo "<td>";
 			if (isset($_POST['btn'])) {
 				$id_cart = $_POST['id'];
-				unset($_SESSION['cart'][$id_cart]);
 				header("Location:index.php?s=invoices&act=cart");
 			}
 			echo "<form action='index.php?s=invoices&act=cart' method ='POST'>";
 			echo "<input type='hidden' name='id' value='$id'>";
-			echo "<button name='btn'>Remove</button>";
+			echo "<button name='btn'><i class='fa fa-times-circle'></i></button>";
 			echo "</form>";
 			echo "</td>";
 			echo "</tr>";

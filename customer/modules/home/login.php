@@ -99,9 +99,9 @@ if(isset($_SESSION['user']['name']) && isset($_SESSION['user']['id'])){
 			<span style="color:red;font-size: 13px;"> <?php
 			echo $error;
 			?></span>	<br>
-			Username: <br>
+			<i class="fa fa-user"></i> Username: <br>
 			<input class="input" type="text" name="username" placeholder="Username"><br>
-			Password: <br>
+			<i class="fa fa-key"></i> Password: <br>
 			<input class="input" type="password" name="password" placeholder="Password"><br>
 			<button name="btn" id="btn">Login</button>
 			<br>

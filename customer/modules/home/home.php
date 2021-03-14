@@ -234,7 +234,7 @@ form{
     ?>
     <?php foreach ($query as $post): ?>
       <div class="mySlides">
-      <a href="?s=home&act=upcomming&id=<?php echo $post['id'] ?>">
+      <a href="?s=home&act=news&id=<?php echo $post['id'] ?>">
       <img src="public/img/template/<?php echo $post['img'] ?>" style="width:100%">
       </a>
      </div>
@@ -282,7 +282,7 @@ form{
       }
 
     </script>
-    <h1>New Arrival</h1>
+    <h1><i class="fa fa-bolt"></i> New Arrival <i class="fa fa-bolt"></i></h1>
     <form action="#" method="GET">
       <?php if (isset($_GET['gender'])): ?>
               <?php if ($_GET['gender'] == ""): ?>
