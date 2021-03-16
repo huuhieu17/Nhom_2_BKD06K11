@@ -1,38 +1,35 @@
 <?php
 require_once('customer/template/version1/header.php');
 $subTitle = "Order History";
+$_SESSION['choose']=$_SESSION['from']=$_SESSION['to']="";
 if (!isset($_SESSION['user']['id'])) {
 	header("Location:?s=home");
 }
 $id_customer = $_SESSION['user']['id'];
 $check1 = $check2 = $check3 = $check4 = $check5 = "";
-if (isset($_GET['paid'])) {
-	if ($_GET['paid'] == '1') {
-		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' AND status = 1 ORDER BY id DESC ";
-		
-		
-		$check2 = "checked";
-	}else
-	if ($_GET['paid'] == '2') {
-		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' AND status = 2 ORDER BY id DESC ";
-		$check3 = "checked";
-	}else
-	if ($_GET['paid'] == '3') {
-		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' AND status = 3 ORDER BY id DESC ";
-		
-		$check4 = "checked";
-	}else
-	if ($_GET['paid'] == '0') {
-		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' AND status = 0 ORDER BY id DESC ";
-		
-		$check5 = "checked";
-	}else{	
-		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' ORDER BY id DESC ";
-		$check1 = "checked";
-	}
-	
-}else{
-	$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' ORDER BY id DESC";
+
+if(isset($_GET['paid'])) {
+	$ii=$_GET['paid'];
+		$ii=trim($ii);
+		$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' AND status = $ii ";
+		if($ii ==5){
+			$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' ";
+		}
+
+		$check = $ii;
+		if(isset($_GET['daddy'])){
+			if(isset($_GET['from']) && isset($_GET['to']) && !empty($_GET['from']) && !empty($_GET['to'])){
+				$from=$_GET['from'];
+				$to=$_GET['to'];
+				$sql.=" and create_at between '".$from."' and '". $to."' ";
+			}
+		}
+}
+else if(!isset($_GET['daddy'])){
+	$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' ";
+}
+else{
+	$sql = "SELECT * FROM invoices WHERE id_customer = '$id_customer' ";
 }
 if (!isset($_GET['page'])) {
 	$present_page = 1;
@@ -44,15 +41,16 @@ $totalInvoices = mysqli_num_rows($query);
 $limit = 20;
 $totalPage = ceil($totalInvoices/$limit);
 $skip = ($present_page - 1)*$limit;
-$sql = $sql. " LIMIT $limit OFFSET $skip";
+$sql = $sql. " ORDER BY id DESC LIMIT $limit OFFSET $skip";
 $query = mysqli_query($connection,$sql);
+echo $sql;
 ?>
 <style>
 	.historyCart{
 		width: 100%;
 	}
 	.historyCart #cleft{
-		width: 10%;
+		width: 17%;
 		float: left;
 		border-right: 1px solid #eee;
 	}
@@ -60,7 +58,7 @@ $query = mysqli_query($connection,$sql);
 		padding: 14px;
 	}
 	.historyCart #cright{
-		width: 89%;
+		width: 82%;
 		float: left;
 	}
 	.historyCart #cright table{
@@ -95,11 +93,16 @@ $query = mysqli_query($connection,$sql);
 		<form action="index.php?s=invoices&act=history&" method="GET">
 			<input type="hidden" name="s" value="invoices">
 			<input type="hidden" name="act" value="history">
-			<input type="radio" name="paid" <?php echo $check1 ?> value="">All <br>
-			<input type="radio" name="paid" <?php echo $check2 ?> value="1">Pending <br>
-			<input type="radio" name="paid" <?php echo $check3 ?> value="2">Approved <br>
-			<input type="radio" name="paid" <?php echo $check4 ?> value="3">Completed <br>
-			<input type="radio" name="paid" <?php echo $check5 ?> value="0">Cancelled <br>
+			<input type="radio" name="paid" <?php if(isset($check) && $check ==5) echo "checked"; ?> value="5">All <br>
+			<input type="radio" name="paid" <?php if(isset($check) && $check ==1) echo "checked"; ?> value="1">Pending <br>
+			<input type="radio" name="paid" <?php if(isset($check) && $check ==2) echo "checked"; ?> value="2">Approved <br>
+			<input type="radio" name="paid" <?php if(isset($check) && $check ==3) echo "checked"; ?> value="3">Completed <br>
+			<input type="radio" name="paid" <?php if(isset($check) && $check ==0) echo "checked"; ?> value="0">Cancelled <br>
+			Search From : <br>
+			<input type="date" name="from" value="<?php if(isset($from) && !empty($from)){ echo $from;} else{echo "";} ?>" required=""><br>
+			To: <br>
+			<input type="date" name="to" value="<?php if(isset($to) && !empty($to)){ echo $to;} else{echo "";} ?>" required=""><br>
+			<input type="Submit" name="daddy">
 		</form>
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
 		</script>
@@ -162,9 +165,17 @@ $query = mysqli_query($connection,$sql);
 					if (isset($_GET['paid'])) {
 						$paid = $_GET['paid'];
 					}
+					else{
+						$paid=5;
+					}
 					for ($i=1; $i <= $totalPage ; $i++) { 
-  // /?s=products&act=search&keyword=&sort=&type=&brand=
-						echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i'>".$i."</a>";
+  						if(!isset($from) && !isset($to)){
+  							echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i&daddy=Submit'>".$i."</a>";
+  						}
+  						else{
+  							echo "<a href='?s=invoices&act=history&paid=".$paid."&page=$i&from=$from&to=$to&daddy=Submit'".">".$i."</a>";
+  						}
+						
 
 					} ?>
 				</td>
