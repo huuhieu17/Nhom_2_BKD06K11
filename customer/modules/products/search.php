@@ -245,6 +245,13 @@ $sort = $keyword = $brand = $type = "";
           <?php endforeach ?>
         </select>
       </span>
+      <span>
+        Gender:
+        <select name="gender" id="">
+          <option value="1">Man</option>
+          <option value="0">Woman</option>
+        </select>
+      </span>
     </form>
 
   </div>
@@ -301,13 +308,22 @@ $sort = $keyword = $brand = $type = "";
       }else{
         $brandsql = "AND product_brand = ".$brand;
       }
-      
-      
     }
-    $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."" ;
+    $genderSql = "";
+    if (isset($_GET['gender'])) {
+      $gender = $_GET['gender'];
+      if ($gender == "") {
+        $genderSql = "";
+      }else{
+        $genderSql = "AND product_gender = ".$gender;
+      }
+    }
+    
+    $sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."" .$genderSql. "";
   }else{
    $sql = "SELECT * FROM products";
  } 
+
  $query = mysqli_query($connection,$sql);
    // PAGENIATION
  if (!isset($_GET['page'])) {
@@ -319,7 +335,7 @@ $total_product = mysqli_num_rows($query);
 $limit = 8;
 $total_page = ceil($total_product/$limit);
 $skip = ($present_page - 1)*$limit;
-$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql."LIMIT $limit OFFSET $skip" ;
+$sql = "SELECT * FROM products WHERE product_name LIKE '%$keyword%' ".$sortsql." ".$typesql." ".$brandsql. "" .$genderSql. " LIMIT $limit OFFSET $skip" ;
 $query = mysqli_query($connection,$sql);
 if (!$query) {
   echo "Error: ". mysql_connect_error();

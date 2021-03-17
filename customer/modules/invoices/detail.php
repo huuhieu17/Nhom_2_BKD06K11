@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
 	<h4> Order Information</h4>
 	<div class="info">
 		<p><span>Order Number:</span> <?php echo $idOrder ?></p>
-		<p><span>Created At:</span> <?php date("F j, Y H:i:a", strtotime($data['create_at'])); ?></p>
+		<p><span>Created At:</span> <?php echo date("F j, Y H:i:a", strtotime($data['create_at'])); ?></p>
 		<p><span>Receiver Name:</span><?php echo $data['receiver'] ?> </p>
 		<p><span>Phone:</span><?php echo $data['phone'] ?> </p>
 		<p><span>Address:</span> <?php echo $data['address'] ?> </p>

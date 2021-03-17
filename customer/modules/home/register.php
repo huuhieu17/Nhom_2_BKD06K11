@@ -20,7 +20,7 @@ if (isset($_POST['btn'])) {
 	$sql = "INSERT INTO customers VALUES(null,'$username','$name','$email','$password','','','')";
 	$query = mysqli_query($connection,$sql);
 	if (!$query) {
-		$error = "Error";
+		$error = "Error ! Email or Phone is exist";
 	}else{
 		$error = "Register Successful! Please <a href='?s=home&act=login'><b> Login</b></a>";
 	}

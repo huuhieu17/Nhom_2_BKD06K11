@@ -292,19 +292,19 @@ form{
               <?php endif ?>
             <?php if ($_GET['gender'] == 1): ?>
               
-            <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="1"> Male
+            <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="1"> Man
                     <?php else: ?>
-            <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Male
+            <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Man
                     
             <?php endif ?>
             <?php if ($_GET['gender'] == 0): ?>
-               <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="0"> Female
+               <input type="radio" name="gender" checked="" onchange="this.form.submit()" value="0"> Woman
                <?php else: ?>
-               <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Female
+               <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Woman
 
             <?php endif ?>
             <?php else: ?>
-              <input type="radio" name="gender" value ="" onchange="this.form.submit()" checked="">All  <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Male <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Female
+              <input type="radio" name="gender" value ="" onchange="this.form.submit()" checked="">All  <input type="radio" name="gender" onchange="this.form.submit()" value="1"> Man <input type="radio" name="gender" onchange="this.form.submit()" value="0"> Woman
       <?php endif ?>
 
 

@@ -43,7 +43,6 @@ $totalPage = ceil($totalInvoices/$limit);
 $skip = ($present_page - 1)*$limit;
 $sql = $sql. " ORDER BY id DESC LIMIT $limit OFFSET $skip";
 $query = mysqli_query($connection,$sql);
-echo $sql;
 ?>
 <style>
 	.historyCart{
@@ -116,7 +115,7 @@ echo $sql;
 	<div id="cright">
 		<table>
 			<tr>
-				<th>Id</th>
+				
 				<th>Total Amount</th>
 				<th>Time</th>
 				<th>Receiver</th>
@@ -127,7 +126,6 @@ echo $sql;
 			</tr>
 			<?php foreach ($query as $row): ?>
 				<tr>
-					<td><?php echo $row['id'] ?></td>
 					<td><?php echo number_format($row['total_amounts'],0,'','.')." $"; ?></td>
 					<td><?php echo date("F j, Y H:ia", strtotime($row['create_at'])); ?></td>
 					<td><?php echo $row['receiver'] ?></td>		
