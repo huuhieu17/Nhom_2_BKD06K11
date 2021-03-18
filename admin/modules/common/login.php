@@ -1,10 +1,9 @@
 <?php 
-	error_reporting(0);
+	// error_reporting(0);
 	require_once("config/config.php");
 require_once("config/session.php");
-			$admin = "";
-
-	if (isset($_SESSION['admin']) || $_SESSION['admin'] != "") {
+			// $admin = "";
+	if (isset($_SESSION['admin']) && $_SESSION['admin'] != "") {
 		header('Location:?modules=common&action=home');
 	}
 	$error = "";

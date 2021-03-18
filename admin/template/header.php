@@ -203,7 +203,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 				<div id="right">
 					<button class="menu" onclick="menu()"><i class="fa fa-bars"></i></button>
 					<ul>
-					<li><a href="#">Welcome <b><?php echo $_SESSION['admin']['username'];?></a></b>
+					<li><a href="">Welcome <b><?php echo $_SESSION['admin']['username'];?></a></b>
 						<ul>
 							<li><a href=""><i class="fa fa-user-circle-o"></i> Edit Infomation</a></li>
 							<li><a href="index.php?modules=common&action=logout"><i class="fa fa-power-off"></i> Logout</a> </li>

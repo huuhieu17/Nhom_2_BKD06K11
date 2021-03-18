@@ -20,7 +20,7 @@ if ($module == "" || $action== "") {
 $path = "modules/$module/$action.php";
 if (file_exists($path)) {
 	require_once("config/session.php");
-	if (isset($_SESSION['admin']) || $_SESSION['admin'] != "") {
+	if (isset($_SESSION['admin']) && $_SESSION['admin'] != "") {
 		require_once($path);
 		
 	}else{
