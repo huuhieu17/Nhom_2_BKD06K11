@@ -92,6 +92,7 @@ if (isset($_GET['id'])) {
 			}
 			?>
 		</p>
+		<p><span>Note:</span> <?php echo $data['note']; ?></p>	
 	</div>
 	
 	<h4> Order Detail</h4>

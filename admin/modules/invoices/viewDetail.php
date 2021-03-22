@@ -32,6 +32,9 @@ if (isset($_POST['status'])) {
 }
 ?>
 <style>
+	#sidebar{
+		height: auto;
+	}
 	.detail{
 		box-sizing: border-box;
 		width: 100%;
@@ -124,6 +127,7 @@ if (isset($_POST['status'])) {
 		</form>
 	</p>
 	<p><span>Admin Modify:</span><?php echo $data['id_admin']; ?></p>
+	<p><span>Note: </span> <?php echo $data['note']; ?></p>	
 	</div>
 	
 	<h4> Order Detail</h4>

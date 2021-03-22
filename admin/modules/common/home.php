@@ -11,6 +11,9 @@ require_once('././config/check_login.php');
 		padding: 10px;
 		background: #f1f1f1;
 	}
+    #sidebar{
+        height: 100vh;
+    }
 </style>
 <h1>Dashboard</h1>
 	<?php 
@@ -86,8 +89,7 @@ require_once('././config/check_login.php');
 
 
 
- }
- else if(!isset($_SESSION['year']) ){
+ }else if(!isset($_SESSION['year']) || $_SESSION['year'] == 1 ){
      $x1=$y1='';
 
      $year="select year(create_at) as 'year' from invoices where status=3 group by year(create_at) order by year(create_at) ASC";
@@ -128,9 +130,9 @@ require_once('././config/check_login.php');
                     });
             </script>";
     }else{
-    	// echo "<script> window.location.replace('?modules=home')</script>";
-    	header("location:index.php");
+        
     }
+ 
 ?>
 </html>
 <?php
