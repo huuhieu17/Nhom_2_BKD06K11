@@ -3,7 +3,7 @@ require_once('customer/template/version1/header.php');
 $subTitle = "Invoice Detail";
 if (isset($_GET['id'])) {
 	$idOrder = $_GET['id'];
-	$sql = "SELECT invoices.id,invoices.create_at,invoices.receiver,invoices.phone,invoices.total_amounts,invoices.address,invoices.status,invoices.note,invoices_detail.id_product,invoices.id_customer,invoices_detail.quantity,sku.id,sku.sku,sku.color_id,sku.size_id,products.product_name FROM invoices INNER JOIN invoices_detail INNER JOIN sku INNER JOIN products WHERE invoices.id = '$idOrder' AND invoices_detail.id_product = sku.id AND sku.product_id = products.id AND invoices_detail.id_invoices = invoices.id";
+	$sql = "SELECT invoices.id,invoices.create_at,invoices.receiver,invoices.phone,invoices.total_amounts,invoices.address,invoices.status,invoices.note,invoices_detail.id_product,invoices.id_customer,invoices_detail.quantity,sku.id,sku.sku,sku.color_id,sku.size_id,products.product_name,sku.product_id FROM invoices INNER JOIN invoices_detail INNER JOIN sku INNER JOIN products WHERE invoices.id = '$idOrder' AND invoices_detail.id_product = sku.id AND sku.product_id = products.id AND invoices_detail.id_invoices = invoices.id";
 	$query = mysqli_query($connection,$sql);
 	if (!$query) {
 		echo "Error:";
@@ -30,7 +30,6 @@ if (isset($_GET['id'])) {
 	.detail{
 		box-sizing: border-box;
 		width: 100%;
-		height: 100vh;
 		padding: 10px;
 	}
 	.detail h4{
@@ -52,6 +51,9 @@ if (isset($_GET['id'])) {
 		padding: 20px;
 		width: 100%;
 		box-sizing: border-box;
+	}
+	.detail table tr td img{
+		width: 10%;
 	}
 	.detail table,tr,th,td{
 		box-sizing: border-box;
@@ -105,7 +107,17 @@ if (isset($_GET['id'])) {
 		</tr>
 		<?php foreach ($query as $total => $show): ?>
 			<tr>
-				<td> <?php echo $show['product_name'] ?></td>
+				<td> 
+					<?php 
+					$id_product = $show['product_id'];
+					$sql = "SELECT url FROM products_images WHERE id = '$id_product'";
+					$query = mysqli_query($connection,$sql);
+					$row = mysqli_fetch_assoc($query);
+					echo "<a href='?s=products&act=detail&id=".$id_product."'>";
+					echo "<img src='./public/img/product/".$row['url']."'><br>";
+					echo "</a>";
+					?>
+					<?php echo $show['product_name'] ?></td>
 				<td>Sku:<?php echo $show['sku'] ?><br>
 					Size: <?php echo $nameSize['value'] ?><br>
 					Color: <?php echo $nameColor['value'] ?>

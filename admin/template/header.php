@@ -238,18 +238,11 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] == "") {
 				<div class="link">
 					<a href="?modules=categorizes&action=all"><i class="fa fa-newspaper-o"></i> Manage Categorizes</a>
 				</div>
-				<?php if ($_SESSION['admin']['level'] == 2): ?>
-					<div class="link">
-						<a href="#"><i class="fa fa-user"></i> Admin List</a>
-					</div>
-						
-					<?php endif ?>
-				
 				<div class="link">
 					<a href="?modules=invoices&action=manage"><i class="fa fa-handshake-o"></i> Transaction / Order </a>
 				</div>
 				<div class="link">
-					<a href="#"><i class="fa fa-newspaper-o"></i> News</a>
+					<a href="?modules=news&action=manage"><i class="fa fa-newspaper-o"></i> News</a>
 				</div>
 				<div class="link" id="logout">
 					<a href="?modules=common&action=logout"><i class="fa fa-power-off"></i> Log Out</a>
