@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 	}
 	$row = mysqli_fetch_assoc($query);	
 		//color fetch
-			$sql = "SELECT product_variants.id,product_variants.product_id,product_variants.product_variant_value_id, variant_value.value FROM `product_variants` INNER JOIN variant_value WHERE product_variants.product_id = '$id' AND status = 1 AND product_variants.product_variant_value_id = variant_value.id"; // color
+			$sql = "SELECT product_colors.id,product_colors.product_id,product_colors.product_color_id, colors.value FROM `product_colors` INNER JOIN colors WHERE product_colors.product_id = '$id' AND status = 1 AND product_colors.product_color_id = colors.id"; // color
 			$color = mysqli_query($connection,$sql);
 			
 		}
@@ -426,13 +426,13 @@ if (isset($_GET['id'])) {
 									<h5>Color: </h5>
 									<?php foreach ($color as $key => $colors): ?>
 										<?php if (isset($_POST['color'])): ?>
-											<?php if ($_POST['color'] == $colors['product_variant_value_id']): ?>
-												<input type="radio" class="color" id="color" name="color" checked value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
+											<?php if ($_POST['color'] == $colors['product_color_id']): ?>
+												<input type="radio" class="color" id="color" name="color" checked value="<?php echo $colors['product_color_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 												<?php else: ?>
-													<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
+													<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_color_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 												<?php endif ?>
 												<?php else: ?>
-													<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_variant_value_id'] ?>"> <span><?php echo $colors['value'] ?></span>
+													<input type="radio" class="color" id="color" name="color" value="<?php echo $colors['product_color_id'] ?>"> <span><?php echo $colors['value'] ?></span>
 												<?php endif ?>
 												
 												
@@ -447,7 +447,7 @@ if (isset($_GET['id'])) {
 											<?php 
 											if (isset($_POST['color'])) {
 												$colorid = $_POST['color'];
-					$sql = "SELECT sku.size_id, sku.sku,sku.quantity, variant_value.value FROM sku INNER JOIN variant_value WHERE sku.product_id = '$id' AND sku.color_id = '$colorid' AND sku.size_id = variant_value.id AND sku.quantity > 0"; // size
+					$sql = "SELECT sku.size_id, sku.sku,sku.quantity, sizes.name FROM sku INNER JOIN sizes WHERE sku.product_id = '$id' AND sku.color_id = '$colorid' AND sku.size_id = sizes.id AND sku.quantity > 0"; // size
 					$size = mysqli_query($connection,$sql);
 				}
 				
@@ -458,12 +458,12 @@ if (isset($_GET['id'])) {
 					<?php foreach ($size as $key => $sizes): ?>
 						<?php if (isset($_POST['size'])): ?>
 							<?php if ($_POST['size'] == $sizes['size_id']): ?>
-								<input type="radio" name="size" checked value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+								<input type="radio" name="size" checked value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['name'] ?></span>
 								<?php else: ?>
-									<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+									<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['name'] ?></span>
 								<?php endif ?>
 								<?php else: ?>
-									<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['value'] ?></span>
+									<input type="radio" name="size" value="<?php echo $sizes['size_id'] ?>">	<span><?php echo $sizes['name'] ?></span>
 								<?php endif ?>
 								
 								<script>

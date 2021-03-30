@@ -248,6 +248,7 @@ $sort = $keyword = $brand = $type = "";
       <span>
         Gender:
         <select name="gender" id="">
+          <option value="">------------</option>
           <option value="1">Man</option>
           <option value="0">Woman</option>
         </select>

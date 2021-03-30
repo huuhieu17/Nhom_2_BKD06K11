@@ -94,16 +94,10 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 	Color:
 	<div class="color">
 		<?php 
-			$sql ="SELECT product_variants.product_id,product_variants.product_variant_value_id,product_variants.status,variant_value.value FROM product_variants INNER JOIN variant_value WHERE product_variants.product_id = '$id_product' AND product_variants.product_variant_value_id = variant_value.id AND product_variants.status = 1";
+			$sql ="SELECT * FROM product_colors INNER JOIN colors WHERE product_colors.product_id = '$id' AND product_colors.status = 1 AND colors.id = product_colors.product_color_id";
 			$query = mysqli_query($connection,$sql);
-				foreach ($query as $key => $value) {
-						if ($value['status'] == 1) {
-							$check = "Checked";
-						}else{
-							$check ="";
-						}
-						echo "<input type='checkbox'".$check." name='color[ ]' value='".$value['product_variant_value_id']."'> ". $value['value']. " ";	
-				}	
+			$value = mysqli_fetch_assoc($query);
+						echo "<input type='checkbox' checked name='color[ ]' value='".$value['product_color_id']."'> ". $value['value']. " ";	
 
 						
 		?>
@@ -118,22 +112,22 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 		<?php foreach ($query as $keysize): ?>
 			<span>
 				<?php switch ($keysize['size_id']) {
-				case '12':
+				case '1':
 					echo 'S';
 					break;
-				case '13':
+				case '2':
 					echo 'M';
 					break;
-				case '14':
+				case '3':
 					echo 'L';
 					break;
-				case '15':
+				case '4':
 					echo 'XL';
 					break;
-				case '16':
+				case '5':
 					echo 'XXL';
 					break;
-				case '17':
+				case '6':
 					echo 'XXXL';
 					break;
 				
@@ -146,7 +140,7 @@ $sql = "SELECT * FROM products WHERE id='$id'";
 			
 		<?php endforeach ?>
 		<?php 
-		 $sizearray = array(12,13,14,15,16,17);
+		 $sizearray = array(1,2,3,4,5,6);
 		 $quantity = array();
 		 if (isset($_POST['quantity'])) {
 		 	 $quantity = $_POST['quantity'];

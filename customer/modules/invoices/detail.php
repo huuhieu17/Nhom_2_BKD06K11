@@ -16,8 +16,8 @@ if (isset($_GET['id'])) {
 	}
 	$size = $data['size_id'];
 	$color = $data['color_id'];
-	$nameSize = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM variant_value WHERE id='$size'"));
-	$nameColor = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM variant_value WHERE id='$color'"));
+	$nameSize = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name FROM sizes WHERE id='$size'"));
+	$nameColor = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM colors WHERE id='$color'"));
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == "Cancel") {
 			$sql = "UPDATE invoices SET status = 0 WHERE id ='$idOrder'";
@@ -119,7 +119,7 @@ if (isset($_GET['id'])) {
 					?>
 					<?php echo $show['product_name'] ?></td>
 				<td>Sku:<?php echo $show['sku'] ?><br>
-					Size: <?php echo $nameSize['value'] ?><br>
+					Size: <?php echo $nameSize['name'] ?><br>
 					Color: <?php echo $nameColor['value'] ?>
 				</td>
 				<td>

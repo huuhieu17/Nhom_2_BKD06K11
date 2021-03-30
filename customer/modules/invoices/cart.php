@@ -151,15 +151,15 @@ if (isset($_SESSION['user'])) {
 			$price = $row['product_price'];
 			$color_id = $row['color_id'];
 			$size_id = $row['size_id'];
-			$getColor = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM variant_value WHERE id ='$color_id'"));
-			$getSize = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM variant_value WHERE id ='$size_id'"));
+			$getColor = mysqli_fetch_assoc(mysqli_query($connection,"SELECT value FROM colors WHERE id ='$color_id'"));
+			$getSize = mysqli_fetch_assoc(mysqli_query($connection,"SELECT name FROM sizes WHERE id ='$size_id'"));
 			echo "<tr>";
 			echo "<td> $count </td>";
 			echo "<td>". $name ."<br><a href='?s=products&act=detail&id=$product_id'><img class='imgcart' src='./public/img/product/".$img['url']."'></a></td>";
 			echo "<td>";
 			echo "Product Code: ".$row['sku']."<br>";
 			echo "Color: ".$getColor['value']."<br>" ;
-			echo "Size: ".$getSize['value'];
+			echo "Size: ".$getSize['name'];
 			echo "</td>";
 			echo "<td> ".number_format($price,0,'','.')." $</td>";
 			echo "<td>";
