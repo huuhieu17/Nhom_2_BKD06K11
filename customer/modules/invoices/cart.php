@@ -33,6 +33,7 @@ if (isset($_SESSION['user'])) {
 <style>
 	.cart{
 		height: 100%;
+		overflow-x:scroll;
 	}
 	table{
 		float: left;
@@ -121,6 +122,7 @@ if (isset($_SESSION['user'])) {
 </style>
 <div class="cart">
 	<h1>Cart</h1>
+	<?php print_r( $_SESSION['cart']);?>
 	<table>
 
 		<tr>
@@ -179,6 +181,7 @@ if (isset($_SESSION['user'])) {
 			echo "<td>";
 			if (isset($_POST['btn'])) {
 				$id_cart = $_POST['id'];
+				unset($_SESSION['cart'][$id_cart]);
 				header("Location:index.php?s=invoices&act=cart");
 			}
 			echo "<form action='index.php?s=invoices&act=cart' method ='POST'>";
@@ -192,8 +195,8 @@ if (isset($_SESSION['user'])) {
 		} 
 		?>
 		<tr>
-			<td colspan="6">Total Pay</td>
-			<td><?php echo number_format($total,0,'','.') ?> $</td>
+			<td colspan="7">Total Pay : <?php echo number_format($total,0,'','.') ?> $</td>
+			
 		</tr>
 		
 	</table>
